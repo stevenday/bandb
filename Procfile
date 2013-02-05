@@ -1,1 +1,1 @@
-web: gunicorn bandb.wsgi
+web: newrelic-admin run-program gunicorn bandb.wsgi
