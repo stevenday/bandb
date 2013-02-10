@@ -21,8 +21,5 @@ $(function(){
             dateString = $("#start_date").val();
             $("#end-date").val(dateString).datepicker("setStartDate", dateString);
         });
-
-        $("#inline-calendar-1").datepicker(sharedOptions).datepicker('show');
-        $("#inline-calendar-2").datepicker(sharedOptions).datepicker('show');
     }
 });

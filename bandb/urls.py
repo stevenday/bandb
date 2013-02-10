@@ -6,11 +6,14 @@ from django.http import HttpResponse
 # from django.contrib import admin
 # admin.autodiscover()
 
-from .views import HomeView
+from .views import HomeView, Option1View, Option2View, Option3View
 
 urlpatterns = patterns('',
     # Examples:
     url(r'^$', HomeView.as_view(), name='home'),
+    url(r'^option-1$', Option1View.as_view(), name='option_1'),
+    url(r'^option-2$', Option2View.as_view(), name='option_2'),
+    url(r'^option-3$', Option3View.as_view(), name='option_3'),
 
     # Uncomment the admin/doc line below to enable admin documentation:
     # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
