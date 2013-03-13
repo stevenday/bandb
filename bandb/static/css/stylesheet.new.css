@@ -26,6 +26,9 @@ body {
     }
 
 .subtitle {
-    margin: -10px 0 20px 150px;
+    font-family: 'JennaSueRegular';
+    font-size: 32px;
+    font-weight: bold;
+    margin: -10px 0 10px 110px;
     padding: 0;
 }
