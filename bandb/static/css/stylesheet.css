@@ -1,0 +1,393 @@
+/* This should give a 100% fluid and relatively sized page, that stops shrinking at a minimum size of 901px (the width of the title image) and has a full width header & footer and horiz menu, along with a fixed with right side bar and fluid main content area */
+
+/* **************************************************************************** */
+
+/* Common page/html elements*/
+body
+{
+    min-width:901px;
+    padding: 0;
+    margin:3% 5% 3% 3%;
+    background-color:#FFCC33;
+
+}
+
+/* all links */
+a:link
+{
+    text-decoration:none;
+    font-weight:bold;
+}
+
+a:active
+{
+    text-decoration:none;
+    font-weight:bold;
+}
+a:visited
+{
+    text-decoration:none;
+    font-weight:bold;
+}
+a:hover
+{
+    text-decoration:underline;
+    font-weight:bold;
+}
+
+/* white links */
+a.white:link
+{
+    color:#FFFFFF;
+}
+a.white:active
+{
+    color:#FFFFFF;
+}
+a.white:visited
+{
+    color:#FFFFFF;
+}
+a.white:hover
+{
+    color:#FFFFFF;
+}
+
+/* red links */
+a.red:link
+{
+    color:#800000;
+}
+a.red:active
+{
+    color:#800000;
+}
+a.red:visited
+{
+    color:#800000;
+}
+a.red:hover
+{
+    color:#800000;
+}
+
+/* heading level one, used for page titles */
+h1
+{
+    font-family:'Arial',sans-serif;
+    color:#800000;
+    margin:0 auto;
+}
+/* heading level two, used for section headings in pages*/
+h2
+{
+    font-family:'Arial', sans-serif;
+    margin:0 auto;
+    color:#800000;
+}
+img
+{
+    border:none;
+    vertical-align:middle;
+    line-height:normal;
+}
+
+/* semantic xhtml element that encloses fields in a form - we need it for the code to be valid xhtml*/
+fieldset
+{
+    border: 0;
+}
+
+/* **************************************************************************** */
+
+/* Our own defined styles */
+
+/* Main page container */
+#pagecontainer
+{
+    position:relative;
+    top:0px;
+    left:0px;
+    width:910px;
+    border:none;
+    background-color:none;
+    text-align:left;
+    margin:0 auto;
+}
+
+/* Title */
+#titlecontainer
+{
+    background-color:none;
+    text-align:center;
+    width:100%;
+}
+
+#titleimagecontainer
+{
+    text-align:center;
+}
+
+#lefttitlecontainer
+{
+    text-align:left;
+    float:left;
+    width:70%;
+}
+
+#righttitlecontainer
+{
+    text-align:right;
+    float:left;
+    width:30%;
+}
+
+/* Content enclosing divs */
+#bodycontainer_twocolumn
+{
+    padding-top:10px;
+    padding-right:370px;
+}
+
+#bodycontainer_onecolumn
+{
+    padding-top:10px;
+}
+
+#leftcolumn
+{
+    position:relative;
+    float:left;
+    padding-right:15px;
+}
+
+#rightcolumn
+{
+    position:relative;
+    float:left;
+    width:355px;
+    margin-right:-370px;
+    text-align:center;
+    padding-left:15px;
+}
+
+/* Hack to make the columns work in IE6*/
+*html #bodycontainer_twocolumn
+{
+    height:1%;
+}
+
+
+#onecolumn
+{
+    position:relative;
+    float:left;
+    width:100%;
+}
+
+#quotecontainer
+{
+    text-align:left;
+    padding-top:25px;
+    padding-bottom:25px;
+}
+
+#labelcontainer
+{
+    text-align:center;
+}
+
+/* Page Content - text etc*/
+.pagecontent
+{
+    font-family:'Arial', sans-serif;
+    font-size:1em;
+    color:#000000;
+}
+
+.pagecontentred
+{
+    font-family:'Arial', sans-serif;
+    font-size:1em;
+    color:#800000;
+}
+
+.quote
+{
+    font-family:'Arial', sans-serif;
+    font-style:italic;
+    font-size:0.9em;
+    color:#000000;
+}
+
+.footerText
+{
+    font-family:'Arial', sans-serif;
+    font-size:0.9em;
+    color:#000000;
+}
+
+.contactdetails
+{
+    font-family:'Arial', sans-serif;
+    color:#FFFFFF;
+    font-size:1em;
+}
+
+.bigTextRed
+{
+    font-family:'Arial', sans-serif;
+    color:#800000;
+    font-size:1.5em;
+}
+
+.bigTextWhite
+{
+    font-family:'Arial', sans-serif;
+    color:#FFFFFF;
+    font-size:1.5em;
+}
+
+.availableGreen
+{
+    color:#5D752B;
+}
+
+.bookedRed
+{
+    color:#800000;
+}
+
+
+
+/* Menu*/
+#menucontainer
+{
+    text-align:center;
+    border-bottom: 1px solid #000000;
+    margin-left:10%;
+    margin-right:10%;
+    margin-bottom:1%;
+}
+
+.menu
+{
+    font-family:sans-serif;
+    color:#FFFFFF;
+    font-size:1em;
+}
+
+.menuhighlighted
+{
+    font-family:sans-serif;
+    color:#800000;
+    font-size:1em;
+}
+
+/* Forms */
+.inputSectionLabel
+{
+    height:3em;
+    vertical-align:bottom;
+}
+.inputLabel
+{
+    width:50%;
+    text-align:left;
+    vertical-align:top;
+}
+
+.inputField
+{
+    width:50%;
+    text-align:left;
+    vertical-align:top;
+}
+
+.inputButton
+{
+    text-align:center;
+    vertical-align:bottom;
+}
+/* Calendar */
+.calendarcontainer
+{
+    text-align:center;
+}
+
+.nonMonthDay
+{
+    background-color:none;
+    width:35px;
+}
+
+.unBookedDay
+{
+    background-color:#5D752B;
+    width:35px;
+    text-align:center;
+}
+
+.bookedDay
+{
+    background-color:#800000;
+    width:35px;
+    text-align:center;
+}
+
+.unavailableDay
+{
+    background-color:#999999;
+    width:35px;
+    text-align:center;
+}
+
+.tableHeader
+{
+    font-weight:bold;
+}
+
+table#calendar
+{
+    /* these are needed to center table in firefox */
+    margin-left:auto;
+    margin-right:auto;
+}
+
+table#calendarForm
+{
+    /* these are needed to center table in firefox */
+    margin-left:auto;
+    margin-right:auto;
+}
+
+table.bookingsAdmin
+{
+
+    border: thin,solid,#000000;
+    border-collapse:collapse;
+}
+
+.monthTitle
+{
+    font-size:1.2em;
+    font-family:'Arial',sans-serif;
+    font-weight:bold;
+    color:#800000;
+}
+.dayText
+{
+    font-size:0.8em;
+    font-family:'Arial',sans-serif;
+    color:#FFFFFF;
+}
+
+/* Footer */
+#footercontainer
+{
+    width:100%;
+    position:relative;
+    clear:both;
+    text-align:center;
+    padding-top:10px;
+}

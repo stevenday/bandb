@@ -1,55 +1,39 @@
-{% load staticfiles %}{% load url from future %}
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <title>{% block title %}{% endblock title %}</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="{% block description %}{% endblock description %}">
-    <meta name="author" content="Tilley's Hut">
-
-    <!-- Le styles -->
-    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
-    <link href="{% static 'css/bootstrap-responsive.min.css' %}" rel="stylesheet">
-    <link href="{% static 'css/bootstrap-datepicker.css' %}" rel="stylsheet">
-
-    {% block extra_css %}{% endblock extra_css %}
-
-    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
-    <!--[if lt IE 9]>
-      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-
-    <!-- Fav and touch icons -->
-    <!--<link rel="apple-touch-icon-precomposed" sizes="144x144" href="../assets/ico/apple-touch-icon-144-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../assets/ico/apple-touch-icon-114-precomposed.png">
-      <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../assets/ico/apple-touch-icon-72-precomposed.png">
-                    <link rel="apple-touch-icon-precomposed" href="../assets/ico/apple-touch-icon-57-precomposed.png">
-                                   <link rel="shortcut icon" href="../assets/ico/favicon.png">-->
-  </head>
-
-  <body>
-
-    {% block content %}
-
-    {% endblock content %}
-
-
-    <!-- Le javascript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
-    <script src="{% static 'js/date.js' %}"></script>
-    <script src="{% static 'js/bootstrap.js' %}"></script>
-    <script src="{% static 'js/bootstrap-datepicker.js' %}"></script>
-    {% block extra_js %}{% endblock extra_js %}
-    <script>
-      !function ($) {
-        $(function(){
-          // carousel demo
-          $('#myCarousel').carousel()
-        })
-      }(window.jQuery)
-    </script>
-  </body>
+{% load staticfiles %}
+<html>
+    <head>
+        <title>Tilleys Hut - Unusual place to stay - a restored Dorset shepherds hut - Home</title>
+        <link rel="stylesheet" type="text/css" href="{% static 'css/stylesheet.css' %}" />
+        <link rel="stylesheet" type="text/css" href="{% static 'css/new_stylesheet.css' %}" />
+    </head>
+    <body>
+        <div id="pagecontainer">
+            <div id="titlecontainer">
+                <div id="lefttitlecontainer">
+                    <a class="logo" href="/" title="Tilleys Hut - Unusual place to stay - Homepage">Tilleys Hut<span class="subtitle">B&mp;B in a restored Dorset Shepherd's Hut</span></a>
+                </div>
+                <div id="righttitlecontainer">
+                    <p class="contactdetails">
+                        <strong>Tel: 01747 854 375</strong><br/>
+                        <strong>Email: </strong><a class="white" href="#" target="_BLANK">info@tilleyshut.com</a>
+                    </p>
+                </div>
+                <div id="titleimagecontainer">
+                    <img src="{% static "img/banner.jpg" %}" alt="Scenes of Tilleys hut and the surrounding area."/>
+                </div>
+            </div>
+            <div id="menucontainer">
+                <p>
+                    <span class="menuhighlighted">Home </span> &nbsp;&nbsp;&nbsp;
+                    <span class="menu"><a class="white" href="#">The Hut</a></span> &nbsp;&nbsp;&nbsp;
+                    <span class="menu"><a class="white" href="#">Rates and Services</a></span> &nbsp;&nbsp;&nbsp;
+                    <span class="menu"><a class="white" href="#">The Area</a></span> &nbsp;&nbsp;&nbsp;
+                    <span class="menu"><a class="white" href="#">Availability</a></span> &nbsp;&nbsp;&nbsp;
+                    <span class="menu"><a class="white" href="#">Things to Know</a></span> &nbsp;&nbsp;&nbsp;
+                </p>
+            </div>
+            {% block content %}{% endblock content %}
+        <div id="footercontainer">{% block footer %}{% endblock footer %}</div>
+    </div>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+</body>
 </html>
