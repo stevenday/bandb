@@ -1,4 +1,7 @@
-*.pyc
 *.sublime-workspace
 *.sublime-project
 virtualenv-bandb
+*.log
+*.pot
+*.pyc
+local_settings.py
