@@ -1,40 +1,58 @@
 {% load staticfiles %}
-<html>
+<!DOCTYPE html>
+<html lang="en">
+
     <head>
         <title>Tilleys Hut - Unusual place to stay - a restored Dorset shepherds hut - Home</title>
-        <link rel="stylesheet" type="text/css" href="{% static 'css/stylesheet.css' %}" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}" />
         <link rel="stylesheet" type="text/css" href="{% static 'css/stylesheet.new.css' %}" />
     </head>
+
     <body>
-        <div id="pagecontainer">
-            <div id="titlecontainer">
-                <div id="lefttitlecontainer">
+
+        <div class="container">
+
+            <div class="header row">
+                <div class="span9">
                     <p class="logo"><a href="/" title="Tilleys Hut - Unusual place to stay - Homepage">Tilleys Hut</a></p>
                     <p class="subtitle">B&amp;B in a restored Dorset Shepherd's Hut</span></p>
                 </div>
-                <div id="righttitlecontainer">
+                <div class="span3">
                     <p class="contactdetails">
                         <strong>Tel: </strong><a href="tel:01747854375">01747 854 375</a><br/>
                         <strong>Email: </strong><a href="#">info@tilleyshut.com</a>
                     </p>
                 </div>
-                <div id="titleimagecontainer">
-                    <img src="{% static "img/banner.jpg" %}" alt="Scenes of Tilleys hut and the surrounding area."/>
-                </div>
             </div>
-            <div id="menucontainer">
-                <p>
-                    <span class="menuhighlighted">Home </span> &nbsp;&nbsp;&nbsp;
-                    <span class="menu"><a class="white" href="#">The Hut</a></span> &nbsp;&nbsp;&nbsp;
-                    <span class="menu"><a class="white" href="#">Rates and Services</a></span> &nbsp;&nbsp;&nbsp;
-                    <span class="menu"><a class="white" href="#">The Area</a></span> &nbsp;&nbsp;&nbsp;
-                    <span class="menu"><a class="white" href="#">Availability</a></span> &nbsp;&nbsp;&nbsp;
-                    <span class="menu"><a class="white" href="#">Things to Know</a></span> &nbsp;&nbsp;&nbsp;
-                </p>
+
+            <div class="hero row">
+                <p><img src="{% static "img/banner.jpg" %}" alt="Scenes of Tilleys hut and the surrounding area."/></p>
             </div>
+
+            <div class="nav row">
+                <ul>
+                    <li class="active">Home</li>
+                    <li><a href="#">The Hut</a></li>
+                    <li><a href="#">Rates and Services</a></li>
+                    <li><a href="#">The Area</a></li>
+                    <li><a href="#">Availability</a></li>
+                    <li><a href="#">Things to Know</a></li>
+                </ul>
+            </div>
+
             {% block content %}{% endblock content %}
-        <div id="footercontainer">{% block footer %}{% endblock footer %}</div>
+
+        <div class="footer row">
+            {% block footer %}{% endblock footer %}
+        </div>
+
     </div>
+
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+
+    <script type="text/javascript" src="{% static 'js/bootstrap.min.js' %}"></script>
+
 </body>
+
 </html>
