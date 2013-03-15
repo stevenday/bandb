@@ -1,0 +1,36 @@
+/* Fonts */
+@font-face {
+    font-family: 'JennaSueRegular';
+    src: url('../fonts/jenna-sue/JennaSue-webfont.eot');
+    src: url('../fonts/jenna-sue/JennaSue-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/jenna-sue/JennaSue-webfont.woff') format('woff'),
+         url('../fonts/jenna-sue/JennaSue-webfont.ttf') format('truetype'),
+         url('../fonts/jenna-sue/JennaSue-webfont.svg#JennaSueRegular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+    font-size: 18px;
+    line-height: 24px;
+    color: #333;
+    font-family: Arial, sans-serif;
+    background-color:#FFCC33;
+}
+
+a:link,
+a:active,
+a:visited,
+a:hover {
+    color:#800000;
+    text-decoration: none;
+}
+a:hover{
+    text-decoration: underline;
+};
+
+.wrapper {
+    max-width:960px;
+    padding:0 24px;
+    margin:0 auto;
+}

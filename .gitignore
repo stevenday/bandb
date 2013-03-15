@@ -7,3 +7,4 @@ virtualenv-bandb
 local_settings.py
 .DS_Store
 /static
+/web/css/.sass-cache
