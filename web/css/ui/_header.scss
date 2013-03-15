@@ -1,20 +1,49 @@
-.logo {
-    font-family: 'JennaSueRegular';
-    font-size: 4em;
-    color: #800000;
-    padding: 0.5em 0 0 0.25em;
-    margin-left: -0.25em;
-}
+.header {
 
-.subtitle {
-    font-family: 'JennaSueRegular';
-    font-size: 1.75em;
-    font-weight: bold;
-    margin: 0.5em 0 0 3em;
-    padding: 0;
-}
+    margin-top: 24px;
+    margin-bottom: 10px;
 
-.contact-details {
-    text-align: right;
-    margin-bottom:0;
+    /* Mobile-first centering */
+    .logo,
+    .subtitle,
+    .contact-details {
+        text-align: center;
+    }
+
+    .logo {
+        @include font-size($giga-size);
+        > a:hover {
+            text-decoration: none;
+        }
+    }
+
+    .subtitle {
+        @include font-size($h1-size);
+    }
+
+    .contact-details {
+        @include font-size($h4-size);
+    }
+
+
+    /* Remove mobile-first centering and tighten up titles */
+    @include media-query(lap-and-up) {
+        .logo,
+        .subtitle {
+            text-align: left;
+            margin-bottom: 0;
+        }
+        .contact-details {
+            text-align: right;
+        }
+    }
+
+    /* Make the subtitle pull up even tighter on desktops */
+    @include media-query(desk) {
+        .subtitle {
+            padding-top: 0;
+            margin-top: -20px;
+            margin-left: 115px;
+        }
+    }
 }

@@ -6,6 +6,6 @@
 # No minification
 #sass --watch style.scss:style.css --style expanded
 
-sass --watch style.scss:style.min.css --style compressed
+sass --watch style.scss:style.min.css --style compressed -E UTF-8
 
 exit 0
