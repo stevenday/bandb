@@ -6,3 +6,4 @@ virtualenv-bandb
 *.pyc
 local_settings.py
 .DS_Store
+/static
