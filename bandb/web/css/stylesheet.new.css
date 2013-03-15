@@ -1,3 +1,6 @@
+/* Base styles - mobile first (max-width:480px) */
+
+/* Fonts */
 @font-face {
     font-family: 'JennaSueRegular';
     src: url('../fonts/jenna-sue/JennaSue-webfont.eot');
@@ -40,12 +43,54 @@ a:hover
 
     .subtitle {
         font-family: 'JennaSueRegular';
-        font-size: 2em;
+        font-size: 1.75em;
         font-weight: bold;
         margin: 0.5em 0 0 3em;
         padding: 0;
     }
 
+    .contact-details {
+        text-align: right;
+        margin-bottom:0;
+    }
+
 .hero p {
     text-align: center;
+}
+
+.hero img {
+    width:100%;
+    height:auto;
+}
+
+/* Landscape phones and down */
+@media (max-width: 480px) {
+    .logo {
+        margin-bottom: 0.5em;
+    }
+    .subtitle {
+        font-size:1.5em;
+        margin: 0;
+    }
+}
+
+/* Landscape phone to portrait tablet */
+@media (min-width: 480px) and (max-width: 767px) {
+    .logo {
+        margin-bottom: 0.5em;
+    }
+    .subtitle {
+        font-size:1.5em;
+        margin: 0;
+    }
+}
+
+/* Portrait tablet to landscape and desktop */
+@media (min-width: 768px) and (max-width: 979px) {
+
+}
+
+/* Large desktop */
+@media (min-width: 1200px) {
+
 }
