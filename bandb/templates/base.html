@@ -1,4 +1,5 @@
 {% load staticfiles %}
+{% load url from future %}
 {% spaceless %}
 <!DOCTYPE html>
 <html lang="en">
@@ -16,7 +17,7 @@
             <div class="grid header">
 
                 <div class="grid__item two-thirds lap-one-half palm-one-whole">
-                    <p class="logo brand"><a href="/" title="Tilleys Hut - Unusual place to stay - Homepage">Tilleys Hut</a></p>
+                    <p class="logo brand"><a href="{% url 'home' %}" title="Tilleys Hut - Unusual place to stay - Homepage">Tilleys Hut</a></p>
                     <p class="subtitle brand-face">B&amp;B in a restored Dorset Shepherd's Hut</span></p>
                 </div>
                 <div class="grid__item one-third lap-one-half palm-one-whole">
@@ -31,19 +32,7 @@
                 </div>
             </div>
 
-            <div class="grid">
-                <div class="grid__item one-whole">
-                    <ul class="nav nav--banner brand-face">
-                        <li class="active"><a href="#">Home</a></li>
-                        <li><a href="#">The Hut</a></li>
-                        <li><a href="#">Rates and Services</a></li>
-                        <li><a href="#">The Area</a></li>
-                        <li><a href="#">Availability</a></li>
-                        <li><a href="#">Things to Know</a></li>
-                    </ul>
-                    <hr class="rule"/>
-                </div>
-            </div>
+            {% include 'nav.html' %}
 
             {% block content %}{% endblock content %}
 

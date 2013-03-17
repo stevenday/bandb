@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% load url from future %}
+
+{% block content %}
+{% spaceless %}
+<div class="content grid">
+
+    <div class='grid__item two-thirds lap-one-half palm-one-whole left-column'>
+
+        <h1>The Area</h1>
+
+        <p>Shaftesbury is an ancient Saxon town, well known for its now ruined Abbey and its royal connections.  King Cnut died here in 1035 AD while the body of King Edward 'The Martyr', son of Edgar was interred at the Abbey in 980 AD and many miracles were attributed to its presence there. There are extensive fine views across the Blackmore Vale from the Abbey, while Gold Hill provides the perfect picture postcard setting well known to the famous Hovis advert.</p>
+
+        <p>The stunning location of the Larmer Tree Gardens at Tollard Royal is only 5 miles away and within easy walking distance from Tilley's Hut is Compton Abbas airfield where flying lessons can be arranged. Also close by and easily reached by footpath from Melbury Mill, is Cann Flour Mill, which produces organic flour and runs a Panary Workshop with courses ranging from a half day onwards, that are available to book.</p>
+
+        <p>The beautiful beaches that stretch from Studland Bay near Poole Harbour, westwards along the World Heritage Jurassic Coast and beyond to Chesil beach and Lyme Regis, are again less than an hour away by car. There are also a number of sporting facilities catering for tennis, swimming, horse riding and such like within easy reach, and we are directly on the route of a National Cycle Highway.</p>
+
+        <p>This is an area rich in archaeological sites and with a rich and varied history. Important Neolithic, Bronze Age and Iron Age sites abound, such as Hambledon Hill, Maiden Castle and Hod Hill, with Stonehenge, Avebury and Silbury Hill only 40 minutes away. The 'Dark Age Citadel' of South Cadbury, reputedly the 5th century 'Camelot' of King Arthur is less than 30 minutes away, as is Bokerley Dyke, a massive Bronze Age earthwork.</p>
+
+        <p>Though only a little more than a mile away from the town of Shaftesbury, our serene and secluded location in Melbury Abbas offers you the perfect respite from the cares and stresses of the modern world without having to jump on a plane.</p>
+
+        <ul>
+            <li>Less than one mile to the A30 by car.</li>
+            <li>Only 2 hours from London by train.</li>
+            <li>Directly on the national cycle highway.</li>
+            <li>At the end of the ancient Wessex ridgeway footpath.</li>
+            <li>Less than an hour to the golden beaches of  Studland Bay.</li>
+        </ul>
+
+        <p>Would you like to: <a href="{% url 'find' %}#directions">get directions</a>, <a href="{% url 'find' %}#transport">see the nearest bus and train stations</a>, or <a href="{% url 'find' %}#map">find us on a map here</a>.</p>
+
+    </div>
+    <div class='grid__item one-third lap-one-half palm-one-whole right-column'>
+        <img src='{% static 'img/frontpage.jpg' %}' alt='View from the bed in Tilleys Hut of the table where you will eat a delcicious organic breakfast'/>
+    </div>
+</div>
+{% endspaceless %}
+{% endblock %}

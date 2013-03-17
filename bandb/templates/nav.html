@@ -1,0 +1,17 @@
+{% load staticfiles %}
+{% load url from future %}
+{% spaceless %}
+<div class="grid">
+    <div class="grid__item one-whole">
+        <ul class="nav nav--banner brand-face">
+            <li class="active"><a href="{% url 'home' %}" >Home</a></li>
+            <li><a href="{% url 'hut' %}">The Hut</a></li>
+            <li><a href="{% url 'rates' %}">Rates and Services</a></li>
+            <li><a href="{% url 'area' %}">The Area</a></li>
+            <li><a href="{% url 'availability' %}">Availability</a></li>
+            <li><a href="{% url 'things_to_know' %}">Things to Know</a></li>
+        </ul>
+        <hr class="rule"/>
+    </div>
+</div>
+{% endspaceless %}

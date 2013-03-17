@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% load url from future %}
+
+{% block content %}
+{% spaceless %}
+<div class="content grid">
+
+    <div class='grid__item two-thirds lap-one-half palm-one-whole left-column'>
+
+        <h1>Things to Know</h1>
+
+        <p>Important information about staying at Tilley's Hut that you should know before you go.</p>
+
+        <h2>Arrival &amp; Departure</h2>
+
+        <p>You are welcome to arrive at our Hut from <strong>5pm</strong>. Should you require an earlier arrival time then please confirm this first with us. Departure should be no later than <strong>12 midday.</strong></p>
+
+        <h2>Getting Here</h2>
+        <p>The following links will take you to <a href="{% url 'find' %}#directions">driving directions</a>, <a href="{% url 'find' %}#transport">local bus and train stations</a> and a <a href="{% url 'find' %}#map">general map of the area</a> so that you can plan the best way to arrive.</p>
+
+        <h2>Things to Bring with You</h2>
+
+        <p>We are situated in a beautiful valley but the ground can become very water logged. If the weather has been very wet then it would be a good idea to bring sturdy waterproof shoes or wellington boots with you.</p>
+
+        <h2>Dogs</h2>
+
+        <p>We realise many of you have extremely well behaved dogs who would love to come on holiday with you. However out of consideration for <u>all</u> our guests we have made a policy of not allowing dogs in Tilley's Hut - sorry!</p>
+
+        <h2>Payment</h2>
+
+        <p>Payment can be made either in cash or a cheque. Unfortunately we do not have facilities to take card payments.</p>
+
+        <h2>Going Green</h2>
+
+        <p>Not only is your stay of very low impact to the environment but for those of you who wish to reduce your carbon footprint even further and arrive by train, the nearest train station is Gillingham (Dorset) which is 5 miles from Melbury Abbas.</p>
+
+        <h2>Places to Eat</h2>
+
+        <p>We are fortunate to have many gastro-pubs and inns in the area that have excellent reputations for food. Some recommended places to eat are:</p>
+
+        <ul>
+            <li>The King John at Tollard Royal - <a href="http://www.kingjohninn.co.uk">www.kingjohninn.co.uk</a></li>
+            <li>The Museum at Farnham - <a href="http://www.museuminn.co.uk">www.museuminn.co.uk</a></li>
+            <li>The Compasses at Chicksgrove - <a href="http://www.thecompassesinn.com">www.thecompassesinn.com</a></li>
+            <li>Hotel Grosvenor at Shaftesbury - <a href="http://www.hotelgrosvenor.com">www.hotelgrosvenor.com</a></li>
+        </ul>
+
+        <p>For more basic pub grub you could try The Half Moon at Shaftesbury.</p>
+
+        <p>Also in Shaftesbury:</p>
+
+        <ul>
+            <li>Chutney's is a good Indian restaurant and take-away - <a href="http://www.chutneys-restaurant.com">www.chutneys-restaurant.com</a></li>
+            <li>Amore is an Italian restaurant - <a href="http://www.restaurantamore.co.uk">www.restaurantamore.co.uk</a></li<>
+        </ul>
+
+    </div>
+    <div class='grid__item one-third lap-one-half palm-one-whole right-column'>
+        <img src='{% static 'img/frontpage.jpg' %}' alt='View from the bed in Tilleys Hut of the table where you will eat a delcicious organic breakfast'/>
+    </div>
+</div>
+{% endspaceless %}
+{% endblock %}

@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% load url from future %}
+
+{% block content %}
+{% spaceless %}
+<div class="content grid">
+
+    <div class='grid__item two-thirds lap-one-half palm-one-whole left-column'>
+
+        <h1>Rates and Services</h1>
+
+        <p>We will be opening for the new season at Easter.</p>
+
+        <p>The hut sleeps 2 people and is available at the following rates:</p>
+
+        <ul>
+            <li>£170 for 2 nights</li>
+            <li>Please contact us should you wish to stay more than 2 nights for rates.</li>
+        </ul>
+
+        <p>Inclusive of sheets, towels, a locally sourced breakfast and charcoal for the woodburner.</p>
+
+        <p><strong>Please phone <a href="tel:01747854375">01747 854375</a> or <a href="mailto:info@tilleyshut.com">email us</a> for booking enquiries.</strong></p>
+
+        <h2>Payment</h2>
+
+        <p>We require a deposit of £50 on confirmation of booking. Please make this payable to Adam Gallimore and send this to<br>
+        The Hayloft, Barfoot Farm,<br>
+        Melbury Abbas<br>
+        Shaftesbury<br>
+        Dorset SP7 0DB.<br>
+        The balance to be paid by cheque or cash.</p>
+
+        <h2>Weddings, Romantic Breaks and Special Occasions</h2>
+
+        <p>If you would like to give someone special a gift to stay in Tilley's Hut we have Gift Vouchers available. A stay in our Shepherd's Hut will be truly memorable and something very unique. Please let us know if you would like us to arrange for champagne and chocolates to be available on your arrival. A barbecue is available should you wish to make use of this facility on fine summer evenings. </p>
+
+        <p>We are only 5 miles from the beautiful Larmer Tree Gardens - a very special and romantic place for weddings</p>
+
+    </div>
+    <div class='grid__item one-third lap-one-half palm-one-whole right-column'>
+        <img src='{% static 'img/frontpage.jpg' %}' alt='View from the bed in Tilleys Hut of the table where you will eat a delcicious organic breakfast'/>
+    </div>
+</div>
+{% endspaceless %}
+{% endblock %}

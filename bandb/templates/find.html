@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% load url from future %}
+
+{% block content %}
+{% spaceless %}
+<div class="content grid">
+
+    <div class='gallery grid__item one-whole'>
+
+        <h1>Find Us</h1>
+
+        <h2 id="map">Map</h2>
+        <div class="map">
+            <p>Map goes here</p>
+        </div>
+
+        <h2 id="directions">Directions</h2>
+
+        <h2 id="transport">Public Transport</h2>
+
+    </div>
+
+</div>
+{% endspaceless %}
+{% endblock %}

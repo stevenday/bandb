@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% load url from future %}
+
+{% block content %}
+{% spaceless %}
+<div class="content grid">
+
+    <div class='grid__item two-thirds lap-one-half palm-one-whole left-column'>
+
+        <h1>The Hut</h1>
+
+        <p>Situated on the edge of a field, adjoining a copse of semi-mature trees some fifty yards from the nearest building, is the Hut. You enter the Hut by climbing a short flight of steps to a split stable door. On your left is a small stove which can provide plenty of warmth even on the chilliest of evenings, whilst on your right there is a small dresser and a wardrobe for storage. There is a folding table with shelving space and two chairs by a window which overlooks rolling fields and woodland. At the far end of the Hut there is a comfortable bed which is 4 feet wide and 6 feet long and provided with a luxurious duvet and cushions. Should you wish to remain engaged with the 21st century a solar panel will provide adequate energy for lighting, lap tops, and recharging mobile phones etc.</p>
+
+        <p>Tea and coffee making facilities are available in the Hut and we have also provided a barbeque and seating area close to the Hut in order that you can enjoy your stay to the full, but please note that we do not provide a television. <em>We would like to remind you that Tilley's Hut is bed and breakfast accommodation and is not self-catering. Therefore we would kindly request that you do not prepare cooked food in the Hut.</em></p>
+
+        <h2>The Shower Room and Toilet</h2>
+
+        <p>A contemporary and fully heated shower room is available for your exclusive use in a separate building about eighty yards down a grass slope from the Shepherds Hut, comprising of a toilet, washbasin and electric power shower. Local handmade organic soap by <a href="http://www.enchantedplants.co.uk">Enchanted Plants</a> of Shaftesbury and towels are provided.</p>
+
+        <h2>Breakfast</h2>
+
+        <p>A unique feature of your stay is breakfast brought to you to enjoy in the privacy of the Shepherd‘s Hut. The breakfast hamper will be when possible, locally sourced and left by the door of the Hut at your requested time. There is a choice of cereals, yoghurt, freshly squeezed fruit juice, smoothies, a cooked breakfast and home made bread and jams with a selection of teas and coffee available. Where possible special diets can be catered for but please let us know in advance.</p>
+
+    </div>
+    <div class='grid__item one-third lap-one-half palm-one-whole right-column'>
+        <img src='{% static 'img/frontpage.jpg' %}' alt='View from the bed in Tilleys Hut of the table where you will eat a delcicious organic breakfast'/>
+    </div>
+</div>
+
+{% endspaceless %}
+{% endblock %}
