@@ -1,0 +1,16 @@
+.quotes {
+    text-align: center;
+
+    blockquote>img {
+        margin-bottom:18px;
+    }
+
+    blockquote>p {
+        font-style: italic;
+    }
+
+    blockquote>p>strong {
+        @include font-size($h3-size, false);
+        font-style: normal;
+    }
+}

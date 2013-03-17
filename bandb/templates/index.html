@@ -4,7 +4,7 @@
 
 {% block content %}
 {% spaceless %}
-<div class="grid">
+<div class="content grid">
 
     <div class='grid__item two-thirds lap-one-half palm-one-whole left-column'>
 
@@ -18,27 +18,32 @@
 
         <p>The serene and secluded location in Melbury Abbas, North Dorset is a mile away from the Saxon hilltop town of Shaftesbury.</p>
 
-        <h2>Visitors Comments</h2>
-
-
-        <blockquote>
-            <p>&OpenCurlyDoubleQuote;If there was one night of the year I didn't want to end, I think it would be this one&CloseCurlyDoubleQuote;</p>
-            <b>Sally Shalam - <a class="red" href="http://www.guardian.co.uk/travel/2009/sep/05/tilleys-hut-dorset-review">The Guardian</a></b>
-        </blockquote>
-
-        <blockquote>
-            <p>&OpenCurlyDoubleQuote;5* Bathroom, 5* Accommodation, 5* Breakfast <u>AND</u> Infinite stars for the whole experience. You have created a marvellous haven. Thank you so much.&CloseCurlyDoubleQuote;</p>
-            <b>Fern Britton</b>
-        </blockquote>
-
-        <blockquote>
-            <p>&OpenCurlyDoubleQuote;Found this on the internet whilst looking for &OpenCurlyQuote;unusual&CloseCurlyQuote; places to stay and am so glad that I did! A real get away from it all weekend, wonderfully relaxing, peaceful, with every tiny detail thoughfully taken care of. AMAZING..... and so were the breakfasts. Thank you&CloseCurlyDoubleQuote;</p>
-            <b>J and A, Horsham</b>
-        </blockquote>
     </div>
     <div class='grid__item one-third lap-one-half palm-one-whole right-column'>
         <img src='{% static 'img/frontpage.jpg' %}' alt='View from the bed in Tilleys Hut of the table where you will eat a delcicious organic breakfast'/>
     </div>
+</div>
+
+<div class="quotes grid">
+
+    <blockquote class="grid__item one-third palm-one-whole">
+        <img class="img--round" src="{% static 'img/guardian.png' %}" alt="Recommended by The Guardian" />
+        <h3><a href="http://www.guardian.co.uk/travel/2009/sep/05/tilleys-hut-dorset-review">The Guardian</a></h3>
+        <p class="lead"><strong>&#8220; </strong>If there was one night of the year I didn't want to end, I think it would be this one.<strong> &#8221;</strong></p>
+    </blockquote>
+
+    <blockquote class="grid__item  one-third palm-one-whole">
+        <img class="img--round" src="{% static 'img/the-week.png' %}" alt="Featured in The Week" />
+        <h3><a href="http://www.theweek.co.uk/arts-life/19207/hotel-week-tilley%E2%80%99s-hut-dorset">The Week</a></h3>
+        <p class="lead"><strong>&#8220; </strong>Hotel of the week. Beautifully refurbished shepherd's hut.<strong> &#8221;</strong></p>
+    </blockquote>
+
+    <blockquote class="grid__item  one-third palm-one-whole">
+        <img class="img--round" src="{% static 'img/conde-nast.png' %}" alt="Recommended by Conde Nast Traveller" />
+        <h3><a href="http://www.cntraveller.com/recommended/uk/summer-sizzlers/tilleys-hut-dorset">Conde Nast Traveller</a></h3>
+        <p class="lead"><strong>&#8220; </strong>The most impossibly cute little love shack imaginable.<strong> &#8221;</strong></p>
+    </blockquote>
+
 </div>
 {% endspaceless %}
 {% endblock %}
