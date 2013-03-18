@@ -4,12 +4,18 @@
 <div class="grid">
     <div class="grid__item one-whole">
         <ul class="nav nav--banner brand-face">
-            <li class="active"><a href="{% url 'home' %}" >Home</a></li>
-            <li><a href="{% url 'hut' %}">The Hut</a></li>
-            <li><a href="{% url 'rates' %}">Rates and Services</a></li>
-            <li><a href="{% url 'area' %}">The Area</a></li>
-            <li><a href="{% url 'availability' %}">Availability</a></li>
-            <li><a href="{% url 'things_to_know' %}">Things to Know</a></li>
+            {% url 'home' as url %}
+                <li{% if request.path == url %} class="active"{% endif %}><a href="{{ url }}" >Home</a></li>
+            {% url 'hut' as url %}
+                <li{% if request.path == url %} class="active"{% endif %}><a href="{{ url }}">The Hut</a></li>
+            {% url 'rates' as url %}
+                <li{% if request.path == url %} class="active"{% endif %}><a href="{{ url }}">Rates and Services</a></li>
+            {% url 'area' as url %}
+                <li{% if request.path == url %} class="active"{% endif %}><a href="{{ url }}">The Area</a></li>
+            {% url 'availability' as url %}
+                <li{% if request.path == url %} class="active"{% endif %}><a href="{{ url }}">Availability</a></li>
+            {% url 'things_to_know' as url %}
+                <li{% if request.path == url %} class="active"{% endif %}><a href="{{ url }}">Things to Know</a></li>
         </ul>
         <hr class="rule"/>
     </div>

@@ -1,5 +1,6 @@
 # Django settings for bandb project.
 from .paths import *
+from django.conf.global_settings import TEMPLATE_CONTEXT_PROCESSORS
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
@@ -97,6 +98,10 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
     # Uncomment the next line for simple clickjacking protection:
     # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
+)
+
+TEMPLATE_CONTEXT_PROCESSORS += (
+    "django.core.context_processors.request",
 )
 
 ROOT_URLCONF = 'bandb.urls'
