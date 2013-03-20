@@ -11,13 +11,10 @@ from .views import *
 urlpatterns = patterns('',
     # Examples:
     url(r'^$', HomeView.as_view(), name='home'),
-    url(r'^hut$', HutView.as_view(), name='hut'),
-    url(r'^rates$', RatesView.as_view(), name='rates'),
-    url(r'^area$', AreaView.as_view(), name='area'),
-    url(r'^availability$', AvailabilityView.as_view(), name='availability'),
+    url(r'^the-hut$', HutView.as_view(), name='hut'),
+    url(r'^rates-and-bookings$', RatesView.as_view(), name='rates'),
+    url(r'^find-us$', AreaView.as_view(), name='area'),
     url(r'^things-to-know$', ThingsToKnowView.as_view(), name='things_to_know'),
-    url(r'^find-us$', FindView.as_view(), name='find'),
-    url(r'^gallery$', GalleryView.as_view(), name='gallery'),
 
     # Uncomment the admin/doc line below to enable admin documentation:
     # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),

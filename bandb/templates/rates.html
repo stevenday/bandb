@@ -6,12 +6,23 @@
 {% spaceless %}
 <div class="content grid">
 
-    <div class='grid__item two-thirds lap-one-half palm-one-whole left-column'>
+    <div class="grid__item one-whole">
 
-        <h1>Rates and Services</h1>
+        <h1>Rates and Bookings</h1>
 
-        <p>We will be opening for the new season at Easter.</p>
+        <p class="lead info-message">We will be opening for the new season at Easter.</p>
 
+        <div class="calendar">
+            Calendar of bookings goes here
+        </div>
+
+
+
+    </div>
+
+    <div class="grid__item two-thirds lap-one-half palm-one-whole left-column">
+
+        <h2>Rates</h2>
         <p>The hut sleeps 2 people and is available at the following rates:</p>
 
         <ul>
@@ -39,8 +50,8 @@
         <p>We are only 5 miles from the beautiful Larmer Tree Gardens - a very special and romantic place for weddings</p>
 
     </div>
-    <div class='grid__item one-third lap-one-half palm-one-whole right-column'>
-        <img src='{% static 'img/frontpage.jpg' %}' alt='View from the bed in Tilleys Hut of the table where you will eat a delcicious organic breakfast'/>
+    <div class="grid__item one-third lap-one-half palm-one-whole right-column">
+        <img src="{% static 'img/frontpage.jpg' %}" alt='View from the bed in Tilleys Hut of the table where you will eat a delcicious organic breakfast'/>
     </div>
 </div>
 {% endspaceless %}

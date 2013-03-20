@@ -9,11 +9,9 @@
             {% url 'hut' as url %}
                 <li{% if request.path == url %} class="active"{% endif %}><a href="{{ url }}">The Hut</a></li>
             {% url 'rates' as url %}
-                <li{% if request.path == url %} class="active"{% endif %}><a href="{{ url }}">Rates and Services</a></li>
+                <li{% if request.path == url %} class="active"{% endif %}><a href="{{ url }}">Rates and Bookings</a></li>
             {% url 'area' as url %}
-                <li{% if request.path == url %} class="active"{% endif %}><a href="{{ url }}">The Area</a></li>
-            {% url 'availability' as url %}
-                <li{% if request.path == url %} class="active"{% endif %}><a href="{{ url }}">Availability</a></li>
+                <li{% if request.path == url %} class="active"{% endif %}><a href="{{ url }}">Find Us</a></li>
             {% url 'things_to_know' as url %}
                 <li{% if request.path == url %} class="active"{% endif %}><a href="{{ url }}">Things to Know</a></li>
         </ul>

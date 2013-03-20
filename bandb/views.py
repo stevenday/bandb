@@ -13,14 +13,5 @@ class RatesView(TemplateView):
 class AreaView(TemplateView):
     template_name = 'area.html'
 
-class AvailabilityView(TemplateView):
-    template_name = 'availability.html'
-
 class ThingsToKnowView(TemplateView):
     template_name = 'things-to-know.html'
-
-class FindView(TemplateView):
-    template_name = 'find.html'
-
-class GalleryView(TemplateView):
-    template_name = 'gallery.html'

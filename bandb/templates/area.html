@@ -6,9 +6,22 @@
 {% spaceless %}
 <div class="content grid">
 
+    <div class='grid__item one-whole'>
+
+        <h1>Find us</h1>
+        <div class="map" id="map">
+            Map goes here
+        </div>
+
+    </div>
+
     <div class='grid__item two-thirds lap-one-half palm-one-whole left-column'>
 
-        <h1>The Area</h1>
+        <h2 id="directions">Driving Directions</h2>
+
+        <h2 id="transport">Public Transport</h2>
+
+        <h2>The Area</h2>
 
         <p>Shaftesbury is an ancient Saxon town, well known for its now ruined Abbey and its royal connections.  King Cnut died here in 1035 AD while the body of King Edward 'The Martyr', son of Edgar was interred at the Abbey in 980 AD and many miracles were attributed to its presence there. There are extensive fine views across the Blackmore Vale from the Abbey, while Gold Hill provides the perfect picture postcard setting well known to the famous Hovis advert.</p>
 
@@ -25,14 +38,12 @@
             <li>Only 2 hours from London by train.</li>
             <li>Directly on the national cycle highway.</li>
             <li>At the end of the ancient Wessex ridgeway footpath.</li>
-            <li>Less than an hour to the golden beaches of  Studland Bay.</li>
+            <li>Less than an hour to the golden beaches of Studland Bay.</li>
         </ul>
-
-        <p>Would you like to: <a href="{% url 'find' %}#directions">get directions</a>, <a href="{% url 'find' %}#transport">see the nearest bus and train stations</a>, or <a href="{% url 'find' %}#map">find us on a map here</a>.</p>
 
     </div>
     <div class='grid__item one-third lap-one-half palm-one-whole right-column'>
-        <img src='{% static 'img/frontpage.jpg' %}' alt='View from the bed in Tilleys Hut of the table where you will eat a delcicious organic breakfast'/>
+        <a href="#" class="gallery"><img src='{% static 'img/frontpage.jpg' %}' alt='View from the bed in Tilleys Hut of the table where you will eat a delcicious organic breakfast'/></a>
     </div>
 </div>
 {% endspaceless %}

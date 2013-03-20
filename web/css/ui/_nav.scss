@@ -2,7 +2,7 @@
     @include font-size($h1-size);
 
     li>a {
-        padding:12px;
+        padding:12px 24px;
     }
 
     li.active>a {
