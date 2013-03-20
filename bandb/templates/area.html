@@ -2,6 +2,18 @@
 {% load staticfiles %}
 {% load url from future %}
 
+{% block extra_css %}
+<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.5/leaflet.css" />
+<!--[if lte IE 8]>
+    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.5/leaflet.ie.css" />
+<![endif]-->
+<style type="text/css">
+    #map {
+        height:400px;
+    }
+</style>
+{% endblock extra_css %}
+
 {% block content %}
 {% spaceless %}
 <div class="content grid">
@@ -9,9 +21,7 @@
     <div class='grid__item one-whole'>
 
         <h1>Find us</h1>
-        <div class="map" id="map">
-            Map goes here
-        </div>
+        <div class="map" id="map"></div>
 
     </div>
 
@@ -48,3 +58,8 @@
 </div>
 {% endspaceless %}
 {% endblock %}
+
+{% block extra_js %}
+<script src="http://cdn.leafletjs.com/leaflet-0.5/leaflet.js"></script>
+<script type="text/javascript" src="{% static 'js/map.js' %}"></script>
+{% endblock extra_js %}
