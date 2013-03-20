@@ -8,6 +8,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" type="text/css" href="{% static 'css/style.min.css' %}" />
+        <link rel="stylesheet" type="text/css" href="{% static 'css/photoswipe.css' %}" />
         {% block extra_css %}{% endblock extra_css %}
         <title>Tilleys Hut - Unusual place to stay - a restored Dorset shepherds hut - Home</title>
     </head>
@@ -29,11 +30,11 @@
 
             <div class="grid hero">
                 <div class="grid__item one-whole">
-                    <p><img src="{% static "img/banner.jpg" %}" alt="Scenes of Tilleys hut and the surrounding area."/></p>
+                    <p><a class="gallery" href="#"><img src="{% static "img/banner.jpg" %}" alt="Scenes of Tilleys hut and the surrounding area." /></a></p>
                 </div>
             </div>
 
-            {% include 'nav.html' %}
+            {% include 'includes/nav.html' %}
 
             {% block content %}{% endblock content %}
 
@@ -45,7 +46,12 @@
 
         </div>
 
+        {% include 'includes/gallery.html' %}
+
         <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+        <script type="text/javascript" src="{% static 'js/lib/klass.min.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/code.photoswipe.jquery-3.0.5.min.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/gallery.js' %}"></script>
         {% block extra_js %}{% endblock extra_js %}
 
     </body>

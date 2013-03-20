@@ -1,50 +1,10 @@
-{% extends 'base.html' %}
 {% load staticfiles %}
 {% load url from future %}
 
-{% block extra_css %}
-    <style type="text/css">
-        .gallery { list-style: none; padding: 0; margin: 0; }
-        .gallery:after { clear: both; content: "."; display: block; height: 0; visibility: hidden; }
-        .gallery li { float: left; width: 33.33333333%; }
-        .gallery li a { display: block; margin: 5px; border: none; }
-        .gallery li img { display: block; width: 100%; height: auto; }
-    </style>
-    <link href="{% static 'css/photoswipe.css' %}" type="text/css" rel="stylesheet" />
-{% endblock extra_css %}
-
-{% block content %}
-<ul class="gallery">
-    <li class=""><a href="{% static 'img/gallery/full/001.jpg' %}"><img src="{% static 'img/gallery/thumb/001.jpg' %}" alt="Image 001" /></a></li>
-    <li class=""><a href="{% static 'img/gallery/full/002.jpg' %}"><img src="{% static 'img/gallery/thumb/002.jpg' %}" alt="Image 002" /></a></li>
-    <li class=""><a href="{% static 'img/gallery/full/003.jpg' %}"><img src="{% static 'img/gallery/thumb/003.jpg' %}" alt="Image 003" /></a></li>
-    <li class=""><a href="{% static 'img/gallery/full/004.jpg' %}"><img src="{% static 'img/gallery/thumb/004.jpg' %}" alt="Image 004" /></a></li>
-    <li class=""><a href="{% static 'img/gallery/full/005.jpg' %}"><img src="{% static 'img/gallery/thumb/005.jpg' %}" alt="Image 005" /></a></li>
-    <li class=""><a href="{% static 'img/gallery/full/006.jpg' %}"><img src="{% static 'img/gallery/thumb/006.jpg' %}" alt="Image 006" /></a></li>
-    <li class=""><a href="{% static 'img/gallery/full/007.jpg' %}"><img src="{% static 'img/gallery/thumb/007.jpg' %}" alt="Image 007" /></a></li>
-    <li class=""><a href="{% static 'img/gallery/full/008.jpg' %}"><img src="{% static 'img/gallery/thumb/008.jpg' %}" alt="Image 008" /></a></li>
-    <li class=""><a href="{% static 'img/gallery/full/009.jpg' %}"><img src="{% static 'img/gallery/thumb/009.jpg' %}" alt="Image 009" /></a></li>
-    <li class=""><a href="{% static 'img/gallery/full/010.jpg' %}"><img src="{% static 'img/gallery/thumb/010.jpg' %}" alt="Image 010" /></a></li>
-    <li class=""><a href="{% static 'img/gallery/full/011.jpg' %}"><img src="{% static 'img/gallery/thumb/011.jpg' %}" alt="Image 011" /></a></li>
-    <li class=""><a href="{% static 'img/gallery/full/012.jpg' %}"><img src="{% static 'img/gallery/thumb/012.jpg' %}" alt="Image 012" /></a></li>
-    <li class=""><a href="{% static 'img/gallery/full/013.jpg' %}"><img src="{% static 'img/gallery/thumb/013.jpg' %}" alt="Image 013" /></a></li>
-    <li class=""><a href="{% static 'img/gallery/full/014.jpg' %}"><img src="{% static 'img/gallery/thumb/014.jpg' %}" alt="Image 014" /></a></li>
-    <li class=""><a href="{% static 'img/gallery/full/015.jpg' %}"><img src="{% static 'img/gallery/thumb/015.jpg' %}" alt="Image 015" /></a></li>
-    <li class=""><a href="{% static 'img/gallery/full/016.jpg' %}"><img src="{% static 'img/gallery/thumb/016.jpg' %}" alt="Image 016" /></a></li>
-    <li class=""><a href="{% static 'img/gallery/full/017.jpg' %}"><img src="{% static 'img/gallery/thumb/017.jpg' %}" alt="Image 017" /></a></li>
-    <li class=""><a href="{% static 'img/gallery/full/018.jpg' %}"><img src="{% static 'img/gallery/thumb/018.jpg' %}" alt="Image 018" /></a></li>
-</ul>
-{% endblock content %}
-
-{% block extra_js %}
-<script type="text/javascript" src="{% static 'js/lib/klass.min.js' %}"></script>
-<script type="text/javascript" src="{% static 'js/code.photoswipe.jquery-3.0.5.min.js' %}"></script>
-<script type="text/javascript">
-    (function(window, $, PhotoSwipe){
-        $(document).ready(function(){
-            var options = {};
-            $(".gallery a").photoSwipe(options);
-        });
-    }(window, window.jQuery, window.Code.PhotoSwipe));
-</script>
-{% endblock extra_js %}
+<div class="visuallyhidden">
+    <ul class="gallery">
+        <li><a href="{% static 'img/gallery/full/001.jpg' %}" data-caption="Image 001"></a></li>
+        <li><a href="{% static 'img/gallery/full/002.jpg' %}" data-caption="Image 001"></a></li>
+        <li><a href="{% static 'img/gallery/full/003.jpg' %}" data-caption="Image 001"></a></li>
+    </ul>
+</div>
