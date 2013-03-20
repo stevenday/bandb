@@ -6,12 +6,17 @@
             getImageCaption: function(el) {
                 return $(el).attr("data-caption");
             },
-            captionAndToolbarAutoHideDelay: 0
+            captionAndToolbarAutoHideDelay: 0,
+            captionAndToolbarShowEmptyCaptions: false,
+            jQueryMobile: false,
+            loop: false,
+            preventSlideshow: true
         };
 
         var gallery = $(".gallery a").photoSwipe(options);
 
-        $("a.gallery").click(function() {
+        $("a.gallery").click(function(e) {
+            e.preventDefault()
             gallery.show(0);
         });
 
