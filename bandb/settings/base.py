@@ -1,4 +1,6 @@
 # Django settings for bandb project.
+import os
+
 from .paths import *
 from django.conf.global_settings import TEMPLATE_CONTEXT_PROCESSORS
 
@@ -161,3 +163,6 @@ LOGGING = {
 # Parse database configuration from $DATABASE_URL
 import dj_database_url
 DATABASES['default'] =  dj_database_url.config()
+
+# Parse cloudmade api key from local settings
+CLOUDMADE_API_KEY = os.environ['CLOUDMADE_API_KEY']

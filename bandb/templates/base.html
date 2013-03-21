@@ -1,5 +1,6 @@
 {% load staticfiles %}
 {% load url from future %}
+{% load settings %}
 {% spaceless %}
 <!DOCTYPE html>
 <html lang="en">
@@ -48,6 +49,14 @@
 
         {% include 'includes/gallery.html' %}
 
+        <script type="text/javascript">
+            // JS settings, from the django settings, which are in turn from env vars
+            (function(window){
+                window.TilleysHut = {
+                    CLOUDMADE_API_KEY: {{ settings.CLOUDMADE_API_KEY }}
+                };
+            })(window);
+        </script
         <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
         <script type="text/javascript" src="{% static 'js/lib/klass.min.js' %}"></script>
         <script type="text/javascript" src="{% static 'js/code.photoswipe.jquery-3.0.5.min.js' %}"></script>
