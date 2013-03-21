@@ -104,6 +104,7 @@ MIDDLEWARE_CLASSES = (
 
 TEMPLATE_CONTEXT_PROCESSORS += (
     "django.core.context_processors.request",
+    "bandb.context_processors.settings"
 )
 
 ROOT_URLCONF = 'bandb.urls'
