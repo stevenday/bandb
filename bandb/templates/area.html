@@ -7,11 +7,6 @@
 <!--[if lte IE 8]>
     <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.5/leaflet.ie.css" />
 <![endif]-->
-<style type="text/css">
-    #map {
-        height:400px;
-    }
-</style>
 {% endblock extra_css %}
 
 {% block content %}
@@ -22,16 +17,35 @@
 
         <h1>Find us</h1>
         <div class="map" id="map"></div>
-
-    </div>
-
-    <div class='grid__item two-thirds lap-one-half palm-one-whole left-column'>
+        <p><a href="https://maps.google.co.uk/maps?q=Tilley's+Hut+Bed+and+Breakfast,+Redmans+Lane,+Melbury+Abbas&hl=en&sll=52.8382,-2.327815&sspn=7.687342,19.753418&oq=Tilley's+&t=h&hq=Tilley's+Hut+Bed+and+Breakfast,&hnear=Redmans+Ln,+Dorset+SP7,+United+Kingdom&z=16">See this on google maps</a></p>
+        <p>Please note that we're located down a narrow country lane and plan accordingly if you're driving.</p>
 
         <h2 id="directions">Driving Directions</h2>
 
-        <h2 id="transport">Public Transport</h2>
+        <h3>From the A350 (Southbound)</h3>
+        <ul>
+            <li>On entering Shaftesbury on the A350 southbound, at the roundabout, take the second exit onto Christy's Lane and proceed for 0.21 miles. Go straight over at the next mini roundabout.</li>
+            <li>At the roundabout, by the Royal Chase Hotel, take the first exit onto Salisbury Road.  Move into the right hand lane on the dual carriageway in preparation to turn right onto Higher Blandford Road, signposted Melbury Abbas  and proceed for 1.09 miles.</li>
+            <li>Turn right immediately after Melbury Motor garage onto Mill Hollow Lane (single track lane)  and proceed for 0.34 miles.</li>
+            <li>Turn right at the bottom of the hill onto Redmans Lane. You will pass a tree on your right with a Tourist Information (Self Catering) sign. This belongs to our neighbour.  Pass their property on the right which is a brick barn. Ahead of you will be wooden gates into Melbury Mill at which point bear right onto a concrete track. Parking for Tilley’s Hut is directly in front of you next to our workshop, a stone and wooden clad building with a green door.</li>
+        </ul>
 
-        <h2>The Area</h2>
+        <h3>From the A30 (from Salisbury)</h3>
+        <ul>
+            <li>Take the first left turn on entering Shaftesbury onto Higher Blandford Road, signposted Melbury Abbas and proceed for 1.09 miles.</li>
+            <li>Turn right immediately after Melbury Motor garage onto Mill Hollow Lane (single track lane)  and proceed for 0.34 miles.</li>
+            <li>Turn right at the bottom of the hill onto Redmans Lane. You will pass a tree on your right with a Tourist Information (Self Catering) sign. This belongs to our neighbour. Pass their property on the right which is a brick barn. Ahead of you will be wooden gates into Melbury Mill at which point bear right onto a concrete track. Parking for Tilley’s Hut is directly in front of you next to our workshop, a stone and wooden clad building with a green door.</li>
+        </ul>
+
+        <h3>From Blandford direction</h3>
+        <ul>
+            <li>Take the 3rd exit on the Blandford by-pass at the roundabout signposted Melbury Abbas onto Higher Blandford Road, and proceed for about 9miles.</li>
+            <li>After passing Compton Abbas airfield you will descend down Spread Eagle Hill. Proceed with caution around the bends and take the second turning on your left signposted Village Hall.</li>
+            <li>At the village hall turn right and at the bottom of the hill turn left onto Redmans Lane.</li>
+            <li>You will pass a tree on your right with a Tourist Information (Self Catering) sign.  This belongs to our neighbour. Pass their property on the right which is a brick barn. Ahead of you will be wooden gates into Melbury Mill at which point bear right onto a concrete track. Parking for Tilley’s Hut is directly in front of you next to our workshop, a stone and wooden clad building with a green door.</li>
+        </ul>
+
+        <h2>About Our Area</h2>
 
         <p>Shaftesbury is an ancient Saxon town, well known for its now ruined Abbey and its royal connections.  King Cnut died here in 1035 AD while the body of King Edward 'The Martyr', son of Edgar was interred at the Abbey in 980 AD and many miracles were attributed to its presence there. There are extensive fine views across the Blackmore Vale from the Abbey, while Gold Hill provides the perfect picture postcard setting well known to the famous Hovis advert.</p>
 
@@ -51,9 +65,6 @@
             <li>Less than an hour to the golden beaches of Studland Bay.</li>
         </ul>
 
-    </div>
-    <div class='grid__item one-third lap-one-half palm-one-whole right-column'>
-        <a href="#" class="gallery"><img src='{% static 'img/frontpage.jpg' %}' alt='View from the bed in Tilleys Hut of the table where you will eat a delcicious organic breakfast'/></a>
     </div>
 </div>
 {% endspaceless %}
