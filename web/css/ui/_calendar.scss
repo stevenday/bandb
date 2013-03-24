@@ -1,0 +1,68 @@
+.calendar-key p {
+    text-align: left;
+    @include media-query(palm) {
+        text-align: center;
+    }
+}
+
+.calendar {
+    margin-top:-32px;
+}
+
+th,
+.day {
+    width:14.28%;
+    text-align: center;
+    border:1px solid #EEE;
+    background-color: #FFF;
+}
+    th.month,
+    th.prev,
+    th.next {
+        background-color: $yellow;
+        border:0;
+    }
+    th.month {
+        padding-top:32px;
+    }
+
+.non-empty-day {
+    cursor: pointer;
+}
+
+.today {
+    font-weight: bold;
+    font-size:$h4-size;
+}
+
+.available {
+    background-color: lighten($green, 30%);
+}
+    span.available {
+        color: lighten($green, 30%);
+        display:inline-block;
+        width:32px;
+        overflow: hidden;
+    }
+
+.booked {
+    background-color: lighten($brand-color, 50%);
+}
+    span.booked {
+        color: lighten($brand-color, 50%);
+        display:inline-block;
+        width:32px;
+        overflow:hidden;
+    }
+
+.unavailable {
+    color:#999;
+}
+
+.first-month th.next a,
+.second-month th.prev a {
+    display:table-cell;
+    @include media-query(desk) {
+        display:none;
+    }
+}

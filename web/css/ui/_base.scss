@@ -1,14 +1,14 @@
 body {
     color: #333;
     font-family: Arial, sans-serif;
-    background-color:#FFCC33;
+    background-color:$yellow;
 }
 
 a:link,
 a:active,
 a:visited,
 a:hover {
-    color:#800000;
+    color:$brand-color;
     text-decoration: none;
 }
 a:hover{
@@ -19,4 +19,9 @@ a:hover{
     max-width:960px;
     padding:0 24px;
     margin:0 auto;
+}
+
+a.btn:link {
+    color:#FFF;
+    background-color: $green;
 }

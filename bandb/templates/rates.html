@@ -11,10 +11,29 @@
         <h1>Rates and Bookings</h1>
 
         <p class="lead info-message">We will be opening for the new season at Easter.</p>
-
-        <div class="calendar">{{ bookings }}</div>
-
     </div>
+
+    <div class="calendar-instructions grid__item three-quarters lap-two-thirds palm-one-whole">
+        <p>The calendar below shows our availability. Select a date to see if it's available and make a booking.</p>
+    </div>
+
+    <div class="calendar-key grid__item one-quarter lap-one-third palm-one-whole">
+        <p><span class="booked">&nbsp;</span> Days are booked</p>
+        <p><span class="available">&nbsp;</span> Days are available</span></p>
+    </div>
+
+</div>
+
+<div class="grid calendar">
+    <div class="first-month grid__item one-half portable-one-whole">
+        {{ first_bookings }}
+    </div>
+    <div class="second-month grid__item one-half visuallyhidden--portable">
+        {{ second_bookings }}
+    </div>
+</div>
+
+<div class="grid">
 
     <div class="grid__item two-thirds lap-one-half palm-one-whole left-column">
 
@@ -28,7 +47,7 @@
 
         <p>Inclusive of sheets, towels, a locally sourced breakfast and charcoal for the woodburner.</p>
 
-        <p><strong>Please phone <a href="tel:01747854375">01747 854375</a> or <a href="mailto:info@tilleyshut.com">email us</a> for booking enquiries.</strong></p>
+        <p><strong>Please phone <a class="btn btn--gamma btn--small btn--positive" href="tel:01747854375">01747 854375</a> or <a class="btn btn--gamma btn--small btn--positive" href="mailto:info@tilleyshut.com">email us</a> for booking enquiries.</strong></p>
 
         <h2>Payment</h2>
 
@@ -49,6 +68,12 @@
     <div class="grid__item one-third lap-one-half palm-one-whole right-column">
         <img src="{% static 'img/frontpage.jpg' %}" alt='View from the bed in Tilleys Hut of the table where you will eat a delcicious organic breakfast'/>
     </div>
+</div>
+
+<div id="booking-modal">
+    <h2>That day is available</h2>
+    <p>Would you like to make a booking?</p>
+    <p><a class="btn" href="mailto:info@tilleyshut.com">info@tilleyshut.com</a><a class="btn" href="tel:01747854375">01747 854 375</a></p>
 </div>
 {% endspaceless %}
 {% endblock %}
