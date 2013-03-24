@@ -6,8 +6,8 @@ from django.core.exceptions import ValidationError
 class Booking(models.Model):
 
     name = models.CharField(max_length=255, help_text='A name to help you remember this booking - eg: the guests\' name.')
-    start = models.DateField(help_text='Which day does the booking start?')
-    end = models.DateField(help_text='Which day does the booking end?')
+    start = models.DateField(db_index=True, help_text='Which day does the booking start?')
+    end = models.DateField(db_index=True, help_text='Which day does the booking end?')
 
     def clean(self):
         if self.start >= self.end:
@@ -21,8 +21,8 @@ class Booking(models.Model):
 class Holiday(models.Model):
 
     name = models.CharField(max_length=255, help_text='A name to help you remember this holiday.')
-    start = models.DateField(help_text='Which day does the holiday start?')
-    end = models.DateField(help_text='Which day does the holiday end?')
+    start = models.DateField(db_index=True, help_text='Which day does the holiday start?')
+    end = models.DateField(db_index=True, help_text='Which day does the holiday end?')
 
     def clean(self):
         if self.start >= self.end:
