@@ -63,13 +63,14 @@ class BookingCalendar(HTMLCalendar):
 
         prev = ''
         next = ''
+
         if self.prev_link:
             prev = '<a href="{0}">&lt;&lt; {1}</a>'.format(self.prev_link, month_name[self.prev_month])
 
         if self.next_link:
             next = '<a href="{0}">{1} &gt;&gt;</a>'.format(self.next_link, month_name[self.next_month])
 
-        return '<tr><th colspan="2" class="prev">{0}</th><th colspan="3" class="month"><h3>{1}</h3></th><th colspan="2" class="next text--right">{2}</th></tr>'.format(prev, s, next)
+        return '<tr><th colspan="7" class="heading"><span class="prev text--left">{0}</span> <span class="month text--center">{1}</span> <span class="next text--right">{2}</span></th></tr>'.format(prev, s, next)
 
 
     def formatday(self, day, weekday):
@@ -99,6 +100,6 @@ class BookingCalendar(HTMLCalendar):
 
     def day_cell(self, cssclass, day):
         if day > 0:
-            return '<td class="day {0}">{1}</td>'.format(cssclass, day)
+            return '<td class="{0}">{1}</td>'.format(cssclass, day)
         else:
             return '<td class="day {0}"></td>'.format(cssclass)

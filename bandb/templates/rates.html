@@ -5,49 +5,35 @@
 {% block content %}
 {% spaceless %}
 <div class="content grid">
+    <div class="grid__item seven-tenths lap-two-thirds palm-one-whole">
+        <h1>When do you want to stay?</h1>
 
-    <div class="grid__item one-whole">
+        <div class="grid calendar">
+            <div class="first-month grid__item one-half portable-one-whole">
+                {{ first_bookings }}
+            </div>
+            <div class="second-month grid__item one-half visuallyhidden--portable">
+                {{ second_bookings }}
+            </div>
+        </div>
 
-        <h1>Rates and Bookings</h1>
+        <div class="grid">
+            <div class="calendar-instructions grid__item two-thirds palm-one-whole">
+                <p>The calendar our current availability. Pick a date and let's make a booking!</p>
+            </div>
 
-        <p class="lead info-message">We will be opening for the new season at Easter.</p>
+            <div class="calendar-key grid__item one-third palm-one-whole">
+                <p><span class="booked">&nbsp;</span> Days are booked</p>
+                <p><span class="available">&nbsp;</span> Days are available</span></p>
+            </div>
+        </div>
     </div>
 
-    <div class="calendar-instructions grid__item three-quarters lap-two-thirds palm-one-whole">
-        <p>The calendar below shows our availability. Select a date to see if it's available and make a booking.</p>
+    <div class="grid__item three-tenths lap-one-third palm-one-whole rates">
+        <p>The hut sleeps 2 people and is <strong>£170 for 2 nights</strong>. Inclusive of sheets, towels, a locally sourced breakfast and charcoal for the woodburner.<br/><a class="btn btn--gamma btn--small btn--positive" href="tel:01747854375">Phone 01747 854375</a><br/>or:<br/><a class="btn btn--gamma btn--small btn--positive" href="mailto:info@tilleyshut.com">Email info@tilleyshut.com</a><br/>for booking enquiries.</p>
     </div>
-
-    <div class="calendar-key grid__item one-quarter lap-one-third palm-one-whole">
-        <p><span class="booked">&nbsp;</span> Days are booked</p>
-        <p><span class="available">&nbsp;</span> Days are available</span></p>
-    </div>
-
-</div>
-
-<div class="grid calendar">
-    <div class="first-month grid__item one-half portable-one-whole">
-        {{ first_bookings }}
-    </div>
-    <div class="second-month grid__item one-half visuallyhidden--portable">
-        {{ second_bookings }}
-    </div>
-</div>
-
-<div class="grid">
 
     <div class="grid__item two-thirds lap-one-half palm-one-whole left-column">
-
-        <h2>Rates</h2>
-        <p>The hut sleeps 2 people and is available at the following rates:</p>
-
-        <ul>
-            <li>£170 for 2 nights</li>
-            <li>Please contact us should you wish to stay more than 2 nights for rates.</li>
-        </ul>
-
-        <p>Inclusive of sheets, towels, a locally sourced breakfast and charcoal for the woodburner.</p>
-
-        <p><strong>Please phone <a class="btn btn--gamma btn--small btn--positive" href="tel:01747854375">01747 854375</a> or <a class="btn btn--gamma btn--small btn--positive" href="mailto:info@tilleyshut.com">email us</a> for booking enquiries.</strong></p>
 
         <h2>Payment</h2>
 

@@ -6,24 +6,30 @@
 }
 
 .calendar {
-    margin-top:-32px;
+    td,th {
+        padding:4px;
+    }
 }
 
 th,
 .day {
-    width:14.28%;
+    width:14%;
     text-align: center;
     border:1px solid #EEE;
     background-color: #FFF;
 }
-    th.month,
-    th.prev,
-    th.next {
+    th.heading {
         background-color: $yellow;
         border:0;
+        padding-bottom:8px;
     }
-    th.month {
-        padding-top:32px;
+    span.prev,
+    span.next {
+        @include font-size($h6-size);
+    }
+    span.month {
+        @include font-size($h5-size);
+        padding: 0px 18px;
     }
 
 .non-empty-day {
@@ -59,10 +65,14 @@ th,
     color:#999;
 }
 
-.first-month th.next a,
-.second-month th.prev a {
-    display:table-cell;
+.first-month .next a,
+.second-month .prev a {
+    display:inline;
     @include media-query(desk) {
         display:none;
     }
+}
+
+.rates {
+    margin-top:48px;
 }
