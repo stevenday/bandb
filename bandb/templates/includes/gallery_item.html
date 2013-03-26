@@ -1,0 +1,9 @@
+{% load staticfiles %}
+{% load url from future %}
+
+
+<a href="{% static 'img/gallery/' %}{{ filename }}" data-caption="{{ caption }}">
+    {% if with_image %}
+        <img src="{% static 'img/gallery/small/' %}{{ filename }}" />
+    {% endif %}
+</a>

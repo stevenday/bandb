@@ -1,19 +1,16 @@
 {% load staticfiles %}
 {% load url from future %}
 
-<div class="visuallyhidden">
-    <ul class="gallery">
-        <li><a href="{% static 'img/gallery/bed.jpg' %}" data-caption=""></a></li>
-        <li><a href="{% static 'img/gallery/dresser.jpg' %}" data-caption=""></a></li>
-        <li><a href="{% static 'img/gallery/table.jpg' %}" data-caption=""></a></li>
-        <li><a href="{% static 'img/gallery/table_apples.jpg' %}" data-caption=""></a></li>
-        <li><a href="{% static 'img/gallery/woodburner.jpg' %}" data-caption=""></a></li>
-        <li><a href="{% static 'img/gallery/sitting_area.jpg' %}" data-caption=""></a></li>
-        <li><a href="{% static 'img/gallery/bathroom.jpg' %}" data-caption=""></a></li>
-        <li><a href="{% static 'img/gallery/shower.jpg' %}" data-caption=""></a></li>
-        <li><a href="{% static 'img/gallery/bathroom.jpg' %}" data-caption=""></a></li>
-        <li><a href="{% static 'img/gallery/pond.jpg' %}" data-caption=""></a></li>
-        <li><a href="{% static 'img/gallery/mill.jpg' %}" data-caption=""></a></li>
-        <li><a href="{% static 'img/gallery/downs.jpg' %}" data-caption=""></a></li>
-    </ul>
-</div>
+<ul class="gallery multi-list three-cols {% if hidden %}visuallyhidden{% endif %}">
+    <li>{% include 'includes/gallery_item.html' with filename='bed.jpg' with_image=with_images %}</li>
+    <li>{% include 'includes/gallery_item.html' with filename='dresser.jpg' with_image=with_images %}</li>
+    <li>{% include 'includes/gallery_item.html' with filename='table.jpg' with_image=with_images %}</li>
+    <li>{% include 'includes/gallery_item.html' with filename='table_apples.jpg' with_image=with_images %}</li>
+    <li>{% include 'includes/gallery_item.html' with filename='woodburner.jpg' with_image=with_images %}</li>
+    <li>{% include 'includes/gallery_item.html' with filename='sitting_area.jpg' with_image=with_images %}</li>
+    <li>{% include 'includes/gallery_item.html' with filename='bathroom.jpg' with_image=with_images %}</li>
+    <li>{% include 'includes/gallery_item.html' with filename='shower.jpg' with_image=with_images %}</li>
+    <li>{% include 'includes/gallery_item.html' with filename='pond.jpg' with_image=with_images %}</li>
+    <li>{% include 'includes/gallery_item.html' with filename='mill.jpg' with_image=with_images %}</li>
+    <li>{% include 'includes/gallery_item.html' with filename='downs.jpg' with_image=with_images %}</li>
+</ul>
