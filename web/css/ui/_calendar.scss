@@ -1,3 +1,6 @@
+$available-green: lighten($green, 30%);
+$booked-red: lighten($brand-color, 30%);
+
 .calendar-key p {
     text-align: left;
     @include media-query(palm) {
@@ -6,66 +9,79 @@
 }
 
 .calendar {
+
+    // Cell basics
     td,th {
         padding:4px;
     }
-}
 
-th,
-.day {
-    width:14%;
-    text-align: center;
-    border:1px solid #EEE;
-    background-color: #FFF;
-}
-
-th.heading {
-    background-color: $yellow;
-    border:0;
-    padding-bottom:8px;
-}
-
-span.prev,
-span.next {
-    @include font-size($h6-size);
-}
-
-span.month {
-    @include font-size($h5-size);
-    padding: 0px 18px;
-}
-
-.non-empty-day {
-    cursor: pointer;
-}
-
-.today {
-    font-weight: bold;
-    font-size:$h4-size;
-}
-
-.available {
-    background-color: lighten($green, 30%);
-}
-    span.available {
-        color: lighten($green, 30%);
-        display:inline-block;
-        width:32px;
-        overflow: hidden;
+    th,
+    .day {
+        width:14%;
+        text-align: center;
+        border:1px solid #EEE;
+        background-color: #FFF;
     }
 
-.booked {
-    background-color: lighten($brand-color, 50%);
-}
-    span.booked {
-        color: lighten($brand-color, 50%);
-        display:inline-block;
-        width:32px;
-        overflow:hidden;
+    // Heading things
+    th.heading {
+        background-color: $yellow;
+        border:0;
+        padding-bottom:8px;
+        font-weight: normal;
+
+        span.prev,
+        span.next {
+            @include font-size($h5-size);
+        }
+
+        span.month {
+            @include font-size($h4-size);
+            padding: 0px 18px;
+        }
     }
 
-.unavailable {
-    color:#999;
+    // Different types of cells
+    .non-empty-day {
+        cursor: pointer;
+    }
+
+    .today {
+        font-weight: bold;
+        font-size:$h4-size;
+    }
+
+    .available {
+        background-color: $available-green;
+        &:hover {
+            background-color: darken($available-green, 30%);
+            color:#FFF;
+        }
+    }
+
+    .booked {
+        background-color: $booked-red;
+        &:hover {
+            background-color: darken($booked-red, 50%);
+            color:#FFF;
+        }
+    }
+
+    .unavailable {
+        color:#999;
+    }
+}
+
+.sample {
+    @include font-size($h4-size);
+    display:inline-block;
+    width:32px;
+}
+.sample.available {
+    background-color: $green
+}
+.sample.booked {
+    background-color: $brand-color;
 }
 
 .first-month .next a,
@@ -77,5 +93,6 @@ span.month {
 }
 
 .price {
-    @include font-size($h4-size);
+    @include font-size($h3-size);
+    font-weight: bold;
 }

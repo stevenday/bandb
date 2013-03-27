@@ -23,8 +23,8 @@
                     <p class="subtitle brand-face">B&amp;B in a restored Dorset Shepherd's Hut</span></p>
                 </div>
                 <div class="grid__item one-third lap-one-half palm-one-whole">
-                    <p class="contact-details"><a href="tel:01747854375">01747 854 375</a></p>
-                    <p class="contact-details"><a href="mailto:info@tilleyshut.com">info@tilleyshut.com</a></p>
+                    <p class="contact-details"><a href="tel:01747854375" class="icon-text"><i class="icon-phone icon-text__icon"></i>01747 854 375</a></p>
+                    <p class="contact-details"><a href="mailto:info@tilleyshut.com" class="icon-text"><i class="icon-mail icon-text__icon"></i>info@tilleyshut.com</a></p>
                 </div>
             </div>
 
@@ -61,6 +61,10 @@
         <script type="text/javascript" src="{% static 'js/code.photoswipe.jquery-3.0.5.min.js' %}"></script>
         <script type="text/javascript" src="{% static 'js/gallery.js' %}"></script>
         <script type="text/javascript" src="{% static 'js/calendar.js' %}"></script>
+
+        <!--[if lte IE 7]>
+            <script type="text/javascript" src="{% static 'js/icons-lte-ie7.js' %}"></script>
+        <![endif]-->
         {% block extra_js %}{% endblock extra_js %}
     </body>
 
