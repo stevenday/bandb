@@ -4,27 +4,24 @@ body {
     background-color:$yellow;
 }
 
-a:link,
-a:active,
-a:visited,
-a:hover {
+a {
     color:$brand-color;
     text-decoration: none;
+    &:hover {
+        text-decoration: underline;
+    }
+};
+
+a.btn {
+    color:#FFF;
+    background-color: $green;
+    &:hover {
+        background-color: lighten($green, 5%);
+    }
 }
-a:hover{
-    text-decoration: underline;
-};
-a.btn:hover {
-    background-color: lighten(#4A993E, 20%);
-};
 
 .wrapper {
     max-width:960px;
     padding:0 24px;
     margin:0 auto;
-}
-
-a.btn:link {
-    color:#FFF;
-    background-color: $green;
 }

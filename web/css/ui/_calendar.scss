@@ -18,19 +18,22 @@ th,
     border:1px solid #EEE;
     background-color: #FFF;
 }
-    th.heading {
-        background-color: $yellow;
-        border:0;
-        padding-bottom:8px;
-    }
-    span.prev,
-    span.next {
-        @include font-size($h6-size);
-    }
-    span.month {
-        @include font-size($h5-size);
-        padding: 0px 18px;
-    }
+
+th.heading {
+    background-color: $yellow;
+    border:0;
+    padding-bottom:8px;
+}
+
+span.prev,
+span.next {
+    @include font-size($h6-size);
+}
+
+span.month {
+    @include font-size($h5-size);
+    padding: 0px 18px;
+}
 
 .non-empty-day {
     cursor: pointer;
@@ -73,6 +76,6 @@ th,
     }
 }
 
-.rates {
-    margin-top:60px;
+.price {
+    @include font-size($h4-size);
 }
