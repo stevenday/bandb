@@ -19,6 +19,9 @@ class Booking(models.Model):
     name = models.CharField(max_length=255, help_text='A name to help you remember this booking - eg: the guests\' name.')
     start = models.DateField(db_index=True, help_text='Which day does the booking start?')
     end = models.DateField(db_index=True, help_text='Which day does the booking end?')
+    email = models.EmailField(max_length=255, help_text='What is the guest\'s email address?')
+    notes = models.TextField(blank=True, help_text='Any extra notes from the guest about their booking')
+    paid = models.BooleanField(default=False, help_text='Has this booking been paid for?')
 
     def clean(self):
         if self.start >= self.end:
