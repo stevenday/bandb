@@ -7,3 +7,4 @@ newrelic==1.10.0.28
 psycopg2==2.4.6
 wsgiref==0.1.2
 south==0.7.6
+git+git://github.com/dcramer/django-paypal@11835ce17e855200fc4b523c659f34f1d472b5d6
