@@ -16,6 +16,9 @@ urlpatterns = patterns('',
 
     url(r'^admin/', include(admin.site.urls)),
 
+    # Bookings urls
+    url(r'^booking/', include('bookings.urls')),
+
     # Robots.txt
     (r'^robots\.txt$', lambda r: HttpResponse("User-agent: *\nDisallow: /", mimetype="text/plain"))
 )

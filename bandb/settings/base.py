@@ -129,7 +129,6 @@ INSTALLED_APPS = (
     'south',
     'bandb',
     'bookings'
-
 )
 
 # A sample logging configuration. The only tangible logging
@@ -167,3 +166,7 @@ DATABASES['default'] =  dj_database_url.config(default='postgres://bandb:bandb@l
 
 # Parse cloudmade api key from local settings
 CLOUDMADE_API_KEY = os.environ['CLOUDMADE_API_KEY']
+
+# Parse stripe keys from local settings
+STRIPE_SECRET_KEY = os.environ['STRIPE_SECRET_KEY']
+STRIPE_PUBLIC_KEY = os.environ['STRIPE_PUBLIC_KEY']

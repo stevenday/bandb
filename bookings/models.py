@@ -30,7 +30,19 @@ class Booking(models.Model):
             raise ValidationError('The booking has to start today or later.')
 
     def __unicode__(self):
-        return "{0}, from: {1} to: {2}".format(self.name, self.start, self.end)
+        return "{1} to: {2}, {3:.2f}".format(self.name, self.start, self.end, self.price_pounds)
+
+    @property
+    def price(self):
+        """
+        Return the price in pence.
+        """
+        # TODO, calculate from days and price per day in settings?
+        return 18500
+
+    @property
+    def price_pounds(self):
+        return self.price / 100
 
 class HolidayManager(models.Manager):
 

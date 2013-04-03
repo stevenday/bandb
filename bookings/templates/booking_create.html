@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block content %}
+{% spaceless %}
+<div class="content grid">
+
+    <div class='grid__item one-whole'>
+
+        <h1>Make a booking</h1>
+
+        <form action="" method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button class="btn" type="submit">Submit</button>
+        </form>
+
+    </div>
+
+</div>
+{% endspaceless %}
+{% endblock content %}
