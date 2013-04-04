@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block content %}
+{% spaceless %}
+<div class="content grid">
+
+    <div class='grid__item one-whole'>
+
+        <h1>Success!</h1>
+
+        <p class="lead">Your booking has been made! Thanks very much, we hope you enjoy your stay with Tilley's Hut</p>
+
+        <p>You will receive a confirmation email shortly to confirm your details.</p>
+
+        {{ booking }}
+
+    </div>
+
+</div>
+{% endspaceless %}
+{% endblock content %}

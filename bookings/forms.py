@@ -43,4 +43,4 @@ class PaymentForm(forms.Form):
             return self.cleaned_data
         except stripe.CardError, e:
             # The card has been declined
-            raise forms.ValidationError("Sorry, your card has been decline. Perhaps you can try another?")
+            raise forms.ValidationError("Sorry, your card has been declined. Perhaps you can try another?")

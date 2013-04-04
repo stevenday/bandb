@@ -1,6 +1,7 @@
 from django.views.generic.edit import CreateView, FormView
 from django.core.urlresolvers import reverse
 from django.shortcuts import get_object_or_404, render
+from django.template import RequestContext
 
 from .models import Booking
 from .forms import BookingCreateForm, PaymentForm
