@@ -6,11 +6,17 @@ from django.core.exceptions import ValidationError
 
 class BookingManager(models.Manager):
 
+    def confirmed_bookings(self):
+        """
+        Bookings which have been paid for
+        """
+        return super(BookingManager, self).all().filter(paid=True)
+
     def bookings_in_month(self, year, month):
         """
         Bookings which start or end in the given month
         """
-        return super(BookingManager, self).all().filter(Q(start__year=year, start__month=month) | Q(end__year=year, end__month=month))
+        return self.confirmed_bookings().filter(Q(start__year=year, start__month=month) | Q(end__year=year, end__month=month))
 
 class Booking(models.Model):
 

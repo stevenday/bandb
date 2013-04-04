@@ -4,7 +4,7 @@ from datetime import datetime, timedelta, date
 from .models import Booking, Holiday
 
 """
-Helper generator function to return the days in a particular month
+Helper function to return the days in a particular month
 occupied by a queryset of models with start and end date fields
 """
 def occupied_days(queryset, year, month):
@@ -12,15 +12,18 @@ def occupied_days(queryset, year, month):
     for model in queryset:
         for day in daterange(model.start, model.end):
             # Some of the models passed might overlap from a previous month
-            if day.year == year and day.month == month:
-                yield day.day
+            if day.year == year and day.month == month and not date in days:
+                days.append(day.day)
+    return days
 
 """
-Helper generator function to return the dates represented by a date range
+Helper function to return the dates represented by a date range
 """
 def daterange(start_date, end_date):
+    dates = []
     for n in range(int ((end_date - start_date).days)):
-        yield start_date + timedelta(n)
+        dates.append(start_date + timedelta(n))
+    return dates
 
 def previous_year_month(year, month):
     prev_month = (month - 1) if month > 1 else 12
@@ -77,29 +80,30 @@ class BookingCalendar(HTMLCalendar):
         """
         Format the table cell for a particular day
         """
-        cssclass = "day "
+
+        cssclasses = ["day"]
         if day <= 0:
-            # We get empty days with day = 0 or > days in month
+            # We get empty days with day = 0 or day > days in month
             pass
         else:
-            cssclass += " non-empty-day"
+            cssclasses.append("non-empty-day")
 
             full_date = date(self.year, self.month, day)
 
             if full_date < self.today or day in self.holiday_days:
-                cssclass += " unavailable"
+                cssclasses.append("unavailable")
             elif day in self.booked_days:
-                cssclass += " booked"
+                print "day is booked"
+                cssclasses.append("booked")
             else:
-                cssclass += " available"
+                cssclasses.append("available")
 
             if full_date == self.today:
-                cssclass += " today"
-
-        return self.day_cell(cssclass, day)
+                cssclasses.append("today")
+        return self.day_cell(' '.join(cssclasses), day)
 
     def day_cell(self, cssclass, day):
         if day > 0:
             return '<td class="{0}">{1}</td>'.format(cssclass, day)
         else:
-            return '<td class="day {0}"></td>'.format(cssclass)
+            return '<td class="{0}"></td>'.format(cssclass)
