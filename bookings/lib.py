@@ -82,6 +82,7 @@ class BookingCalendar(HTMLCalendar):
         """
 
         cssclasses = ["day"]
+        full_date = None
         if day <= 0:
             # We get empty days with day = 0 or day > days in month
             pass
@@ -93,17 +94,17 @@ class BookingCalendar(HTMLCalendar):
             if full_date < self.today or day in self.holiday_days:
                 cssclasses.append("unavailable")
             elif day in self.booked_days:
-                print "day is booked"
                 cssclasses.append("booked")
             else:
                 cssclasses.append("available")
 
             if full_date == self.today:
                 cssclasses.append("today")
-        return self.day_cell(' '.join(cssclasses), day)
+        return self.day_cell(' '.join(cssclasses), day, full_date)
 
-    def day_cell(self, cssclass, day):
-        if day > 0:
-            return '<td class="{0}">{1}</td>'.format(cssclass, day)
+    def day_cell(self, cssclass, day, full_date=None):
+        if full_date:
+            date_string = full_date.isoformat()
+            return '<td data-date="{0}" class="{1}">{2}</td>'.format(date_string, cssclass, day)
         else:
             return '<td class="{0}"></td>'.format(cssclass)

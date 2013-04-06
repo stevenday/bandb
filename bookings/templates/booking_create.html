@@ -5,14 +5,99 @@
 {% spaceless %}
 <div class="content grid">
 
-    <div class='grid__item one-whole'>
+    <div class="grid__item four-fifths">
+        <h1>Make a booking with Tilley's Hut</h1>
+    </div>
 
-        <h1>Make a booking</h1>
+    <div class="grid__item one-fifth">
+        <p class="lead">Step 1 of 2</p>
+    </div>
+
+    <div class="grid__item one-whole">
 
         <form action="" method="POST">
             {% csrf_token %}
-            {{ form.as_p }}
-            <button class="btn" type="submit">Submit</button>
+
+            <div class="grid form booking-form">
+
+                {% for hidden in form.hidden_fields %}
+                    {{ hidden }}
+                {% endfor %}
+
+                <fieldset>
+                    <h3>Tell us a little about yourself</h3>
+                    <div class="grid__item one-quarter">
+                        <label for="id_name"{% if form.name.errors %} class="error"{% endif %}>Your Name</label>
+                    </div>
+
+                    <div class="grid__item three-quarters">
+                        {{ form.name }}
+                        {% if form.name.errors %}
+                            {% include 'includes/message-list.html' with messages=form.name.errors message_type='error' %}
+                        {% endif %}
+                    </div>
+
+                    <div class="grid__item one-quarter">
+                        <label for="id_email"{% if form.email.errors %} class="error"{% endif %}>Your Email</label>
+                    </div>
+
+                    <div class="grid__item three-quarters">
+                        {{ form.email }}
+                        {% if form.email.errors %}
+                            {% include 'includes/message-list.html' with messages=form.email.errors message_type='error' %}
+                        {% endif %}
+                    </div>
+
+                    <p class="flush--bottom text--center small icon-text">Don't worry, we promise we'll never share your information with anyone else.</p>
+                </fieldset>
+
+                <fieldset>
+                    <h3>When do you want to stay?</h3>
+
+                    <div class="grid_item one-whole calendar">
+
+                        <div class="grid">
+                            <div class="first-month grid__item one-half portable-one-whole">
+                                <label for="id_start" class="check-in{% if form.non_field_errors %} error{% endif %}">Check In<br/><small>Pick the day you want to check in</small></label>
+
+                                {{ first_bookings }}
+
+                                {{ form.start }}
+
+                            </div>
+
+                            <div class="second-month grid__item one-half portable-one-whole">
+                                <label for="id_end" class="check-out{% if form.non_field_errors %} error{% endif %}">Check Out<br/><small>Pick the day you want to check out</small></label>
+
+                                {{ first_bookings }}
+
+                                {{ form.end }}
+                            </div>
+                        </div>
+                    </div>
+
+                    {% if form.non_field_errors %}
+                        <div class="grid__item one-whole text--center">
+                            {% include 'includes/message-list.html' with messages=form.non_field_errors message_type='error' %}
+                        </div>
+                    {% endif %}
+                </fieldset>
+
+                <div class="grid__item one-whole">
+                    <h3>Any other notes?</h3>
+                    <label for="id_notes">Special requests, dietary requirements, that sort of thing... We'll do our best to accommodate.</label>
+                </div>
+
+                <div class="grid__item one-whole">
+                    {{ form.notes }}
+                </div>
+
+                <div class='grid__item one-whole text--center'>
+                    <button class="btn icon-text" type="submit"><i class="icon-credit  icon-text__icon"></i>Make the booking</button>
+                </div>
+
+            </div>
+
         </form>
 
     </div>
@@ -20,3 +105,8 @@
 </div>
 {% endspaceless %}
 {% endblock content %}
+
+{% block extra_js %}
+    <script src="{% static 'js/moment.min.js' %}"></script>
+    <script src="{% static 'js/booking.js' %}"></script>
+{% endblock extra_js %}

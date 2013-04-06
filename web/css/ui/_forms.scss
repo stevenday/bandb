@@ -1,0 +1,43 @@
+.form {
+    // A Grid inside a form containing form elements
+    &.booking-form {
+        @include media-query(desk) {
+            margin-left:10%;
+            margin-right:10%;
+        }
+    }
+
+    label,
+    input,
+    textarea {
+        width:100%;
+        padding:$half-spacing-unit;
+        margin-bottom:$base-spacing-unit;
+    }
+
+    input,
+    textarea {
+        @include vendor(border-radius, 4px);
+        border:1px solid #AAA;
+        &.error {
+            border:2px solid $error-color;
+        }
+    }
+
+    fieldset {
+        border:0 none;
+        margin-bottom: 0;
+    }
+
+    label {
+        &.error {
+            font-weight:bold;
+            color:$error-color;
+        }
+    }
+
+    label.check-in,
+    label.check-out {
+        @include font-size($h3-size);
+    }
+}

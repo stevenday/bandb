@@ -1,5 +1,5 @@
 $available-green: lighten($green, 30%);
-$booked-red: lighten($brand-color, 30%);
+$booked-red: lighten($brand-color, 50%);
 
 .calendar-key p {
     text-align: left;
@@ -46,11 +46,6 @@ $booked-red: lighten($brand-color, 30%);
         cursor: pointer;
     }
 
-    .today {
-        font-weight: bold;
-        font-size:$h4-size;
-    }
-
     .available {
         background-color: $available-green;
         &:hover {
@@ -70,6 +65,14 @@ $booked-red: lighten($brand-color, 30%);
     .unavailable {
         color:#999;
     }
+
+    .today {
+        background-color: $yellow;
+    }
+
+    .selected {
+        @extend .available:hover;
+    }
 }
 
 .sample {
@@ -84,11 +87,15 @@ $booked-red: lighten($brand-color, 30%);
     background-color: $brand-color;
 }
 
-.first-month .next a,
-.second-month .prev a {
-    display:inline;
-    @include media-query(desk) {
-        display:none;
+.availability-calendar {
+    // Availability calendar is two calendars next to each other pretending
+    // to be one on big screens, so we hide some links to complete the illusion
+    .first-month .next a,
+    .second-month .prev a {
+        display:inline;
+        @include media-query(desk) {
+            display:none;
+        }
     }
 }
 

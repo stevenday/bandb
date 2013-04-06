@@ -1,12 +1,16 @@
 import stripe
 
 from django import forms
-from django.forms.widgets import HiddenInput
+from django.forms.widgets import HiddenInput, TextInput, DateInput
 from django.conf import settings
 
 from .models import Booking
 
 class BookingCreateForm(forms.ModelForm):
+
+    email = forms.CharField(widget=TextInput(attrs={'placeholder':'your-email@example.com'}))
+    start = forms.DateField(widget=DateInput(attrs={'placeholder':'dd/mm/yyyy'}))
+    end = forms.DateField(widget=DateInput(attrs={'placeholder':'dd/mm/yyyy'}))
 
     class Meta:
         model = Booking
