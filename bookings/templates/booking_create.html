@@ -25,33 +25,6 @@
                 {% endfor %}
 
                 <fieldset>
-                    <h3>Tell us a little about yourself</h3>
-                    <div class="grid__item one-quarter">
-                        <label for="id_name"{% if form.name.errors %} class="error"{% endif %}>Your Name</label>
-                    </div>
-
-                    <div class="grid__item three-quarters">
-                        {{ form.name }}
-                        {% if form.name.errors %}
-                            {% include 'includes/message-list.html' with messages=form.name.errors message_type='error' %}
-                        {% endif %}
-                    </div>
-
-                    <div class="grid__item one-quarter">
-                        <label for="id_email"{% if form.email.errors %} class="error"{% endif %}>Your Email</label>
-                    </div>
-
-                    <div class="grid__item three-quarters">
-                        {{ form.email }}
-                        {% if form.email.errors %}
-                            {% include 'includes/message-list.html' with messages=form.email.errors message_type='error' %}
-                        {% endif %}
-                    </div>
-
-                    <p class="flush--bottom text--center small icon-text">Don't worry, we promise we'll never share your information with anyone else.</p>
-                </fieldset>
-
-                <fieldset>
                     <h3>When do you want to stay?</h3>
 
                     <div class="grid_item one-whole calendar">
@@ -81,6 +54,33 @@
                             {% include 'includes/message-list.html' with messages=form.non_field_errors message_type='error' %}
                         </div>
                     {% endif %}
+                </fieldset>
+
+                <fieldset>
+                    <h3>Tell us a little about yourself</h3>
+                    <div class="grid__item one-quarter">
+                        <label for="id_name"{% if form.name.errors %} class="error"{% endif %}>Your Name</label>
+                    </div>
+
+                    <div class="grid__item three-quarters">
+                        {{ form.name }}
+                        {% if form.name.errors %}
+                            {% include 'includes/message-list.html' with messages=form.name.errors message_type='error' %}
+                        {% endif %}
+                    </div>
+
+                    <div class="grid__item one-quarter">
+                        <label for="id_email"{% if form.email.errors %} class="error"{% endif %}>Your Email</label>
+                    </div>
+
+                    <div class="grid__item three-quarters">
+                        {{ form.email }}
+                        {% if form.email.errors %}
+                            {% include 'includes/message-list.html' with messages=form.email.errors message_type='error' %}
+                        {% endif %}
+                    </div>
+
+                    <p class="flush--bottom text--center small icon-text">Don't worry, we promise we'll never share your information with anyone else.</p>
                 </fieldset>
 
                 <div class="grid__item one-whole">
