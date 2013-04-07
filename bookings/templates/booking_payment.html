@@ -27,14 +27,10 @@
 
                 {{ form.booking_id }}
 
-                {% if form.non_field_errors %}
-                    <div class="grid__item one-whole">
+                <div class="grid__item one-whole payment-errors">
+                    {% if form.non_field_errors %}
                         {% include 'includes/message-list.html' with messages=form.non_field_errors message_type='error' %}
-                    </div>
-                {% endif %}
-
-                <div class='grid__item one-whole text--center'>
-                    <span class="payment-errors"></span>
+                    {% endif %}
                 </div>
 
                 <div class="grid__item one-third">
@@ -42,7 +38,7 @@
                 </div>
 
                 <div class="grid__item two-thirds">
-                    <input type="text" size="20" data-stripe="number"/>
+                    <input type="text" size="20" data-stripe="number" placeholder="1234 5678 9101 2131"/>
                 </div>
 
                 <div class="grid__item one-third">
@@ -50,7 +46,7 @@
                 </div>
 
                 <div class="grid__item two-thirds">
-                    <input type="text" size="4" data-stripe="cvc"/>
+                    <input type="text" size="4" data-stripe="cvc" placeholder="123"/>
                 </div>
 
                 <div class="grid__item one-third">
@@ -101,8 +97,9 @@
 
             if (response.error) {
                 // Show the errors on the form
-                $form.find('.payment-errors').text(response.error.message);
-                $form.find('button').prop('disabled', false);
+                $form.find('.payment-errors')
+                     .html('<ul class="message-list"><li class="message-list__error icon-text"><i class="icon-close icon-text__icon"></i>' + response.error.message + '</li></ul>');
+                $form.find('button').prop('disabled', false).removeClass("btn--inactive");
             } else {
                 // token contains id, last4, and card type
                 var token = response.id;
@@ -118,7 +115,7 @@
                 var $form = $(this);
 
                 // Disable the submit button to prevent repeated clicks
-                $form.find('button').prop('disabled', true);
+                $form.find('button').prop('disabled', true).addClass("btn--inactive");
 
                 Stripe.createToken($form, stripeResponseHandler);
 

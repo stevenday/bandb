@@ -20,6 +20,12 @@ a {
     }
 }
 
+.btn--inactive,
+.btn--inactive:hover {
+    color: #EEE;
+    background-color: #BBB;
+}
+
 .wrapper {
     max-width:960px;
     padding:0 24px;
