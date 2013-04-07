@@ -38,6 +38,10 @@
                                     {% include 'includes/message-list.html' with messages=form.start.errors message_type='error' %}
                                 {% endif %}
 
+                                <div class="calendar visuallyhidden--desk">
+                                    {{ calendar }}
+                                </div>
+
                                 <label for="id_nights" class="nights{% if form.nights.errors %} error{% endif %}">For how many nights?</label>
 
                                 {{ form.nights }}
@@ -47,7 +51,7 @@
                                 {% endif %}
                             </div>
 
-                            <div class="calendar grid__item one-half portable-one-whole">
+                            <div class="calendar grid__item one-half visuallyhidden--portable">
                                 {{ calendar }}
                             </div>
                         </div>
