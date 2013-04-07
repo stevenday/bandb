@@ -24,7 +24,8 @@ class BookingCreateForm(forms.ModelForm):
         cleaned_data = super(BookingCreateForm, self).clean()
 
         # Turn start + nights into end
-        cleaned_data['end'] = cleaned_data['start'] + timedelta(days=cleaned_data['nights'])
+        if 'start' in cleaned_data:
+            cleaned_data['end'] = cleaned_data['start'] + timedelta(days=cleaned_data['nights'])
 
         return cleaned_data
 
