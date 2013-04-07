@@ -1,9 +1,6 @@
 (function(window, $){
-    $(function(){
-        bindCalendarLinks();
-    });
 
-    function bindCalendarLinks() {
+    var bindCalendarLinks = function() {
         $(".calendar-link").click(function(e) {
             e.preventDefault();
             // Split out the month and year
@@ -16,9 +13,14 @@
                 dataType: 'html',
                 success: function(data, textStatus, jqXHR) {
                     $(".calendar").html(data);
-                    bindCalendarLinks();
+                    $(document).trigger("NewCalendar");
                 }
             });
         });
     }
+
+    $(function(){
+        bindCalendarLinks();
+        $(document).on("NewCalendar", bindCalendarLinks);
+    });
 })(window, window.jQuery);
