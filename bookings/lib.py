@@ -68,12 +68,12 @@ class BookingCalendar(HTMLCalendar):
         next = ''
 
         if self.prev_link:
-            prev = '<a href="{0}">&lt;&lt; {1}</a>'.format(self.prev_link, month_name[self.prev_month])
+            prev = '<a href="{0}" class="calendar-link">&lt;&lt; {1}</a>'.format(self.prev_link, month_name[self.prev_month])
 
         if self.next_link:
-            next = '<a href="{0}">{1} &gt;&gt;</a>'.format(self.next_link, month_name[self.next_month])
+            next = '<a href="{0}" class="calendar-link">{1} &gt;&gt;</a>'.format(self.next_link, month_name[self.next_month])
 
-        return '<tr><th colspan="7" class="heading"><span class="prev text--left">{0}</span> <span class="month text--center">{1}</span> <span class="next text--right">{2}</span></th></tr>'.format(prev, s, next)
+        return '<tr><th colspan="7" class="heading text--center"><span class="prev float--left">{0}</span><span class="month">{1}</span><span class="next float--right">{2}</span></th></tr>'.format(prev, s, next)
 
 
     def formatday(self, day, weekday):

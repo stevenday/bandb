@@ -87,14 +87,6 @@ $booked-red: lighten($brand-color, 50%);
     background-color: $brand-color;
 }
 
-.first-month .next a,
-.second-month .prev a {
-    display:inline;
-    @include media-query(desk) {
-        display:none;
-    }
-}
-
 .price {
     @include font-size($h3-size);
     font-weight: bold;

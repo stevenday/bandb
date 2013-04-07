@@ -10,13 +10,8 @@
 
         <p class="lead">Pick a date from the calendar below and we'll tell you if it's available.</p>
 
-        <div class="grid calendar availability-calendar">
-            <div class="first-month grid__item one-half portable-one-whole">
-                {{ first_bookings }}
-            </div>
-            <div class="second-month grid__item one-half visuallyhidden--portable">
-                {{ second_bookings }}
-            </div>
+        <div class="calendar grid__item one-whole">
+            {{ calendar }}
         </div>
 
         <p><span class="sample booked">&nbsp;</span> Days are booked &nbsp;<span class="sample available">&nbsp;</span> Days are available</span></p>
@@ -44,5 +39,5 @@
 {% endblock %}
 
 {% block extra_js %}
-    <script type="text/javascript" src="{% static 'js/calendar.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/availability.js' %}"></script>
 {% endblock extra_js %}

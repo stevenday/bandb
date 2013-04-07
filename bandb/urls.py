@@ -10,7 +10,6 @@ from .views import *
 urlpatterns = patterns('',
     url(r'^$', HomeView.as_view(), name='home'),
     url(r'^the-hut$', HutView.as_view(), name='hut'),
-    url(r'^bookings(?:/(?P<year>\d{4})/(?P<month>\d{2}))?$', RatesView.as_view(), name='rates'),
     url(r'^find-us$', AreaView.as_view(), name='area'),
     url(r'^things-to-know$', ThingsToKnowView.as_view(), name='things_to_know'),
 

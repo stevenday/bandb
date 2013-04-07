@@ -2,13 +2,13 @@
     var dateFormat = 'DD/MM/YYYY';
     var $startInput = $("#id_start");
     var $endInput = $("#id_end");
-    var $all_days = $('.calendar td.non-empty-day');
 
     var dayClick = function (event, $input) {
         event.preventDefault();
         var $cell = $(event.target);
         if (isAvailable($cell)) {
             // Highlight the date
+            $("td.selected").toggleClass("selected");
             $cell.addClass("selected");
             // Parse the date from the calendar
             var date = moment($cell.attr('data-date'));
@@ -24,12 +24,8 @@
         return $cell.hasClass("available");
     }
 
-    $(".first-month td").click(function(e) {
+    $(".calendar td").click(function(e) {
         dayClick(e, $startInput);
-    });
-
-    $(".second-month td").click(function(e) {
-        dayClick(e, $endInput);
     });
 
 })(window, window.jQuery);

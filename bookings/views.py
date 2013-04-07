@@ -1,5 +1,6 @@
 from datetime import datetime, date
 
+from django.views.generic import TemplateView
 from django.views.generic.edit import CreateView, FormView
 from django.views.generic.dates import YearMixin, MonthMixin
 from django.core.urlresolvers import reverse
@@ -7,7 +8,7 @@ from django.shortcuts import get_object_or_404, render
 from django.template import RequestContext
 from django.utils.timezone import utc
 from django.utils.safestring import mark_safe
-from django.http import Http404
+from django.http import Http404, HttpResponse
 
 from .models import Booking
 from .forms import BookingCreateForm, PaymentForm
@@ -15,7 +16,7 @@ from .lib import BookingCalendar, next_year_month, previous_year_month
 
 class BookingCalendarMixin(YearMixin, MonthMixin):
     """
-    Mixin for views which want to show booking calendars
+    Mixin for views which want to show a single booking calendar
     """
     def get_year(self):
         year = super(BookingCalendarMixin, self).get_year()
@@ -40,26 +41,32 @@ class BookingCalendarMixin(YearMixin, MonthMixin):
         context = super(BookingCalendarMixin, self).get_context_data(**kwargs)
         year = self.get_year()
         month = self.get_month()
-        second_year, second_month = next_year_month(year, month)
+        prev_year, prev_month = previous_year_month(year, month)
+        next_year, next_month = next_year_month(year, month)
 
-        # We show two calendars, but we can hide one on small screens
-        # so we have to make some redundant links that'll get
-        # hidden if the second calendar is visible
-        first_prev_year, first_prev_month = previous_year_month(year, month)
-        first_prev_link = reverse(self.url_name, kwargs={'year':first_prev_year, 'month':"%02d" % first_prev_month})
-        first_next_link = reverse(self.url_name, kwargs={'year':second_year, 'month':"%02d" % second_month})
+        prev_link = reverse(self.url_name, kwargs={'year':prev_year, 'month':"%02d" % prev_month})
+        next_link = reverse(self.url_name, kwargs={'year':next_year, 'month':"%02d" % next_month})
 
-        second_prev_link = reverse(self.url_name, kwargs={'year':year, 'month':"%02d" % month})
-        second_next_year, second_next_month = next_year_month(second_year, second_month)
-        second_next_link = reverse(self.url_name, kwargs={'year':second_next_year, 'month':"%02d" % second_next_month})
+        calendar = BookingCalendar(year, month, prev_link=prev_link, next_link=next_link)
 
-        calendar = BookingCalendar(year, month, prev_link=first_prev_link, next_link=first_next_link)
-        second_calendar = BookingCalendar(second_year, second_month, prev_link=second_prev_link, next_link=second_next_link)
-
-        context['first_bookings'] = mark_safe(calendar.formatmonth(year, month, withyear=True))
-        context['second_bookings'] = mark_safe(second_calendar.formatmonth(second_year, second_month, withyear=True))
+        context['calendar'] = mark_safe(calendar.formatmonth(year, month, withyear=True))
 
         return context
+
+
+class BookingsView(BookingCalendarMixin, TemplateView):
+    template_name = 'bookings.html'
+    url_name = 'bookings'
+
+
+class BookingCalendarAjax(BookingCalendarMixin, TemplateView):
+    url_name = 'bookings'
+
+    def render_to_response(self, context, **response_kwargs):
+        print "rendering calendar to response"
+        # We only want to return the html for the calendar
+        return HttpResponse(context['calendar'], **response_kwargs)
+
 
 class CreateBooking(BookingCalendarMixin, CreateView):
     model = Booking
@@ -69,6 +76,7 @@ class CreateBooking(BookingCalendarMixin, CreateView):
 
     def get_success_url(self):
         return reverse('payment', kwargs={'pk':self.object.id})
+
 
 class PayForBooking(FormView):
     form_class = PaymentForm

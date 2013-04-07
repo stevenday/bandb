@@ -1,16 +1,32 @@
+from datetime import timedelta
 import stripe
 
 from django import forms
-from django.forms.widgets import HiddenInput, TextInput, DateInput
+from django.forms.widgets import HiddenInput, TextInput, DateInput, RadioSelect
 from django.conf import settings
 
 from .models import Booking
 
 class BookingCreateForm(forms.ModelForm):
 
+    NIGHTS_CHOICES = (
+        (2, 'Two'),
+        (3, 'Three'),
+        (4, 'Four')
+    )
+
     email = forms.CharField(widget=TextInput(attrs={'placeholder':'your-email@example.com'}))
     start = forms.DateField(widget=DateInput(attrs={'placeholder':'dd/mm/yyyy'}))
-    end = forms.DateField(widget=DateInput(attrs={'placeholder':'dd/mm/yyyy'}))
+    nights = forms.TypedChoiceField(widget=RadioSelect, choices=NIGHTS_CHOICES, coerce=int, initial=2)
+    end = forms.DateField(widget=HiddenInput(), required=False)
+
+    def clean(self):
+        cleaned_data = super(BookingCreateForm, self).clean()
+
+        # Turn start + nights into end
+        cleaned_data['end'] = cleaned_data['start'] + timedelta(days=cleaned_data['nights'])
+
+        return cleaned_data
 
     class Meta:
         model = Booking

@@ -8,7 +8,7 @@
                 <li{% if request.path == url %} class="active"{% endif %}><a href="{{ url }}" >Home</a></li>
             {% url 'hut' as url %}
                 <li{% if request.path == url %} class="active"{% endif %}><a href="{{ url }}">The Hut</a></li>
-            {% url 'rates' as url %}
+            {% url 'bookings' as url %}
                 <li{% if url in request.path %} class="active"{% endif %}><a href="{{ url }}">Rates and Bookings</a></li>
             {% url 'area' as url %}
                 <li{% if request.path == url %} class="active"{% endif %}><a href="{{ url }}">Find Us</a></li>

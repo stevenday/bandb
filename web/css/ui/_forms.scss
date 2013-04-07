@@ -1,11 +1,4 @@
 .form {
-    // A Grid inside a form containing form elements
-    &.booking-form {
-        @include media-query(desk) {
-            margin-left:10%;
-            margin-right:10%;
-        }
-    }
 
     label,
     input,
@@ -37,7 +30,24 @@
     }
 
     label.check-in,
-    label.check-out {
+    label.nights {
         @include font-size($h3-size);
+    }
+
+    ul {
+        @extend .cf;
+        list-style: none;
+
+        li {
+            @extend .cf;
+            @extend .float--left;
+        }
+
+        label {
+            width:auto;
+            input {
+                width:auto;
+            }
+        }
     }
 }
