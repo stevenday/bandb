@@ -34,9 +34,17 @@
 
                                 {{ form.start }}
 
-                                <label for="id_nights" class="nights{% if form.non_field_errors %} error{% endif %}">For how many nights?</label>
+                                {% if form.start.errors %}
+                                    {% include 'includes/message-list.html' with messages=form.start.errors message_type='error' %}
+                                {% endif %}
+
+                                <label for="id_nights" class="nights{% if form.nights.errors %} error{% endif %}">For how many nights?</label>
 
                                 {{ form.nights }}
+
+                                {% if form.nights.errors %}
+                                    {% include 'includes/message-list.html' with messages=form.nights.errors message_type='error' %}
+                                {% endif %}
                             </div>
 
                             <div class="calendar grid__item one-half portable-one-whole">
@@ -44,12 +52,6 @@
                             </div>
                         </div>
                     </div>
-
-                    {% if form.start.errors %}
-                        <div class="grid__item one-whole text--center">
-                            {% include 'includes/message-list.html' with messages=form.start.errors message_type='error' %}
-                        </div>
-                    {% endif %}
 
                 </fieldset>
 
