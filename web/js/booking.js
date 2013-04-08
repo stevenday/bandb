@@ -3,7 +3,6 @@
     $(function() {
         var dateFormat = 'DD/MM/YYYY';
         var $startInput = $("#id_start");
-        var $endInput = $("#id_end");
 
         var isAvailable = function($cell, $input) {
             return $cell.hasClass("available");

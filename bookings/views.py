@@ -37,17 +37,25 @@ class BookingCalendarMixin(YearMixin, MonthMixin):
             raise Http404
         return month
 
+    def get_selected(self):
+        try:
+            return datetime.strptime(self.request.GET.get('date'), '%d/%m/%Y').date()
+        except ValueError:
+            return None
+
+
     def get_context_data(self, **kwargs):
         context = super(BookingCalendarMixin, self).get_context_data(**kwargs)
         year = self.get_year()
         month = self.get_month()
+        selected_date = self.get_selected()
         prev_year, prev_month = previous_year_month(year, month)
         next_year, next_month = next_year_month(year, month)
 
         prev_link = reverse(self.url_name, kwargs={'year':prev_year, 'month':"%02d" % prev_month})
         next_link = reverse(self.url_name, kwargs={'year':next_year, 'month':"%02d" % next_month})
 
-        calendar = BookingCalendar(year, month, prev_link=prev_link, next_link=next_link)
+        calendar = BookingCalendar(year, month, prev_link=prev_link, next_link=next_link, selected_date=selected_date)
 
         context['calendar'] = mark_safe(calendar.formatmonth(year, month, withyear=True))
 
@@ -74,8 +82,31 @@ class CreateBooking(BookingCalendarMixin, CreateView):
     form_class = BookingCreateForm
     url_name = 'booking'
 
+    def get_selected(self):
+        """
+        Override get_selected to return the initial data' selected value instead
+        """
+        # POST overrides GET because it's the user's submission from this page
+        submitted_date = None
+        if self.request.POST.get('start'):
+            print "POST has a better date"
+            submitted_date = self.request.POST.get('start')
+        elif self.request.GET.get('date'):
+            print "GET has a date"
+            submitted_date = self.request.GET.get('date')
+
+        try:
+            return datetime.strptime(submitted_date, '%d/%m/%Y').date()
+        except ValueError:
+            return None
+
     def get_success_url(self):
         return reverse('payment', kwargs={'pk':self.object.id})
+
+    def get_initial(self):
+        initial = super(CreateBooking, self).get_initial()
+        initial['start'] = self.get_selected()
+        return initial
 
 
 class PayForBooking(FormView):

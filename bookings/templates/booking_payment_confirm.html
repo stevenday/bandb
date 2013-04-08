@@ -9,11 +9,15 @@
 
         <h1>Success!</h1>
 
-        <p class="lead">Your booking has been made! Thanks very much, we hope you enjoy your stay with Tilley's Hut.</p>
+        <p class="lead">Your booking has been made! Thanks very much, we hope you enjoy your stay in Tilley's Hut.</p>
 
-        <p>You will receive a confirmation email shortly to confirm your details.</p>
+        <p>You will receive a confirmation email shortly to confirm your details, but they're also included below for your information.</p>
 
         {% include 'includes/booking_summary.html' with booking=booking %}
+
+        <p>On arrival we ask that you pay the remaining <strong>&pound;{{ booking.price_pounds|add:-settings.DEPOSIT }}</strong> of your booking fee in cash, or as a cheque made payable to Mr Adam Gallimore.</p>
+
+        <p>We look forward to seeing you!</p>
 
     </div>
 

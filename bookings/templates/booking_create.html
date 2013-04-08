@@ -31,8 +31,14 @@
 
                             {{ form.start }}
 
-                            {% if form.start.errors %}
-                                {% include 'includes/message-list.html' with messages=form.start.errors message_type='error' %}
+                            {% if form.start.errors or form.non_field_errors %}
+                                {% if form.start.errors %}
+                                    {% include 'includes/message-list.html' with messages=form.start.errors message_type='error' %}
+                                {% endif %}
+
+                                {% if form.non_field_errors %}
+                                    {% include 'includes/message-list.html' with messages=form.non_field_errors message_type='error' %}
+                                {% endif %}
                             {% endif %}
 
                             <div class="calendar visuallyhidden--desk">
@@ -112,6 +118,5 @@
 {% endblock content %}
 
 {% block extra_js %}
-    <script src="{% static 'js/moment.min.js' %}"></script>
     <script src="{% static 'js/booking.js' %}"></script>
 {% endblock extra_js %}

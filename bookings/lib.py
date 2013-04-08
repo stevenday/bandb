@@ -41,7 +41,7 @@ class BookingCalendar(HTMLCalendar):
     a booking on that day
     """
 
-    def __init__(self, year, month, prev_link=None, next_link=None):
+    def __init__(self, year, month, prev_link=None, next_link=None, selected_date=None):
         super(BookingCalendar, self).__init__()
         self.year = year
         self.month = month
@@ -52,6 +52,10 @@ class BookingCalendar(HTMLCalendar):
         self.next_link = next_link
         if self.next_link:
             self.next_year, self.next_month = next_year_month(year, month)
+        self.selected_date = selected_date
+        if self.selected_date:
+            if self.selected_date.year != self.year or self.selected_date.month != self.month:
+                self.selected_date = None
         self.booked_days = occupied_days(Booking.objects.bookings_in_month(year, month), year, month)
         self.holiday_days = occupied_days(Holiday.objects.holidays_in_month(year, month), year, month)
 
@@ -100,6 +104,9 @@ class BookingCalendar(HTMLCalendar):
 
             if full_date == self.today:
                 cssclasses.append("today")
+
+            if full_date == self.selected_date:
+                cssclasses.append("selected")
         return self.day_cell(' '.join(cssclasses), day, full_date)
 
     def day_cell(self, cssclass, day, full_date=None):
