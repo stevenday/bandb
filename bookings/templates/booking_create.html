@@ -24,43 +24,41 @@
                     {{ hidden }}
                 {% endfor %}
 
-                <fieldset>
 
-                    <div class="grid_item one-whole">
+                    <div class="grid">
+                        <div class="grid__item one-half portable-one-whole">
+                            <label for="id_start" class="check-in{% if form.start.errors %} error{% endif %}">When do you want to check in?</label>
 
-                        <div class="grid">
-                            <div class="grid__item one-half portable-one-whole">
-                                <label for="id_start" class="check-in{% if form.start.errors %} error{% endif %}">When do you want to check in?</label>
+                            {{ form.start }}
 
-                                {{ form.start }}
+                            {% if form.start.errors %}
+                                {% include 'includes/message-list.html' with messages=form.start.errors message_type='error' %}
+                            {% endif %}
 
-                                {% if form.start.errors %}
-                                    {% include 'includes/message-list.html' with messages=form.start.errors message_type='error' %}
-                                {% endif %}
-
-                                <div class="calendar visuallyhidden--desk">
-                                    {{ calendar }}
-                                </div>
-
-                                <label for="id_nights" class="nights{% if form.nights.errors %} error{% endif %}">For how many nights?</label>
-
-                                {{ form.nights }}
-
-                                {% if form.nights.errors %}
-                                    {% include 'includes/message-list.html' with messages=form.nights.errors message_type='error' %}
-                                {% endif %}
-                            </div>
-
-                            <div class="calendar grid__item one-half visuallyhidden--portable">
+                            <div class="calendar visuallyhidden--desk">
                                 {{ calendar }}
                             </div>
+
+                            <label for="id_nights" class="nights{% if form.nights.errors %} error{% endif %}">For how many nights?</label>
+
+                            <div class="nights">
+                                {{ form.nights }}
+                            </div>
+
+                            {% if form.nights.errors %}
+                                {% include 'includes/message-list.html' with messages=form.nights.errors message_type='error' %}
+                            {% endif %}
+                        </div>
+
+                        <div class="calendar grid__item one-half visuallyhidden--portable">
+                            {{ calendar }}
                         </div>
                     </div>
 
-                </fieldset>
+                    <div class="grid__item one-whole">
+                        <h3>Tell us a little about yourself</h3>
+                    </div>
 
-                <fieldset>
-                    <h3>Tell us a little about yourself</h3>
                     <div class="grid__item one-quarter">
                         <label for="id_name"{% if form.name.errors %} class="error"{% endif %}>Your Name</label>
                     </div>
@@ -83,21 +81,25 @@
                         {% endif %}
                     </div>
 
-                    <p class="flush--bottom text--center small icon-text">Don't worry, we promise we'll never share your information with anyone else.</p>
-                </fieldset>
+                    <p class="text--center small icon-text">Don't worry, we promise we'll never share your information with anyone else.</p>
 
-                <div class="grid__item one-whole">
-                    <h3>Any other notes?</h3>
-                    <label for="id_notes">Special requests, dietary requirements, that sort of thing... We'll do our best to accommodate.</label>
-                </div>
+                    <div class="grid__item one-whole">
+                        <h3>Any other notes?</h3>
+                        <label for="id_notes">Special requests, dietary requirements, that sort of thing... We'll do our best to accommodate.</label>
+                    </div>
 
-                <div class="grid__item one-whole">
-                    {{ form.notes }}
-                </div>
+                    <div class="grid__item one-whole">
+                        {{ form.notes }}
+                    </div>
 
-                <div class='grid__item one-whole text--center'>
-                    <button class="btn icon-text" type="submit"><i class="icon-credit  icon-text__icon"></i>Make the booking</button>
-                </div>
+                    <div class="grid__item one-whole">
+                        <p>Once you submit this form, we'll double-check the availability of the nights you'd like to stay, and ask you to <strong>pay a &pound;{{ settings.DEPOSIT }} deposit to confirm your booking</strong>.</p>
+                        <p><strong>You can pay online by Visa or Mastercard</strong>, or send us a cheque. We ask that you please give us sufficient notice if you would like cancel your booking, otherwise we may not be able to refund your deposit.</p>
+                    </div>
+
+                    <div class='grid__item one-whole text--center'>
+                        <button class="btn icon-text" type="submit"><i class="icon-credit  icon-text__icon"></i>Make the booking</button>
+                    </div>
 
             </div>
 

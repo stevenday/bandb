@@ -34,19 +34,23 @@
         @include font-size($h3-size);
     }
 
-    ul {
-        @extend .cf;
-        list-style: none;
-
-        li {
+    .nights {
+            ul {
             @extend .cf;
-            @extend .float--left;
-        }
+            list-style: none;
+            margin-left:0;
 
-        label {
-            width:auto;
-            input {
+            li {
+                @extend .cf;
+                @extend .float--left;
+            }
+
+            label {
                 width:auto;
+                input {
+                    width:auto;
+                    margin-bottom:0;
+                }
             }
         }
     }

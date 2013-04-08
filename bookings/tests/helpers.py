@@ -27,16 +27,16 @@ class BookingTestCase(TestCase):
 
         self.bookings_this_month = []
         for day in this_month:
-            self.bookings_this_month.append(Booking.objects.create(start=day, end=day+timedelta(days=1)))
+            self.bookings_this_month.append(Booking.objects.create(start=day, end=day+timedelta(days=1), paid=True))
 
         self.bookings_last_month = []
         for day in last_month:
-            self.bookings_last_month.append(Booking.objects.create(start=day, end=day+timedelta(days=1)))
+            self.bookings_last_month.append(Booking.objects.create(start=day, end=day+timedelta(days=1), paid=True))
         self.bookings_last_month += self.bookings_this_month[3:]
 
         self.bookings_next_month = []
         for day in next_month:
-            self.bookings_next_month.append(Booking.objects.create(start=day, end=day+timedelta(days=1)))
+            self.bookings_next_month.append(Booking.objects.create(start=day, end=day+timedelta(days=1), paid=True))
         self.bookings_next_month += self.bookings_this_month[2:3]
 
     def create_holidays(self):

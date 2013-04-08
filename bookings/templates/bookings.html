@@ -20,9 +20,10 @@
 
     <div class="grid__item three-tenths lap-one-third palm-one-whole rates right-column">
         <h2>How much is it?</h2>
-        <p class="price">£85 per night</p>
-        <p>The hut sleeps 2 people and the price is inclusive of sheets, towels, a locally sourced breakfast and charcoal for the woodburner.</p>
+        <p class="price">&pound;{{ settings.PRICE_PER_NIGHT|add:settings.PRICE_PER_NIGHT }} for two nights</p>
+        <p>The hut sleeps 2 people and the price is inclusive of towels, a locally sourced breakfast and charcoal for the woodburner.</p>
         <p><a class="btn icon-text" href="{% url 'booking' %}"><i class="icon-credit icon-text__icon" ></i>Make a booking</a></p>
+        <p>We only ask for a &pound;{{ settings.DEPOSIT }} deposit to secure your booking, you pay the rest by cash or cheque when you arrive.</p>
     </div>
 
     <div class="grid__item one-whole">

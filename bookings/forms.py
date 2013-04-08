@@ -12,7 +12,9 @@ class BookingCreateForm(forms.ModelForm):
     NIGHTS_CHOICES = (
         (2, 'Two'),
         (3, 'Three'),
-        (4, 'Four')
+        (4, 'Four'),
+        (5, 'Five'),
+        (6, 'Six'),
     )
 
     email = forms.CharField(widget=TextInput(attrs={'placeholder':'your-email@example.com'}))

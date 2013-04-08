@@ -160,6 +160,13 @@ LOGGING = {
     }
 }
 
+# Site specific settings
+DEPOSIT = 50
+PRICE_PER_NIGHT = 85
+SITE_NAME = 'Tilley\s Hut'
+
+# Environment settings
+
 # Parse database configuration from $DATABASE_URL
 import dj_database_url
 DATABASES['default'] =  dj_database_url.config(default='postgres://bandb:bandb@localhost:5432/bandb')

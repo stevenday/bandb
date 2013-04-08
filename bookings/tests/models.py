@@ -22,6 +22,26 @@ class BookingTests(TestCase):
         with self.assertRaises(ValidationError) as context:
             booking.clean()
 
+    def test_nights(self):
+        start = datetime.now().date()
+        end = start + timedelta(days=1)
+        booking = Booking(start=start, end=end)
+        self.assertEqual(booking.nights, 1)
+        booking.end = booking.end + timedelta(days=1)
+        self.assertEqual(booking.nights, 2)
+
+    def test_price_methods(self):
+        with self.settings(PRICE_PER_NIGHT=50):
+            start = datetime.now().date()
+            end = start + timedelta(days=1)
+            booking = Booking(start=start, end=end)
+            self.assertEqual(booking.price, 5000)
+            self.assertEqual(booking.price_pounds, 50)
+            booking.end = booking.end + timedelta(days=1)
+            self.assertEqual(booking.price, 10000)
+            self.assertEqual(booking.price_pounds, 100)
+
+
 class BookingManagerTests(BookingTestCase):
 
     def setUp(self):
@@ -31,6 +51,13 @@ class BookingManagerTests(BookingTestCase):
         self.compare_querysets(Booking.objects.bookings_in_month(2013, 1), self.bookings_this_month)
         self.compare_querysets(Booking.objects.bookings_in_month(2012, 12), self.bookings_last_month)
         self.compare_querysets(Booking.objects.bookings_in_month(2013, 2), self.bookings_next_month)
+
+    def test_bookings_in_month_excludes_unpaid_bookings(self):
+        # Add a new booking which is unpaid
+        start = date(2013, 1, 12)
+        end = start + timedelta(days=1)
+        Booking.objects.create(start=start, end=end, paid=False)
+        self.compare_querysets(Booking.objects.bookings_in_month(2013, 1), self.bookings_this_month)
 
 class HolidayTests(TestCase):
 

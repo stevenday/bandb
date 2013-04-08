@@ -1,8 +1,9 @@
-from datetime import datetime
+from datetime import datetime, timedelta
 
 from django.db import models
 from django.db.models import Q
 from django.core.exceptions import ValidationError
+from django.conf import settings
 
 class BookingManager(models.Manager):
 
@@ -39,12 +40,19 @@ class Booking(models.Model):
         return "{1} to: {2}, {3:.2f}".format(self.name, self.start, self.end, self.price_pounds)
 
     @property
+    def nights(self):
+        """
+        Return how many nights the booking is for
+        """
+        return (self.end - self.start).days
+
+    @property
     def price(self):
         """
         Return the price in pence.
         """
-        # TODO, calculate from days and price per day in settings?
-        return 18500
+        # PRICE_PER_NIGHT is specified in whole pounds
+        return self.nights * settings.PRICE_PER_NIGHT * 100
 
     @property
     def price_pounds(self):

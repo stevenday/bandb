@@ -6,7 +6,7 @@
 <div class="content grid">
 
     <div class="grid__item four-fifths">
-        <h1>Pay for your booking</h1>
+        <h1>Pay a deposit for your booking</h1>
     </div>
 
     <div class="grid__item one-fifth">
@@ -15,11 +15,15 @@
 
     <div class="grid__item one-third palm-one-whole">
         {% include 'includes/booking_summary.html' with booking=booking %}
+        <h4>Please note</h4>
+        <p>We only require a <strong>&pound;{{ settings.DEPOSIT }} deposit</strong> at this stage. You pay the balance by cash or cheque on arrival.</p>
     </div>
 
     <div class="grid__item two-thirds palm-one-whole">
 
         <h3>Card details</h3>
+
+        <p>We can accept Visa or Mastercard, to pay by cheque call: <a href="tel:01747 854 375">01747 854 375</a> or email: <a href="mailto:info@tilleyshut.com">info@tilleyshut.com</a></p>
 
         <form action="" method="POST" id="payment-form">
 
@@ -38,23 +42,25 @@
                 </div>
 
                 <div class="grid__item two-thirds">
-                    <input type="text" size="20" data-stripe="number" placeholder="1234 5678 9101 2131"/>
+                    <input type="text" size="20" data-stripe="number" placeholder="1234 5678 9101 2131" class="flush--bottom"/>
+                    <p class="milli">The long 16-digit number across the front of your card</p>
                 </div>
 
                 <div class="grid__item one-third">
-                    <label>CVC</label>
+                    <label>Security Code</label>
                 </div>
 
                 <div class="grid__item two-thirds">
-                    <input type="text" size="4" data-stripe="cvc" placeholder="123"/>
+                    <input type="text" size="4" data-stripe="cvc" placeholder="123" class="flush--bottom"/>
+                    <p class="milli">The 3-digit <abbr title="To the right of the signature strip on most cards">security code</abbr> on the back of your card</p>
                 </div>
 
                 <div class="grid__item one-third">
-                    <label>Expiration (MM/YYYY)</label>
+                    <label>Expiry Date (MM/YYYY)</label>
                 </div>
 
                 <div class="grid__item three-twelfths">
-                    <input type="text" size="2" data-stripe="exp-month" placeholder="mm"/>
+                    <input type="text" size="2" data-stripe="exp-month" placeholder="MM"/>
                 </div>
 
                 <div class="grid__item one-twelfth">
@@ -62,15 +68,15 @@
                 </div>
 
                 <div class="grid__item four-twelfths">
-                    <input type="text" size="4" data-stripe="exp-year" placeholder="yyyy"/>
+                    <input type="text" size="4" data-stripe="exp-year" placeholder="YYYY"/>
                 </div>
 
                 <div class="grid__item one-third">
-                    <label>Total</label>
+                    <label>Deposit</label>
                 </div>
 
-                <div class="grid__item two-thirds">
-                    <input type="text" disabled="disabled" size="20" value="&pound;{{ booking.price_pounds }}"/>
+                <div class="grid__item one-third">
+                    <input type="text" disabled="disabled" size="20" value="&pound;{{ settings.DEPOSIT }}"/>
                 </div>
 
                 <div class='grid__item one-whole text--center'>
