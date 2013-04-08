@@ -17,7 +17,25 @@ class BookingManager(models.Manager):
         """
         Bookings which start or end in the given month
         """
-        return self.confirmed_bookings().filter(Q(start__year=year, start__month=month) | Q(end__year=year, end__month=month))
+        return self.confirmed_bookings().filter(
+                                            Q(start__year=year, start__month=month) |
+                                            Q(end__year=year, end__month=month)
+                                        )
+
+    def dates_available(self, start, end):
+        """
+        Are the dates between start and end available?
+        They are available if there are no confirmed bookings overlapping any of the days
+        """
+        # We have to do a bit of fudging to make this a simple/efficient db query
+        # because one booking can start on the day another ends, which __range
+        # doesn't quite get.
+        day_before_end = end - timedelta(days=1)
+        day_after_start = start + timedelta(days=1)
+        return not self.confirmed_bookings().filter(
+                                                Q(start__range=(start, day_before_end)) |
+                                                Q(end__range=(day_after_start, end))
+                                            ).exists()
 
 class Booking(models.Model):
 
@@ -31,13 +49,20 @@ class Booking(models.Model):
     paid = models.BooleanField(default=False, help_text='Has this booking been paid for?')
 
     def clean(self):
+        # Check basics about start/end dates being valid
         if self.start >= self.end:
             raise ValidationError('The booking start must be before the end.')
         elif self.start < datetime.now().date():
             raise ValidationError('The booking has to start today or later.')
 
+        # Check availability
+        # Don't let people make a booking on the same day as a confirmed booking
+        if not Booking.objects.dates_available(start=self.start, end=self.end):
+            raise ValidationError('Some or all of those dates are not available')
+
+
     def __unicode__(self):
-        return "{1} to: {2}, {3:.2f}".format(self.name, self.start, self.end, self.price_pounds)
+        return "{0} - {1} to: {2}, {3:.2f}".format(self.name, self.start, self.end, self.price_pounds)
 
     @property
     def nights(self):

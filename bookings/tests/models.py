@@ -22,6 +22,16 @@ class BookingTests(TestCase):
         with self.assertRaises(ValidationError) as context:
             booking.clean()
 
+    def test_checks_availability(self):
+        # Only a simple check to make sure we call something, the real
+        # checks of the function we call are in BookingManagerTests.test_dates_available
+        start = datetime.now().date()
+        end = start + timedelta(days=3)
+        booking = Booking.objects.create(start=start, end=end, paid=True)
+        second_booking = Booking.objects.create(start=start, end=end, paid=True)
+        with self.assertRaises(ValidationError) as context:
+            second_booking.clean();
+
     def test_nights(self):
         start = datetime.now().date()
         end = start + timedelta(days=1)
@@ -58,6 +68,32 @@ class BookingManagerTests(BookingTestCase):
         end = start + timedelta(days=1)
         Booking.objects.create(start=start, end=end, paid=False)
         self.compare_querysets(Booking.objects.bookings_in_month(2013, 1), self.bookings_this_month)
+
+    def test_dates_available(self):
+        # Test all the possible combinations of start/end date
+        number_of_nights = (1, 2, 3, 4, 5, 6)
+        bigger_number_of_nights = (1, 2, 3, 4, 5, 6, 7)
+        for nights in number_of_nights:
+            # Create a booking with that many nights
+            start = datetime.now().date()
+            end = start + timedelta(days=nights)
+            booking = Booking.objects.create(start=start, end=end, paid=True)
+            # Loop through all the possible ranges of nights within, intersecting or containg that
+            # booking
+            for start_offset in (-1, 0, 1, 2, 3, 4, 4, 5, 6, 7):
+                test_start = start + timedelta(days=start_offset)
+                for end_offset in bigger_number_of_nights:
+                    test_end = start + timedelta(days=end_offset)
+
+                if (test_start < start and test_end <= end) or (test_start >= end and test_end > end):
+                    self.assertTrue(Booking.objects.dates_available(test_start, test_end),
+                                    'Date range: {0} -> {1} should be available with booking: {2} but it\'s not'.format(test_start, test_end, booking))
+                else:
+                    self.assertFalse(Booking.objects.dates_available(test_start, test_end),
+                                    'Date range: {0} -> {1} should not be available with booking: {2} but it is'.format(test_start, test_end, booking))
+            # Tidy up the booking
+            booking.delete()
+
 
 class HolidayTests(TestCase):
 
