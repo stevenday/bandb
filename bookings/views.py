@@ -9,6 +9,7 @@ from django.template import RequestContext
 from django.utils.timezone import utc
 from django.utils.safestring import mark_safe
 from django.http import Http404, HttpResponse
+from django.conf import settings
 
 from .models import Booking
 from .forms import BookingCreateForm, PaymentForm
@@ -40,7 +41,7 @@ class BookingCalendarMixin(YearMixin, MonthMixin):
     def get_selected(self):
         try:
             return datetime.strptime(self.request.GET.get('date'), '%d/%m/%Y').date()
-        except ValueError:
+        except (ValueError, TypeError):
             return None
 
 
@@ -135,4 +136,5 @@ class PayForBooking(FormView):
         # Show a confirmation page
         context = RequestContext(self.request)
         context['booking'] = booking
+        context['remaining'] = booking.price_pounds - settings.DEPOSIT
         return render(self.request, self.confirm_template, context)

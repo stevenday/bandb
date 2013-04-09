@@ -31,6 +31,8 @@
 
                 {{ form.booking_id }}
 
+                <input type="hidden" data-stripe="name" value="{{ booking.name }}" />
+
                 <div class="grid__item one-whole payment-errors">
                     {% if form.non_field_errors %}
                         {% include 'includes/message-list.html' with messages=form.non_field_errors message_type='error' %}

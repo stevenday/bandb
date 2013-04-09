@@ -58,7 +58,7 @@ class PaymentForm(forms.Form):
         # Create the charge on Stripe's servers - this will charge the user's card
         try:
             charge = stripe.Charge.create(
-                amount=booking.price, # Amount in pence
+                amount=settings.DEPOSIT * 100, # Amount in pence
                 currency="gbp",
                 card=token,
                 description=str(booking)
