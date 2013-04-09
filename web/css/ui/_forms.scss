@@ -55,3 +55,30 @@
         }
     }
 }
+
+#payment-form {
+    .card-number {
+        position:relative;
+        .card-type {
+            position: absolute;
+            top: 12px;
+            right: 6px;
+            width: 32px;
+            height: 20px;
+            background-image: url(https://checkout.stripe.com/assets/cards/placeholder.png);
+            background-repeat: no-repeat;
+            &.Visa {
+                background-image: url(https://checkout.stripe.com/assets/cards/visa.png);
+            }
+            &.Mastercard {
+                background-image: url(https://checkout.stripe.com/assets/cards/mastercard.png);
+            }
+        }
+    }
+
+    .errors {
+        ul {
+            margin-left:0;
+        }
+    }
+}

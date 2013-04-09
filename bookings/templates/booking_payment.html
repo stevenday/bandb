@@ -31,8 +31,6 @@
 
                 {{ form.booking_id }}
 
-                <input type="hidden" data-stripe="name" value="{{ booking.name }}" />
-
                 <div class="grid__item one-whole payment-errors">
                     {% if form.non_field_errors %}
                         {% include 'includes/message-list.html' with messages=form.non_field_errors message_type='error' %}
@@ -40,12 +38,21 @@
                 </div>
 
                 <div class="grid__item one-third">
+                    <label>Name on card</label>
+                </div>
+
+                <div class="grid__item two-thirds">
+                    <input type="text" data-stripe="name" value="{{ booking.name }}" />
+                </div>
+
+                <div class="grid__item one-third">
                     <label>Card Number</label>
                 </div>
 
                 <div class="grid__item two-thirds">
-                    <input type="text" size="20" data-stripe="number" placeholder="1234 5678 9101 2131" class="flush--bottom"/>
+                    <div class="card-number"><input type="text" size="20" data-stripe="number" placeholder="1234 5678 9101 2131" class="flush--bottom"/><div class="card-type"></div></div>
                     <p class="milli">The long 16-digit number across the front of your card</p>
+                    <div class="errors card-number-errors"></div>
                 </div>
 
                 <div class="grid__item one-third">
@@ -55,22 +62,31 @@
                 <div class="grid__item two-thirds">
                     <input type="text" size="4" data-stripe="cvc" placeholder="123" class="flush--bottom"/>
                     <p class="milli">The 3-digit <abbr title="To the right of the signature strip on most cards">security code</abbr> on the back of your card</p>
+                    <div class="errors cvc-errors"></div>
                 </div>
 
                 <div class="grid__item one-third">
                     <label>Expiry Date (MM/YYYY)</label>
                 </div>
 
-                <div class="grid__item three-twelfths">
-                    <input type="text" size="2" data-stripe="exp-month" placeholder="MM"/>
-                </div>
+                <div class="grid__item two-thirds">
+                    <div class="grid">
+                        <div class="grid__item three-eighths">
+                            <input type="text" size="2" data-stripe="exp-month" placeholder="MM"/>
+                        </div>
 
-                <div class="grid__item one-twelfth">
-                    <label>/</label>
-                </div>
+                        <div class="grid__item one-eighth">
+                            <label>/</label>
+                        </div>
 
-                <div class="grid__item four-twelfths">
-                    <input type="text" size="4" data-stripe="exp-year" placeholder="YYYY"/>
+                        <div class="grid__item four-eighths">
+                            <input type="text" size="4" data-stripe="exp-year" placeholder="YYYY"/>
+                        </div>
+
+                        <div class="grid__item one-whole">
+                            <div class="errors expiry-errors"></div>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="grid__item one-third">
@@ -100,13 +116,15 @@
     <script type="text/javascript">
         Stripe.setPublishableKey('{{ settings.STRIPE_PUBLIC_KEY }}');
 
+        var displayError = function(message, $element) {
+            // Show an error somewhere on the form
+            $element.html('<ul class="message-list"><li class="message-list__error icon-text"><i class="icon-close icon-text__icon"></i>' + message + '</li></ul>');
+        };
+
         var stripeResponseHandler = function(status, response) {
             var $form = $('#payment-form');
-
             if (response.error) {
-                // Show the errors on the form
-                $form.find('.payment-errors')
-                     .html('<ul class="message-list"><li class="message-list__error icon-text"><i class="icon-close icon-text__icon"></i>' + response.error.message + '</li></ul>');
+                displayErrors(response.error.message, $form);
                 $form.find('button').prop('disabled', false).removeClass("btn--inactive");
             } else {
                 // token contains id, last4, and card type
@@ -119,9 +137,24 @@
         };
 
         jQuery(function($) {
-            $('#payment-form').submit(function(event) {
-                var $form = $(this);
+            var $form = $('#payment-form');
 
+            var checkExpiryDate = function(e) {
+                var month = $('input[data-stripe="exp-month"]').val();
+                var year = $('input[data-stripe="exp-year"]').val();
+
+                if (month != '' && year != '') {
+                    if (!Stripe.validateExpiry(month, year)) {
+                        // If it's not, show a validation message
+                        displayError("Sorry, that doesn't look like a valid expiry date", $('.expiry-errors'));
+                    }
+                    else {
+                        $('.expiry-errors').html('');
+                    }
+                }
+            }
+
+            $('#payment-form').submit(function(event) {
                 // Disable the submit button to prevent repeated clicks
                 $form.find('button').prop('disabled', true).addClass("btn--inactive");
 
@@ -130,6 +163,38 @@
                 // Prevent the form from submitting with the default action
                 return false;
             });
+
+            $('input[data-stripe="number"]').blur(function(e) {
+                var cardNumber = $(this).val();
+                // Check the card looks valid with Stripe's js validation
+                if (cardNumber != '') {
+                    if (Stripe.validateCardNumber(cardNumber)) {
+                        // If it is valid, add a class to show the card type
+                        $('.card-type').addClass(Stripe.cardType(cardNumber));
+                        $('.card-number-errors').html('');
+                    }
+                    else {
+                        displayError("Sorry, that doesn't look like a valid card number", $('.card-number-errors'));
+                    }
+                }
+            });
+
+            $('input[data-stripe="cvc"]').blur(function(e) {
+                var cvc = $(this).val();
+                // Check the cvc looks valid with Stripe's js validation
+                if (cvc != '') {
+                    if (!Stripe.validateCVC(cvc)) {
+                        displayError("Sorry, that doesn't look like a valid security code", $('.cvc-errors'));
+                    }
+                    else {
+                        $('.cvc-errors').html('');
+                    }
+                }
+            });
+
+            $('input[data-stripe="exp-month"]').blur(checkExpiryDate);
+            $('input[data-stripe="exp-year"]').blur(checkExpiryDate);
+
         });
 
     </script>
