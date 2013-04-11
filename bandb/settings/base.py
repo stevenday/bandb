@@ -8,7 +8,7 @@ DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
-    # ('Your Name', 'your_email@example.com'),
+    ('Steven Day', 'forestorama@gmail.com'),
 )
 
 MANAGERS = ADMINS
@@ -164,12 +164,20 @@ LOGGING = {
 EMAIL_BACKEND = 'django_ses.SESBackend'
 
 # Site specific settings
+# Prices and deposits used in booking process
 DEPOSIT = 50
 PRICE_PER_NIGHT = 85
+# Used in emails and templates rather than hardcoding name
 SITE_NAME = 'Tilley\s Hut'
+# Used as the from address in emails and on site mailto: links
+SITE_EMAIL = 'info@tilleyshut.com'
+# Set DEFAULT_FROM_EMAIL and SERVER_EMAIL to SITE_EMAIL too
+DEFAULT_FROM_EMAIL = SITE_EMAIL
+SERVER_EMAIL = SITE_EMAIL
+# People who receive emails about bookings
+HOST_BOOKING_RECIPIENTS = [SITE_EMAIL] + [admin[1] for admin in ADMINS]
 
-# Environment settings
-
+# Secret things parsed from the environment settings
 # Parse database configuration from $DATABASE_URL
 import dj_database_url
 DATABASES['default'] =  dj_database_url.config(default='postgres://bandb:bandb@localhost:5432/bandb')
@@ -184,3 +192,5 @@ STRIPE_PUBLIC_KEY = os.environ['STRIPE_PUBLIC_KEY']
 # Parse AWS settings from local settings
 AWS_ACCESS_KEY_ID = os.environ['AWS_ACCESS_KEY_ID']
 AWS_SECRET_ACCESS_KEY = os.environ['AWS_SECRET_ACCESS_KEY']
+# FIXME - make keys specifically for SES, not all of AWS
+# FIXME - DKIM keys and settings for that

@@ -54,15 +54,14 @@ class BookingTests(TestCase):
 
 class BookingManagerTests(BookingTestCase):
 
-    def setUp(self):
-        self.create_bookings()
-
     def test_bookings_in_month(self):
+        self.create_bookings()
         self.compare_querysets(Booking.objects.bookings_in_month(2013, 1), self.bookings_this_month)
         self.compare_querysets(Booking.objects.bookings_in_month(2012, 12), self.bookings_last_month)
         self.compare_querysets(Booking.objects.bookings_in_month(2013, 2), self.bookings_next_month)
 
     def test_bookings_in_month_excludes_unpaid_bookings(self):
+        self.create_bookings()
         # Add a new booking which is unpaid
         start = date(2013, 1, 12)
         end = start + timedelta(days=1)
@@ -70,6 +69,7 @@ class BookingManagerTests(BookingTestCase):
         self.compare_querysets(Booking.objects.bookings_in_month(2013, 1), self.bookings_this_month)
 
     def test_dates_available(self):
+        self.create_bookings()
         # Test all the possible combinations of start/end date
         number_of_nights = (1, 2, 3, 4, 5, 6)
         bigger_number_of_nights = (1, 2, 3, 4, 5, 6, 7)
@@ -93,6 +93,19 @@ class BookingManagerTests(BookingTestCase):
                                     'Date range: {0} -> {1} should not be available with booking: {2} but it is'.format(test_start, test_end, booking))
             # Tidy up the booking
             booking.delete()
+
+    def test_bookings_to_email(self):
+        start = datetime.now().date()
+        end = start + timedelta(days=1)
+        email = 'test@example.com'
+        name = 'Guest'
+        # An unconfirmed booking which should not be emailed
+        unconfirmed_booking = Booking.objects.create(name=name, start=start, end=end, email=email, paid=False)
+        # Add a booking which has not been emailed but should be
+        booking_that_needs_emailing = Booking.objects.create(name=name, start=start, end=end, email=email, paid=True)
+        # And a booking which has
+        booking_thats_been_emailed = Booking.objects.create(name=name, start=start, end=end, email=email, paid=True, emails_sent=True)
+        self.assertEqual(list(Booking.objects.bookings_to_email()), [booking_that_needs_emailing])
 
 
 class HolidayTests(TestCase):

@@ -37,6 +37,12 @@ class BookingManager(models.Manager):
                                                 Q(end__range=(day_after_start, end))
                                             ).exists()
 
+    def bookings_to_email(self):
+        """
+        Return bookings which need emailing
+        """
+        return self.confirmed_bookings().filter(emails_sent=False)
+
 class Booking(models.Model):
 
     objects = BookingManager()
@@ -47,6 +53,8 @@ class Booking(models.Model):
     email = models.EmailField(max_length=255, help_text='What is the guest\'s email address?')
     notes = models.TextField(blank=True, help_text='Any extra notes from the guest about their booking')
     paid = models.BooleanField(default=False, help_text='Has this booking been paid for?')
+    # A flag to say that emails have been sent
+    emails_sent = models.BooleanField(default=False, help_text='Have the emails been sent to confirm this booking? If you don\'t tick it, an email will be sent to the guest!')
 
     def clean(self):
         # Check basics about start/end dates being valid

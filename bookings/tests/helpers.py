@@ -1,10 +1,10 @@
 from datetime import timedelta, date
 
-from django.test import TestCase
+from django.test import TransactionTestCase
 
 from ..models import Booking, Holiday
 
-class BookingTestCase(TestCase):
+class BookingTestCase(TransactionTestCase):
 
     def create_bookings(self):
         start_of_this_month = date(2013, 1, 1)
