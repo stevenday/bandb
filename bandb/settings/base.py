@@ -167,6 +167,7 @@ EMAIL_BACKEND = 'django_ses.SESBackend'
 # Prices and deposits used in booking process
 DEPOSIT = 50
 PRICE_PER_NIGHT = 85
+PHONE_NUMBER = '01747 854 375'
 # Used in emails and templates rather than hardcoding name
 SITE_NAME = 'Tilley\s Hut'
 # Used as the from address in emails and on site mailto: links

@@ -136,5 +136,4 @@ class PayForBooking(FormView):
         # Show a confirmation page
         context = RequestContext(self.request)
         context['booking'] = booking
-        context['remaining'] = booking.price_pounds - settings.DEPOSIT
         return render(self.request, self.confirm_template, context)
