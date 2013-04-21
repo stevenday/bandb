@@ -4,6 +4,21 @@ from django.test import TransactionTestCase
 
 from ..models import Booking, Holiday
 
+def create_test_booking(attributes={}):
+    tomorrow = date() + timedelta(days=1)
+    # Make a Booking with the bare minimum
+    default_attributes = {
+        'name': 'Test Booking',
+        'start': tomorrow,
+        'end': tomorrow + timedelta(days=2),
+        'email': 'guest@example.com'
+    }
+    default_attributes.update(attributes)
+    instance = Booking(**dict((k,v) for (k,v) in default_attributes.items() if '__' not in k))
+    instance.save()
+    return instance
+
+
 class BookingTestCase(TransactionTestCase):
 
     def create_bookings(self):

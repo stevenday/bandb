@@ -1,0 +1,9 @@
+Dear {{ booking.name }}
+
+This email is confirmation of your booking with {{ settings.SITE_NAME }}. We're really looking forward to seeing you on the {{ booking.start }} for {{ booking.nights }} nights.
+
+Please remember to bring the remaining £{{ booking.remaining }} with you in cash, or as a cheque made payable to Mr Adam Gallimore.
+
+If you need to contact us in the meantime, please call us on {{ settings.PHONE_NUMBER }} or reply to this email, and we'll do our best to help.
+
+Don't forget to also checkout our page of useful tips: {% url 'things_to_know' %}

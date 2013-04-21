@@ -27,11 +27,13 @@ class Command(BaseCommand):
                 # They're this way round for a reason - the host doesn't care so much!
 
                 # Send an email to the host(s)
-                host_template = get_template('host_template_email.txt')
+                host_template = get_template('host_booking_email.txt')
+                subject = 'New booking for {0}'.format(settings.SITE_NAME)
                 send_email(settings.HOST_BOOKING_RECIPIENTS, host_template, booking)
 
                 # Send an email to the guest
                 guest_template = get_template('guest_booking_email.txt')
+                subject = 'Your booking with {0}'.format(settings.SITE_NAME)
                 send_email([booking.email], guest_template, booking)
 
                 # Record that we sent it
@@ -43,10 +45,10 @@ class Command(BaseCommand):
                 logger.error('Error emailing booking: {0}'.format(booking))
                 transaction.rollback()
 
-    def send_email(recipients, booking, template):
+    def send_email(recipients, booking, body_template, subject):
         context = Context({'booking': booking})
         logger.info('Sending email to: {0} for booking: {1}'.format(recipients, booking))
-        mail.send_mail(subject='Your booking with {0}'.format(settings.SITE_NAME),
+        mail.send_mail(subject=subject,
                        message=template.render(context),
                        from_email=settings.SITE_EMAIL,
                        recipient_list=recipients,

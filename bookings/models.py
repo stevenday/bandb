@@ -91,6 +91,10 @@ class Booking(models.Model):
     def price_pounds(self):
         return self.price / 100
 
+    @property
+    def remaining(self):
+        return self.price_pounds - settings.DEPOSIT
+
 class HolidayManager(models.Manager):
 
     def holidays_in_month(self, year, month):
