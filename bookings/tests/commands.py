@@ -12,7 +12,7 @@ from .helpers import create_test_booking
 from ..models import Booking
 
 @override_settings(HOST_BOOKING_RECIPIENTS=['host@example.com'])
-def BookingEmailCommandTests(TestCase):
+def SendBookingsEmailsCommandTests(TestCase):
 
     def _call_command(self):
         args = []
