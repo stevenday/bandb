@@ -40,7 +40,7 @@ class SendBookingsEmailsCommandTests(TestCase):
         self.assertEqual(first_mail.from_email, settings.DEFAULT_FROM_EMAIL)
         self.assertEqual(first_mail.to, settings.HOST_BOOKING_RECIPIENTS)
         template = get_template('host_booking_email.txt')
-        context = Context({'booking': booking})
+        context = Context({'booking': booking, 'settings':settings})
         expected_body = template.render(context)
         self.assertEqual(first_mail.body, expected_body)
 
@@ -50,7 +50,7 @@ class SendBookingsEmailsCommandTests(TestCase):
         self.assertEqual(second_mail.from_email, settings.DEFAULT_FROM_EMAIL)
         self.assertEqual(second_mail.to, [booking.email])
         template = get_template('guest_booking_email.txt')
-        context = Context({'booking': booking})
+        context = Context({'booking': booking, 'settings':settings})
         expected_body = template.render(context)
         self.assertEqual(second_mail.body, expected_body)
 

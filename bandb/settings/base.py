@@ -178,7 +178,7 @@ DEPOSIT = 50
 PRICE_PER_NIGHT = 85
 PHONE_NUMBER = '01747 854 375'
 # Used in emails and templates rather than hardcoding name
-SITE_NAME = 'Tilley\s Hut'
+SITE_NAME = "Tilley's Hut"
 # Used as the from address in emails and on site mailto: links
 SITE_EMAIL = 'info@tilleyshut.com'
 # Set DEFAULT_FROM_EMAIL and SERVER_EMAIL to SITE_EMAIL too
@@ -186,6 +186,7 @@ DEFAULT_FROM_EMAIL = SITE_EMAIL
 SERVER_EMAIL = SITE_EMAIL
 # People who receive emails about bookings
 HOST_BOOKING_RECIPIENTS = [SITE_EMAIL] + [admin[1] for admin in ADMINS]
+SITE_BASE_URL = 'http://floating-river-1678.herokuapp.com/'
 
 # Secret things parsed from the environment settings
 # Parse database configuration from $DATABASE_URL

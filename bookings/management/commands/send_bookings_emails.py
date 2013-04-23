@@ -46,7 +46,7 @@ class Command(NoArgsCommand):
                 transaction.rollback()
 
     def send_email(self, recipients, booking, body_template, subject):
-        context = Context({'booking': booking})
+        context = Context({'booking': booking, 'settings': settings})
         logger.info('Sending email to: {0} for booking: {1}'.format(recipients, booking))
         mail.send_mail(subject=subject,
                        message=body_template.render(context),
