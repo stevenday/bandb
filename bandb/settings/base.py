@@ -186,7 +186,7 @@ DEFAULT_FROM_EMAIL = SITE_EMAIL
 SERVER_EMAIL = SITE_EMAIL
 # People who receive emails about bookings
 HOST_BOOKING_RECIPIENTS = [SITE_EMAIL] + [admin[1] for admin in ADMINS]
-SITE_BASE_URL = 'http://floating-river-1678.herokuapp.com/'
+SITE_BASE_URL = 'http://floating-river-1678.herokuapp.com'
 
 # Secret things parsed from the environment settings
 # Parse database configuration from $DATABASE_URL
