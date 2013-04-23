@@ -98,7 +98,7 @@ class CreateBooking(BookingCalendarMixin, CreateView):
 
         try:
             return datetime.strptime(submitted_date, '%d/%m/%Y').date()
-        except ValueError:
+        except (ValueError, TypeError):
             return None
 
     def get_success_url(self):
