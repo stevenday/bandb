@@ -4,7 +4,7 @@ import os
 from .paths import *
 from django.conf.global_settings import TEMPLATE_CONTEXT_PROCESSORS
 
-DEBUG = True
+DEBUG = os.environ['DEBUG']
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
