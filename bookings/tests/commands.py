@@ -54,6 +54,10 @@ class SendBookingsEmailsCommandTests(TestCase):
         expected_body = template.render(context)
         self.assertEqual(second_mail.body, expected_body)
 
+        booking = Booking.objects.get(pk=booking.id)
+        self.assertTrue(booking.guest_emails_sent)
+        self.assertTrue(booking.host_emails_sent)
+
     def test_ignores_unconfirmed_bookings(self):
         # Create a booking which should not be emailed because it's unconfirmed
         booking = create_test_booking()
@@ -66,7 +70,9 @@ class SendBookingsEmailsCommandTests(TestCase):
     def test_ignores_bookings_already_sent(self):
         # Create a booking which should not be emailed because its'
         # already been sent
-        booking = create_test_booking({'paid': True, 'emails_sent': True})
+        booking = create_test_booking({'paid': True,
+                                       'guest_emails_sent': True,
+                                       'host_emails_sent': True})
 
         # Run the command
         self._call_command()
@@ -87,9 +93,10 @@ class SendBookingsEmailsCommandTests(TestCase):
             mock_send_mail.side_effect = [1, Exception('A fake error in sending mail')]
             self._call_command()
 
-            # Check that the booking is still marked as not mailed
+            # Check that the booking is still marked as not mailed to the guest
             booking = Booking.objects.get(pk=booking.id)
-            self.assertFalse(booking.emails_sent)
+            self.assertTrue(booking.host_emails_sent)
+            self.assertFalse(booking.guest_emails_sent)
 
         # Re-enable logging
         logging.disable(logging.NOTSET)

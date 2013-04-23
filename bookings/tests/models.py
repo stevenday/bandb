@@ -101,11 +101,18 @@ class BookingManagerTests(BookingTestCase):
         name = 'Guest'
         # An unconfirmed booking which should not be emailed
         unconfirmed_booking = Booking.objects.create(name=name, start=start, end=end, email=email, paid=False)
-        # Add a booking which has not been emailed but should be
+        # Add a booking which has not been emailed to anyone but should be
         booking_that_needs_emailing = Booking.objects.create(name=name, start=start, end=end, email=email, paid=True)
-        # And a booking which has
-        booking_thats_been_emailed = Booking.objects.create(name=name, start=start, end=end, email=email, paid=True, emails_sent=True)
-        self.assertEqual(list(Booking.objects.bookings_to_email()), [booking_that_needs_emailing])
+        # And a booking which has been sent to the host but not the guests
+        booking_thats_been_emailed_to_host = Booking.objects.create(name=name, start=start, end=end, email=email, paid=True, host_emails_sent=True)
+        # And vice-versa
+        booking_thats_been_emailed_to_guest = Booking.objects.create(name=name, start=start, end=end, email=email, paid=True, guest_emails_sent=True)
+        # And one that doesn't need emailing at all
+        booking_thats_been_emailed = Booking.objects.create(name=name, start=start, end=end, email=email, paid=True, host_emails_sent=True, guest_emails_sent=True)
+        expected_bookings = [booking_that_needs_emailing,
+                             booking_thats_been_emailed_to_host,
+                             booking_thats_been_emailed_to_guest]
+        self.assertEqual(list(Booking.objects.bookings_to_email()), expected_bookings)
 
 
 class HolidayTests(TestCase):
