@@ -6,6 +6,7 @@ distribute==0.6.24
 dj-database-url==0.2.1
 django-ses==0.4.1
 gunicorn==0.16.1
+mock==1.0.1
 newrelic==1.10.0.28
 psycopg2==2.4.6
 requests==1.2.0

@@ -1,7 +1,9 @@
+{% autoescape off %}
 You have a new booking on {{ settings.SITE_NAME }}
 
 Guest's Name: {{ booking.name }}
-From: {{ booking.start }} To: {{ booking.end }}
+From: {{ booking.start|date:'jS N, Y' }} To: {{ booking.end|date:'jS N, Y' }}
 Notes: {{ booking.notes|default_if_none:'No notes' }}
 
 The total price for the booking was: £{{ booking.price_pounds }}, they've paid a deposit of £{{ settings.DEPOSIT }}, leaving £{{ booking.remaining }} to pay when they arrive.
+{% endautoescape %}

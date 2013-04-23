@@ -2,18 +2,18 @@ import logging
 from datetime import datetime
 
 from django.core import mail
-from django.core.management.base import NoArgCommand
+from django.core.management.base import NoArgsCommand
 from django.db import transaction
 from django.template.loader import get_template
 from django.conf import settings
 from django.template import Context
 
-from ..models import Booking
+from ...models import Booking
 
 logger = logging.getLogger(__name__)
 
 @transaction.commit_manually
-class Command(BaseCommand):
+class Command(NoArgsCommand):
 
     def handle_noargs(self, **options):
         bookings_to_email = Booking.objects.bookings_to_email()
@@ -28,13 +28,13 @@ class Command(BaseCommand):
 
                 # Send an email to the host(s)
                 host_template = get_template('host_booking_email.txt')
-                subject = 'New booking for {0}'.format(settings.SITE_NAME)
-                send_email(settings.HOST_BOOKING_RECIPIENTS, host_template, booking)
+                subject = 'New booking at {0}'.format(settings.SITE_NAME)
+                self.send_email(settings.HOST_BOOKING_RECIPIENTS, booking, host_template, subject)
 
                 # Send an email to the guest
                 guest_template = get_template('guest_booking_email.txt')
                 subject = 'Your booking with {0}'.format(settings.SITE_NAME)
-                send_email([booking.email], guest_template, booking)
+                self.send_email([booking.email], booking, guest_template, subject)
 
                 # Record that we sent it
                 booking.emails_sent = True;
@@ -45,11 +45,11 @@ class Command(BaseCommand):
                 logger.error('Error emailing booking: {0}'.format(booking))
                 transaction.rollback()
 
-    def send_email(recipients, booking, body_template, subject):
+    def send_email(self, recipients, booking, body_template, subject):
         context = Context({'booking': booking})
         logger.info('Sending email to: {0} for booking: {1}'.format(recipients, booking))
         mail.send_mail(subject=subject,
-                       message=template.render(context),
+                       message=body_template.render(context),
                        from_email=settings.SITE_EMAIL,
                        recipient_list=recipients,
                        fail_silently=False)

@@ -1,11 +1,11 @@
-from datetime import timedelta, date
+from datetime import timedelta, date, datetime
 
 from django.test import TransactionTestCase
 
 from ..models import Booking, Holiday
 
 def create_test_booking(attributes={}):
-    tomorrow = date() + timedelta(days=1)
+    tomorrow = datetime.now().date() + timedelta(days=1)
     # Make a Booking with the bare minimum
     default_attributes = {
         'name': 'Test Booking',
