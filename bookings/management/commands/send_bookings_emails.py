@@ -35,9 +35,8 @@ class Command(NoArgsCommand):
                         guest_template = get_template('guest_booking_email.txt')
                         subject = 'Your booking with {0}'.format(settings.SITE_NAME)
                         self.send_email([booking.email], booking, guest_template, subject)
-
-                    booking.guest_emails_sent = True;
-                    booking.save()
+                        booking.guest_emails_sent = True;
+                        booking.save()
 
             except Exception as e:
                 logger.error('{0}'.format(e))
