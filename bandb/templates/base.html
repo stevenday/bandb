@@ -1,5 +1,6 @@
 {% load staticfiles %}
 {% load url from future %}
+{% load compressed %}
 {% spaceless %}
 <!DOCTYPE html>
 <html lang="en">
@@ -7,8 +8,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" type="text/css" href="{% static 'css/style.min.css' %}" />
-        <link rel="stylesheet" type="text/css" href="{% static 'css/photoswipe.css' %}" />
+        {% compressed_css 'main' %}
         {% block extra_css %}{% endblock extra_css %}
         <title>Tilleys Hut - Unusual place to stay - a restored Dorset shepherds hut - Home</title>
     </head>
@@ -57,14 +57,9 @@
             })(window);
         </script>
         <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
-        <script type="text/javascript" src="{% static 'js/lib/klass.min.js' %}"></script>
-        <script type="text/javascript" src="{% static 'js/code.photoswipe.jquery-3.0.5.min.js' %}"></script>
-        <script type="text/javascript" src="{% static 'js/moment.min.js' %}"></script>
-        <script type="text/javascript" src="{% static 'js/gallery.js' %}"></script>
-        <script type="text/javascript" src="{% static 'js/calendar.js' %}"></script>
-
+        {% compressed_js 'main' %}
         <!--[if lte IE 7]>
-            <script type="text/javascript" src="{% static 'js/icons-lte-ie7.js' %}"></script>
+            {% compressed_js 'icons-lte-ie7' %}
         <![endif]-->
         {% block extra_js %}{% endblock extra_js %}
     </body>

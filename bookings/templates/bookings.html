@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% load staticfiles %}
 {% load url from future %}
+{% load compressed %}
 
 {% block content %}
 {% spaceless %}
@@ -40,5 +41,5 @@
 {% endblock %}
 
 {% block extra_js %}
-    <script type="text/javascript" src="{% static 'js/availability.js' %}"></script>
+    {% compressed_js 'availability' %}
 {% endblock extra_js %}

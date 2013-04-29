@@ -56,40 +56,13 @@ MEDIA_ROOT = ''
 # Examples: "http://media.lawrence.com/media/", "http://example.com/media/"
 MEDIA_URL = ''
 
-# Absolute path to the directory static files should be collected to.
-# Don't put anything in this directory yourself; store your static files
-# in apps' "static/" subdirectories and in STATICFILES_DIRS.
-# Example: "/home/media/media.lawrence.com/static/"
-STATIC_ROOT = os.path.join(PROJECT_ROOT, 'static')
-
-# URL prefix for static files.
-# Example: "http://media.lawrence.com/static/"
-STATIC_URL = '/static/'
-
-# Additional locations of static files
-STATICFILES_DIRS = (
-    # Put strings here, like "/home/html/static" or "C:/www/django/static".
-    # Always use forward slashes, even on Windows.
-    # Don't forget to use absolute paths, not relative paths.
-    os.path.join(PROJECT_ROOT, 'web'),
-)
-
-# List of finder classes that know how to find static files in
-# various locations.
-STATICFILES_FINDERS = (
-    'django.contrib.staticfiles.finders.FileSystemFinder',
-    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-#    'django.contrib.staticfiles.finders.DefaultStorageFinder',
-)
-
 # Make this unique, and don't share it with anybody.
 SECRET_KEY = os.environ['DJANGO_SECRET_KEY']
 
 # List of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = (
     'django.template.loaders.filesystem.Loader',
-    'django.template.loaders.app_directories.Loader',
-#     'django.template.loaders.eggs.Loader',
+    'django.template.loaders.app_directories.Loader'
 )
 
 MIDDLEWARE_CLASSES = (
@@ -127,6 +100,8 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'django.contrib.admin',
     'south',
+    'pipeline',
+    'storages',
     'bandb',
     'bookings'
 )
@@ -157,7 +132,7 @@ LOGGING = {
     },
     'loggers': {
         '': {
-            'handlers': [ 'mail_admins', 'console' ],
+            'handlers': ['mail_admins', 'console'],
             'level': 'ERROR',
             'propagate': True,
         },
@@ -171,6 +146,22 @@ LOGGING = {
 
 # Email Settings
 EMAIL_BACKEND = 'django_ses.SESBackend'
+
+# Caching
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+    },
+    # A file-based cache for the hash -> static file mapping
+    'staticfiles': {
+        'BACKEND': 'django.core.cache.backends.filebased.FileBasedCache',
+        'LOCATION': os.path.join(PROJECT_ROOT, 'static_cache'),
+        'TIMEOUT': 100 * 365 * 24 * 60 * 60,  # A hundred years!
+        'OPTIONS': {
+            'MAX_ENTRIES': 100 * 1000
+        }
+    },
+}
 
 # Site specific settings
 # Prices and deposits used in booking process
@@ -191,7 +182,7 @@ SITE_BASE_URL = 'http://floating-river-1678.herokuapp.com'
 # Secret things parsed from the environment settings
 # Parse database configuration from $DATABASE_URL
 import dj_database_url
-DATABASES['default'] =  dj_database_url.config(default='postgres://bandb:bandb@localhost:5432/bandb')
+DATABASES['default'] = dj_database_url.config(default='postgres://bandb:bandb@localhost:5432/bandb')
 
 # Parse cloudmade api key from local settings
 CLOUDMADE_API_KEY = os.environ['CLOUDMADE_API_KEY']
@@ -205,3 +196,91 @@ AWS_ACCESS_KEY_ID = os.environ['AWS_ACCESS_KEY_ID']
 AWS_SECRET_ACCESS_KEY = os.environ['AWS_SECRET_ACCESS_KEY']
 # FIXME - make keys specifically for SES, not all of AWS
 # FIXME - DKIM keys and settings for that
+AWS_STORAGE_BUCKET_NAME = os.environ['AWS_STORAGE_BUCKET_NAME']
+
+AWS_QUERYSTRING_AUTH = False
+
+# Static File things
+
+# Absolute path to the directory static files should be collected to.
+# Don't put anything in this directory yourself; store your static files
+# in apps' "static/" subdirectories and in STATICFILES_DIRS.
+# Example: "/home/media/media.lawrence.com/static/"
+STATIC_ROOT = os.path.join(PROJECT_ROOT, 'static')
+
+# URL prefix for static files.
+# Example: "http://media.lawrence.com/static/"
+STATIC_URL = '/static/' if DEBUG else '//s3.amazonaws.com/%s/' % AWS_STORAGE_BUCKET_NAME
+
+# Additional locations of static files
+STATICFILES_DIRS = (
+    os.path.join(PROJECT_ROOT, 'web'),
+)
+
+# List of finder classes that know how to find static files in
+# various locations.
+STATICFILES_FINDERS = (
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+)
+
+STATICFILES_STORAGE = 'pipeline.storage.PipelineStorage' if DEBUG else 'bandb.lib.S3PipelineStorage'
+
+# Pipeline settings, for compressed/compiled/cached static
+# files
+
+PIPELINE_YUGLIFY_BINARY = '/usr/local/bin/yuglify'
+
+PIPELINE_COMPILERS = (
+    'pipeline.compilers.sass.SASSCompiler',
+)
+
+PIPELINE_SASS_BINARY = '/usr/local/bin/sass'
+
+PIPELINE_CSS = {
+    'main': {
+        'source_filenames': (
+            'css/style.scss',
+            'css/photoswipe.css'
+        ),
+        'output_filename': 'css/main.min.css',
+        'variant': None,
+    }
+}
+
+PIPELINE_JS = {
+    'main': {
+        'source_filenames': (
+            'js/lib/klass.min.js',
+            'js/lib/code.photoswipe.jquery-3.0.5.min.js',
+            'js/lib/moment.min.js',
+            'js/gallery.js',
+            'js/map.js',
+            'js/calendar.js',
+        ),
+        'output_filename': 'js/main.min.js'
+    },
+    'icons-lte-ie7': {
+        'source_filenames': (
+            'js/lib/icons-lte-ie7.js',
+        ),
+        'output_filename': 'js/lib/icons-lte-ie7.min.js'
+    },
+    'availability': {
+        'source_filenames': (
+            'js/availability.js',
+        ),
+        'output_filename': 'js/availability.min.js'
+    },
+    'booking': {
+        'source_filenames': (
+            'js/booking.js',
+        ),
+        'output_filename': 'js/booking.min.js'
+    },
+    'payment': {
+        'source_filenames': (
+            'js/payment.js',
+        ),
+        'output_filename': 'js/payment.min.js'
+    },
+}

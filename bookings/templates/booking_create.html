@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load staticfiles %}
+{% load compressed %}
 
 {% block content %}
 {% spaceless %}
@@ -117,6 +118,4 @@
 {% endspaceless %}
 {% endblock content %}
 
-{% block extra_js %}
-    <script src="{% static 'js/booking.js' %}"></script>
-{% endblock extra_js %}
+{% block extra_js %}{% compressed_js 'booking' %}{% endblock extra_js %}
