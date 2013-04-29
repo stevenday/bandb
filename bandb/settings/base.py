@@ -244,7 +244,7 @@ PIPELINE_CSS = {
             'css/photoswipe.css'
         ),
         'output_filename': 'css/main.min.css',
-        'variant': None,
+        'variant': 'datauri',
     }
 }
 
@@ -255,7 +255,6 @@ PIPELINE_JS = {
             'js/lib/code.photoswipe.jquery-3.0.5.min.js',
             'js/lib/moment.min.js',
             'js/gallery.js',
-            'js/map.js',
             'js/calendar.js',
         ),
         'output_filename': 'js/main.min.js'
@@ -283,5 +282,11 @@ PIPELINE_JS = {
             'js/payment.js',
         ),
         'output_filename': 'js/payment.min.js'
+    },
+    'map': {
+        'source_filenames': (
+            'js/map.js',
+        ),
+        'output_filename': 'js/map.min.js'
     },
 }

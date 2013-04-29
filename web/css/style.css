@@ -16,7 +16,7 @@
     VARS.SCSS
 \*------------------------------------*/
 /**
- * Any variables you find set in inuit.css’ `_vars.scss` that you do not wish to
+ * Any variables you find set in inuit.cssâ `_vars.scss` that you do not wish to
  * keep, simply redefine here. This means that if inuit.css, for example, sets
  * your `$base-font-size` at 16px and you wish it to be 14px, simply redeclare
  * that variable in this file. inuit.css ignores its own variables in favour of
@@ -27,7 +27,7 @@
     $OBJECTS-AND-ABSTRACTIONS
 \*------------------------------------*/
 /**
- * All of inuit.css’ objects and abstractions are initially turned off by
+ * All of inuit.cssâ objects and abstractions are initially turned off by
  * default. This means that you start any project with as little as possible,
  * and introducing objects and abstractions is as simple as switching the
  * following variables to `true`.
@@ -36,7 +36,7 @@
     $OVERRIDES
 \*------------------------------------*/
 /**
- * Place any variables that should override inuit.css’ defaults here.
+ * Place any variables that should override inuit.cssâ defaults here.
  */
 /*------------------------------------*\
     $CUSTOM
@@ -176,7 +176,7 @@
     $DEFAULTS
 \*------------------------------------*/
 /**
- * inuit.css’ default variables. Redefine these in your `_vars.scss` file (found
+ * inuit.cssâ default variables. Redefine these in your `_vars.scss` file (found
  * in the inuit.css-web-template) to override them.
  */
 /*------------------------------------*\
@@ -203,7 +203,7 @@
  * Base font-family.
  */
 /**
- * Default colour for objects’ borders etc.
+ * Default colour for objectsâ borders etc.
  */
 /*------------------------------------*\
     $RESPONSIVE
@@ -241,7 +241,7 @@
  * English quote marks?
  */
 /**
- * If you want English quotes then please do not edit these; they’re only here
+ * If you want English quotes then please do not edit these; theyâre only here
  * because Sass needs them.
  */
 /**
@@ -3033,7 +3033,7 @@ label,
 /* Icons from icomoon.io */
 @font-face {
   font-family: 'icons';
-  src: url("../fonts/icons.eot"); }
+  src: url("../fonts/icons/icons.eot"); }
 
 @font-face {
   font-family: 'icons';
