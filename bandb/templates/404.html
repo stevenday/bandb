@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% load url from future %}
+
+{% block content %}
+{% spaceless %}
+<div class="content grid">
+
+    <div class='grid__item two-thirds lap-one-half palm-one-whole left-column'>
+
+        <h1>Are you lost?</h1>
+
+        <p class="lead">Sorry, we couldn't find that page.</p>
+
+        <p>Perhaps try going back to <a href="{% url 'home' %}">the homepage</a> and looking for what you want from there.</p>
+
+        <p>If something's gone wrong that you need to tell us about, call us on: <a href="tel:{{ settings.PHONE_NUMBER }}">{{ settings.PHONE_NUMBER }}</a> or drop us an email at: <a href="mailto:{{ settings.SITE_EMAIL }}">{{ settings.SITE_EMAIL }}</a> and we'll try to help.</p>
+
+    </div>
+    <div class='grid__item one-third lap-one-half palm-one-whole right-column'>
+        <a href="#" class="gallery"><img src='{% static 'img/frontpage.jpg' %}' alt='View from the bed in Tilleys Hut of the table where you will eat a delcicious organic breakfast'/></a>
+    </div>
+</div>
