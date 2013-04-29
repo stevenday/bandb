@@ -290,3 +290,5 @@ PIPELINE_JS = {
         'output_filename': 'js/map.min.js'
     },
 }
+
+PIPELINE_DISABLE_WRAPPER = True

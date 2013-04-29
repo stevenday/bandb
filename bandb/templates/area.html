@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load staticfiles %}
+{% load compressed %}
 {% load url from future %}
 
 {% block extra_css %}
@@ -10,7 +11,6 @@
 {% endblock extra_css %}
 
 {% block content %}
-{% spaceless %}
 <div class="content grid">
 
     <div class='grid__item one-whole'>
@@ -67,7 +67,6 @@
 
     </div>
 </div>
-{% endspaceless %}
 {% endblock %}
 
 {% block extra_js %}

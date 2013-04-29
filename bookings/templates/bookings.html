@@ -4,7 +4,6 @@
 {% load compressed %}
 
 {% block content %}
-{% spaceless %}
 <div class="content grid">
     <div class="grid__item seven-tenths lap-two-thirds palm-one-whole left-column">
         <h1>When do you want to stay?</h1>
@@ -37,9 +36,6 @@
 
     </div>
 </div>
-{% endspaceless %}
 {% endblock %}
 
-{% block extra_js %}
-    {% compressed_js 'availability' %}
-{% endblock extra_js %}
+{% block extra_js %}{% compressed_js 'availability' %}{% endblock extra_js %}

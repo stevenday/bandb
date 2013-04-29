@@ -3,7 +3,6 @@
 {% load compressed %}
 
 {% block content %}
-{% spaceless %}
 <div class="content grid">
 
     <div class="grid__item four-fifths">
@@ -115,7 +114,6 @@
     </div>
 
 </div>
-{% endspaceless %}
 {% endblock content %}
 
 {% block extra_js %}{% compressed_js 'booking' %}{% endblock extra_js %}
