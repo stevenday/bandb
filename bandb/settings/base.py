@@ -156,14 +156,11 @@ CACHES = {
     'default': {
         'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
     },
-    # A file-based cache for the hash -> static file mapping
-    'staticfiles': {
-        'BACKEND': 'django.core.cache.backends.filebased.FileBasedCache',
-        'LOCATION': os.path.join(PROJECT_ROOT, 'static_cache'),
-        'TIMEOUT': 100 * 365 * 24 * 60 * 60,  # A hundred years!
-        'OPTIONS': {
-            'MAX_ENTRIES': 100 * 1000
-        }
+    # Long cache timeout for staticfiles, since this is used heavily by the optimizing storage.
+    "staticfiles": {
+        "BACKEND": "django.core.cache.backends.locmem.LocMemCache",
+        "TIMEOUT": 60 * 60 * 24 * 365,
+        "LOCATION": "staticfiles",
     },
 }
 
