@@ -1,9 +1,12 @@
 {% load staticfiles %}
 {% load url from future %}
 
-
-<a href="{% static 'img/gallery' %}/{{ filename }}" data-caption="{{ caption }}">
+{% with "img/gallery/"|add:filename as big_image_url %}
+<a href="{% static big_image_url %}" data-caption="{{ caption }}">
+{% endwith %}
     {% if with_image %}
-        <img src="{% static 'img/gallery/small' %}/{{ filename }}" />
+        {% with "img/gallery/small/"|add:filename as small_image_url %}
+        <img src="{% static small_image_url %}" />
+        {% endwith %}
     {% endif %}
 </a>
