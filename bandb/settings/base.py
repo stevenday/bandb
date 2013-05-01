@@ -1,8 +1,11 @@
 # Django settings for bandb project.
 import os
 
-from .paths import *
 from django.conf.global_settings import TEMPLATE_CONTEXT_PROCESSORS
+
+from boto.s3.connection import ProtocolIndependentOrdinaryCallingFormat
+
+from .paths import *
 
 DEBUG = bool(os.environ.get('DEBUG', ''))
 TEMPLATE_DEBUG = DEBUG
@@ -211,7 +214,7 @@ STATIC_ROOT = os.path.join(PROJECT_ROOT, 'static')
 
 # URL prefix for static files.
 # Example: "http://media.lawrence.com/static/"
-STATIC_URL = '/static/' if DEBUG else '//s3.amazonaws.com/%s/' % AWS_STORAGE_BUCKET_NAME
+STATIC_URL = '/static/' if DEBUG else '//%s.s3.amazonaws.com/' % AWS_STORAGE_BUCKET_NAME
 
 # Additional locations of static files
 STATICFILES_DIRS = (
