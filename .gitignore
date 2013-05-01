@@ -9,3 +9,4 @@ local_settings.py
 /static/*
 /web/css/.sass-cache
 .env
+static_cache
