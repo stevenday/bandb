@@ -3,8 +3,6 @@ import os
 
 from django.conf.global_settings import TEMPLATE_CONTEXT_PROCESSORS
 
-from boto.s3.connection import ProtocolIndependentOrdinaryCallingFormat
-
 from .paths import *
 
 DEBUG = bool(os.environ.get('DEBUG', ''))
@@ -18,12 +16,12 @@ MANAGERS = ADMINS
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': '',                      # Or path to database file if using sqlite3.
-        'USER': '',                      # Not used with sqlite3.
-        'PASSWORD': '',                  # Not used with sqlite3.
-        'HOST': '',                      # Set to empty string for localhost. Not used with sqlite3.
-        'PORT': '',                      # Set to empty string for default. Not used with sqlite3.
+        'ENGINE': 'django.db.backends.',  # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
+        'NAME': '',                       # Or path to database file if using sqlite3.
+        'USER': '',                       # Not used with sqlite3.
+        'PASSWORD': '',                   # Not used with sqlite3.
+        'HOST': '',                       # Set to empty string for localhost. Not used with sqlite3.
+        'PORT': '',                       # Set to empty string for default. Not used with sqlite3.
     }
 }
 
@@ -231,6 +229,9 @@ STATICFILES_STORAGE = 'pipeline.storage.PipelineStorage' if DEBUG else 'bandb.li
 
 PIPELINE_YUGLIFY_BINARY = '/usr/local/bin/yuglify'
 
+PIPELINE_CSS_COMPRESSOR = 'pipeline.compressors.yuglify.YuglifyCompressor'
+PIPELINE_JS_COMPRESSOR = 'pipeline.compressors.yuglify.YuglifyCompressor'
+
 PIPELINE_COMPILERS = (
     'pipeline.compilers.sass.SASSCompiler',
 )
@@ -241,7 +242,7 @@ PIPELINE_CSS = {
     'main': {
         'source_filenames': (
             'css/style.scss',
-            'css/photoswipe.css'
+            'css/photoswipe.css',
         ),
         'output_filename': 'css/main.min.css',
         'variant': 'datauri',
@@ -251,9 +252,6 @@ PIPELINE_CSS = {
 PIPELINE_JS = {
     'main': {
         'source_filenames': (
-            'js/lib/klass.min.js',
-            'js/lib/code.photoswipe.jquery-3.0.5.min.js',
-            'js/lib/moment.min.js',
             'js/gallery.js',
             'js/calendar.js',
         ),
