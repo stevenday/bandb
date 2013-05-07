@@ -3026,14 +3026,15 @@ label,
 @font-face {
   font-family: 'JennaSueRegular';
   src: url("../fonts/jenna-sue/JennaSue-webfont.eot");
-  src: url("../fonts/jenna-sue/JennaSue-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/jenna-sue/JennaSue-webfont.svg#JennaSueRegular") format("svg");
+  src: url("../fonts/jenna-sue/JennaSue-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/jenna-sue/JennaSue-webfont.ttf") format("truetype"), url("../fonts/jenna-sue/JennaSue-webfont.svg#JennaSueRegular") format("svg");
   font-weight: normal;
   font-style: normal; }
 
 /* Icons from icomoon.io */
 @font-face {
   font-family: 'icons';
-  src: url("../fonts/icons/icons.eot"); }
+  src: url("../fonts/icons/icons.eot");
+  src: url("../fonts/icons/icons.eot?#iefix") format("embedded-opentype"), url("../fonts/icons/icons.ttf") format("truetype"), url("../fonts/icons/icons.svg#icomoon") format("svg"); }
 
 @font-face {
   font-family: 'icons';

@@ -200,12 +200,15 @@ AWS_STORAGE_BUCKET_NAME = os.environ['AWS_STORAGE_BUCKET_NAME']
 AWS_QUERYSTRING_AUTH = False
 
 from datetime import date, timedelta
-ten_years_delta = timedelta(days=365*10)
-ten_years = date.today() + ten_years_delta
+# Expires set to one year from now, it could be more, ideally ten,
+# but max-age fails when you go to ten, with no helpful error, so
+# I've stuck to one year for both
+one_year = date.today() + timedelta(days=365)
 AWS_HEADERS = {
-    'Expires': ten_years.strftime('%a, %d %b %Y 20:00:00 GMT'),
-    'Cache-Control': 'public, max-age=%d' % ten_years_delta.days * 86400,
+    'Expires': one_year.strftime('%a, %d %b %Y 20:00:00 GMT'),
+    'Cache-Control': 'public, max-age=31536000',
 }
+AWS_PRELOAD_METADATA = True
 
 # Static File things
 
@@ -230,15 +233,15 @@ STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
 )
 
-STATICFILES_STORAGE = 'pipeline.storage.PipelineStorage' if DEBUG else 'bandb.lib.S3PipelineStorage'
+STATICFILES_STORAGE = 'pipeline.storage.PipelineCachedStorage' if DEBUG else 'bandb.lib.S3PipelineStorage'
 
 # Pipeline settings, for compressed/compiled/cached static
 # files
 
-PIPELINE_YUGLIFY_BINARY = '/usr/local/bin/yuglify'
-
 PIPELINE_CSS_COMPRESSOR = 'pipeline.compressors.yuglify.YuglifyCompressor'
 PIPELINE_JS_COMPRESSOR = 'pipeline.compressors.yuglify.YuglifyCompressor'
+
+PIPELINE_YUGLIFY_BINARY = '/usr/local/bin/yuglify'
 
 PIPELINE_COMPILERS = (
     'pipeline.compilers.sass.SASSCompiler',
@@ -249,11 +252,10 @@ PIPELINE_SASS_BINARY = '/usr/local/bin/sass'
 PIPELINE_CSS = {
     'main': {
         'source_filenames': (
-            'css/style.scss',
             'css/photoswipe.css',
+            'css/style.scss',
         ),
         'output_filename': 'css/main.min.css',
-        'variant': 'datauri'
     }
 }
 
