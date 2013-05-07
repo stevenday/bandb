@@ -72,8 +72,8 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
-    # Uncomment the next line for simple clickjacking protection:
-    # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.middleware.gzip.GZipMiddleware',
+    'pipeline.middleware.MinifyHTMLMiddleware'
 )
 
 TEMPLATE_CONTEXT_PROCESSORS += (
@@ -227,10 +227,10 @@ STATICFILES_STORAGE = 'pipeline.storage.PipelineStorage' if DEBUG else 'bandb.li
 # Pipeline settings, for compressed/compiled/cached static
 # files
 
-PIPELINE_YUGLIFY_BINARY = '/usr/local/bin/yuglify'
+PIPELINE_YUI_BINARY = '/usr/bin/yui-compressor'
 
-PIPELINE_CSS_COMPRESSOR = 'pipeline.compressors.yuglify.YuglifyCompressor'
-PIPELINE_JS_COMPRESSOR = 'pipeline.compressors.yuglify.YuglifyCompressor'
+PIPELINE_CSS_COMPRESSOR = 'pipeline.compressors.yui.YUICompressor'
+PIPELINE_JS_COMPRESSOR = 'pipeline.compressors.yui.YUICompressor'
 
 PIPELINE_COMPILERS = (
     'pipeline.compilers.sass.SASSCompiler',
@@ -245,7 +245,7 @@ PIPELINE_CSS = {
             'css/photoswipe.css',
         ),
         'output_filename': 'css/main.min.css',
-        'variant': 'datauri',
+        'variant': 'datauri'
     }
 }
 
