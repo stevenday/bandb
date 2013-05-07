@@ -262,8 +262,7 @@ PIPELINE_CSS = {
 PIPELINE_JS = {
     'main': {
         'source_filenames': (
-            'js/lib/klass.min.js',
-            'js/lib/code.photoswipe.jquery-3.0.5.min.js',
+            'js/lib/code.photoswipe.noutil.jquery-3.0.5.js',
             'js/lib/moment.min.js',
             'js/gallery.js',
             'js/calendar.js',
