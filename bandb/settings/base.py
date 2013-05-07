@@ -199,6 +199,14 @@ AWS_STORAGE_BUCKET_NAME = os.environ['AWS_STORAGE_BUCKET_NAME']
 
 AWS_QUERYSTRING_AUTH = False
 
+from datetime import date, timedelta
+ten_years_delta = timedelta(days=365*10)
+ten_years = date.today() + ten_years_delta
+AWS_HEADERS = {
+    'Expires': ten_years.strftime('%a, %d %b %Y 20:00:00 GMT'),
+    'Cache-Control': 'public, max-age=%d' % ten_years_delta.days * 86400,
+}
+
 # Static File things
 
 # Absolute path to the directory static files should be collected to.
@@ -227,10 +235,10 @@ STATICFILES_STORAGE = 'pipeline.storage.PipelineStorage' if DEBUG else 'bandb.li
 # Pipeline settings, for compressed/compiled/cached static
 # files
 
-PIPELINE_YUI_BINARY = '/usr/bin/yui-compressor'
+PIPELINE_YUGLIFY_BINARY = '/usr/local/bin/yuglify'
 
-PIPELINE_CSS_COMPRESSOR = 'pipeline.compressors.yui.YUICompressor'
-PIPELINE_JS_COMPRESSOR = 'pipeline.compressors.yui.YUICompressor'
+PIPELINE_CSS_COMPRESSOR = 'pipeline.compressors.yuglify.YuglifyCompressor'
+PIPELINE_JS_COMPRESSOR = 'pipeline.compressors.yuglify.YuglifyCompressor'
 
 PIPELINE_COMPILERS = (
     'pipeline.compilers.sass.SASSCompiler',
