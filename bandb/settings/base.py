@@ -73,7 +73,8 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.gzip.GZipMiddleware',
-    'pipeline.middleware.MinifyHTMLMiddleware'
+    'pipeline.middleware.MinifyHTMLMiddleware',
+    'bookings.middleware.SSLifyMiddleware',
 )
 
 TEMPLATE_CONTEXT_PROCESSORS += (
@@ -308,3 +309,7 @@ PIPELINE_JS = {
 }
 
 PIPELINE_DISABLE_WRAPPER = True
+
+URLS_TO_SSLIFY = (
+    'payment',
+)

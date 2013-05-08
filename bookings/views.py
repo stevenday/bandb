@@ -8,7 +8,6 @@ from django.shortcuts import get_object_or_404, render
 from django.template import RequestContext
 from django.utils.safestring import mark_safe
 from django.http import Http404, HttpResponse
-from django.conf import settings
 
 from .models import Booking
 from .forms import BookingCreateForm, PaymentForm
@@ -101,7 +100,7 @@ class CreateBooking(BookingCalendarMixin, CreateView):
             return None
 
     def get_success_url(self):
-        return settings.HTTPS_URL + reverse('payment', kwargs={'pk': self.object.id})
+        return reverse('payment', kwargs={'pk': self.object.id})
 
     def get_initial(self):
         initial = super(CreateBooking, self).get_initial()
