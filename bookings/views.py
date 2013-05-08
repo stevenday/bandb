@@ -1,4 +1,4 @@
-from datetime import datetime, date
+from datetime import datetime
 
 from django.views.generic import TemplateView
 from django.views.generic.edit import CreateView, FormView
@@ -6,7 +6,6 @@ from django.views.generic.dates import YearMixin, MonthMixin
 from django.core.urlresolvers import reverse
 from django.shortcuts import get_object_or_404, render
 from django.template import RequestContext
-from django.utils.timezone import utc
 from django.utils.safestring import mark_safe
 from django.http import Http404, HttpResponse
 from django.conf import settings
@@ -14,6 +13,7 @@ from django.conf import settings
 from .models import Booking
 from .forms import BookingCreateForm, PaymentForm
 from .lib import BookingCalendar, next_year_month, previous_year_month
+
 
 class BookingCalendarMixin(YearMixin, MonthMixin):
     """
@@ -44,7 +44,6 @@ class BookingCalendarMixin(YearMixin, MonthMixin):
         except (ValueError, TypeError):
             return None
 
-
     def get_context_data(self, **kwargs):
         context = super(BookingCalendarMixin, self).get_context_data(**kwargs)
         year = self.get_year()
@@ -53,8 +52,8 @@ class BookingCalendarMixin(YearMixin, MonthMixin):
         prev_year, prev_month = previous_year_month(year, month)
         next_year, next_month = next_year_month(year, month)
 
-        prev_link = reverse(self.url_name, kwargs={'year':prev_year, 'month':"%02d" % prev_month})
-        next_link = reverse(self.url_name, kwargs={'year':next_year, 'month':"%02d" % next_month})
+        prev_link = reverse(self.url_name, kwargs={'year': prev_year, 'month': "%02d" % prev_month})
+        next_link = reverse(self.url_name, kwargs={'year': next_year, 'month': "%02d" % next_month})
 
         calendar = BookingCalendar(year, month, prev_link=prev_link, next_link=next_link, selected_date=selected_date)
 
@@ -102,7 +101,7 @@ class CreateBooking(BookingCalendarMixin, CreateView):
             return None
 
     def get_success_url(self):
-        return reverse('payment', kwargs={'pk':self.object.id})
+        return settings.HTTPS_URL + reverse('payment', kwargs={'pk': self.object.id})
 
     def get_initial(self):
         initial = super(CreateBooking, self).get_initial()
