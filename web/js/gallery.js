@@ -16,7 +16,7 @@
         var gallery = $(".gallery a").photoSwipe(options);
 
         $("a.gallery").click(function(e) {
-            e.preventDefault()
+            e.preventDefault();
             gallery.show(0);
         });
 

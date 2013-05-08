@@ -23,7 +23,7 @@
             else {
                 alert("Sorry, that day's already booked.");
             }
-        }
+        };
 
         var bindCalendarLinks = function() {
             $(".calendar td").click(function(e) {

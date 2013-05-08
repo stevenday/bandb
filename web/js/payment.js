@@ -26,7 +26,7 @@
             var month = $('input[data-stripe="exp-month"]').val();
             var year = $('input[data-stripe="exp-year"]').val();
 
-            if (month != '' && year != '') {
+            if (month !== '' && year !== '') {
                 if (!Stripe.validateExpiry(month, year)) {
                     // If it's not, show a validation message
                     displayError("Sorry, that doesn't look like a valid expiry date", $('.expiry-errors'));
@@ -35,7 +35,7 @@
                     $('.expiry-errors').html('');
                 }
             }
-        }
+        };
 
         $('#payment-form').submit(function(event) {
             // Disable the submit button to prevent repeated clicks
@@ -50,7 +50,7 @@
         $('input[data-stripe="number"]').blur(function(e) {
             var cardNumber = $(this).val();
             // Check the card looks valid with Stripe's js validation
-            if (cardNumber != '') {
+            if (cardNumber !== '') {
                 if (Stripe.validateCardNumber(cardNumber)) {
                     // If it is valid, add a class to show the card type
                     $('.card-type').addClass(Stripe.cardType(cardNumber));
@@ -65,7 +65,7 @@
         $('input[data-stripe="cvc"]').blur(function(e) {
             var cvc = $(this).val();
             // Check the cvc looks valid with Stripe's js validation
-            if (cvc != '') {
+            if (cvc !== '') {
                 if (!Stripe.validateCVC(cvc)) {
                     displayError("Sorry, that doesn't look like a valid security code", $('.cvc-errors'));
                 }

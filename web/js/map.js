@@ -1,6 +1,6 @@
 (function(window, L){
-    var centerLatLon = [50.994, -2.1746]
-    var locationLatLon = [50.985397, -2.174799]
+    var centerLatLon = [50.994, -2.1746];
+    var locationLatLon = [50.985397, -2.174799];
 
     var map = L.map('map').setView(centerLatLon, 13);
 
