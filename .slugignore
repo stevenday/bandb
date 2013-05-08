@@ -2,3 +2,4 @@ tests
 tests.py
 /static/*
 /web/*
+.sass-cache
