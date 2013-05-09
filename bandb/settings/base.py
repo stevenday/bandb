@@ -237,6 +237,7 @@ STATICFILES_DIRS = (
 # various locations.
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder'
 )
 
 STATICFILES_STORAGE = 'pipeline.storage.PipelineCachedStorage' if DEBUG else 'bandb.lib.S3PipelineStorage'
