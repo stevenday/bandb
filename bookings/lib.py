@@ -3,11 +3,12 @@ from datetime import datetime, timedelta, date
 
 from .models import Booking, Holiday
 
-"""
-Helper function to return the days in a particular month
-occupied by a queryset of models with start and end date fields
-"""
+
 def occupied_days(queryset, year, month):
+    """
+    Helper function to return the days in a particular month
+    occupied by a queryset of models with start and end date fields
+    """
     days = []
     for model in queryset:
         for day in daterange(model.start, model.end):
@@ -16,24 +17,28 @@ def occupied_days(queryset, year, month):
                 days.append(day.day)
     return days
 
-"""
-Helper function to return the dates represented by a date range
-"""
+
 def daterange(start_date, end_date):
+    """
+    Helper function to return the dates represented by a date range
+    """
     dates = []
-    for n in range(int ((end_date - start_date).days)):
+    for n in range(int((end_date - start_date).days)):
         dates.append(start_date + timedelta(n))
     return dates
+
 
 def previous_year_month(year, month):
     prev_month = (month - 1) if month > 1 else 12
     prev_year = year if month > 1 else (year - 1)
     return (prev_year, prev_month)
 
+
 def next_year_month(year, month):
     next_month = (month + 1) if month < 12 else 1
     next_year = year if month < 12 else (year + 1)
     return (next_year, next_month)
+
 
 class BookingCalendar(HTMLCalendar):
     """
@@ -78,7 +83,6 @@ class BookingCalendar(HTMLCalendar):
             next = '<a href="{0}" class="calendar-link">{1} &gt;&gt;</a>'.format(self.next_link, month_name[self.next_month])
 
         return '<tr><th colspan="7" class="heading text--center"><span class="prev float--left">{0}</span><span class="month">{1}</span><span class="next float--right">{2}</span></th></tr>'.format(prev, s, next)
-
 
     def formatday(self, day, weekday):
         """

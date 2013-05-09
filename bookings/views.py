@@ -24,7 +24,7 @@ class BookingCalendarMixin(YearMixin, MonthMixin):
         if not year:
             year = current_year
         year = int(year)
-        if year <= 0 or year < current_year:
+        if year < current_year:
             raise Http404
         return year
 
@@ -48,10 +48,23 @@ class BookingCalendarMixin(YearMixin, MonthMixin):
         year = self.get_year()
         month = self.get_month()
         selected_date = self.get_selected()
-        prev_year, prev_month = previous_year_month(year, month)
-        next_year, next_month = next_year_month(year, month)
 
-        prev_link = reverse(self.url_name, kwargs={'year': prev_year, 'month': "%02d" % prev_month})
+        # 404 on months in the past.
+        # get_year will already 404 on past years, but just to be sure.
+        now = datetime.now()
+        current_year = now.year
+        current_month = now.month
+        if year < current_year or (year == current_year and month < current_month):
+            raise Http404
+
+        # Only show a prev_link if we're not on the current month
+        # because we don't want to show
+        prev_link = None
+        if not (year == current_year and month == current_month):
+            prev_year, prev_month = previous_year_month(year, month)
+            prev_link = reverse(self.url_name, kwargs={'year': prev_year, 'month': "%02d" % prev_month})
+
+        next_year, next_month = next_year_month(year, month)
         next_link = reverse(self.url_name, kwargs={'year': next_year, 'month': "%02d" % next_month})
 
         calendar = BookingCalendar(year, month, prev_link=prev_link, next_link=next_link, selected_date=selected_date)
