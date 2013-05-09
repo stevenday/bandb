@@ -7,7 +7,8 @@ admin.autodiscover()
 
 from .views import *
 
-urlpatterns = patterns('',
+urlpatterns = patterns(
+    '',
     url(r'^$', HomeView.as_view(), name='home'),
     url(r'^the-hut$', HutView.as_view(), name='hut'),
     url(r'^find-us$', AreaView.as_view(), name='area'),
