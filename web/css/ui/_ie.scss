@@ -26,16 +26,16 @@
         margin-left: 115px;
     }
 
-    // Things which are hidden on smaller screens but we want to show
+    // Things which are hidden on big screens
     .visuallyhidden--desk {
-        display: inherit;
+        @include accessibility;
     }
 
-    // Things shown on smaller screens that we want to hide
+    // Things hidden on smaller screens that we want to show
     .visuallyhidden--portable,
     .visuallyhidden--palm,
     .visuallyhidden--lap {
-        @include accessibility;
+        display: inherit;
     }
 
     // IE seems keen on outlining radios in particular with a dotted border
