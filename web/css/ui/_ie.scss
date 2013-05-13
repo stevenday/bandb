@@ -26,16 +26,16 @@
         margin-left: 115px;
     }
 
-    // Things which are hidden on smaller screens
-    .visuallyhidden--portable,
-    .visuallyhidden--palm,
-    .visuallyhidden--lap {
-        // This is what inuit.css does
-        @include accessibility;
+    // Things which are hidden on smaller screens but we want to show
+    .visuallyhidden--desk {
+        display: inherit;
     }
 
     // IE seems keen on outlining radios in particular with a dotted border
     input {
-        outline:none;
+        outline: none;
+        border: 0;
+        padding: 0;
+        margin: 0;
     }
 }

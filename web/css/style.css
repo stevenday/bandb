@@ -3316,3 +3316,29 @@ h1 {
     color: maroon; }
   .message-list li.message-list__success {
     color: #5d752b; }
+
+/**
+ * IE8 and below fixes
+ * Basically tries to ignore the responsive features as best we can.
+ */
+.lt-ie9 .wrapper {
+  width: 960px; }
+.lt-ie9 .header .logo,
+.lt-ie9 .header .subtitle,
+.lt-ie9 h1,
+.lt-ie9 h2,
+.lt-ie9 h3,
+.lt-ie9 h4,
+.lt-ie9 h5,
+.lt-ie9 h6 {
+  text-align: left; }
+.lt-ie9 .header .subtitle {
+  margin-top: -20px;
+  margin-left: 115px; }
+.lt-ie9 .visuallyhidden--desk {
+  display: inherit; }
+.lt-ie9 input {
+  outline: none;
+  border: 0;
+  padding: 0;
+  margin: 0; }
