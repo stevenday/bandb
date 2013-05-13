@@ -3337,6 +3337,17 @@ h1 {
   margin-left: 115px; }
 .lt-ie9 .visuallyhidden--desk {
   display: inherit; }
+.lt-ie9 .visuallyhidden--portable,
+.lt-ie9 .visuallyhidden--palm,
+.lt-ie9 .visuallyhidden--lap {
+  border: 0 !important;
+  clip: rect(0 0 0 0) !important;
+  height: 1px !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  padding: 0 !important;
+  position: absolute !important;
+  width: 1px !important; }
 .lt-ie9 input {
   outline: none;
   border: 0;

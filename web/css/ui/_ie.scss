@@ -31,6 +31,13 @@
         display: inherit;
     }
 
+    // Things shown on smaller screens that we want to hide
+    .visuallyhidden--portable,
+    .visuallyhidden--palm,
+    .visuallyhidden--lap {
+        @include accessibility;
+    }
+
     // IE seems keen on outlining radios in particular with a dotted border
     input {
         outline: none;
