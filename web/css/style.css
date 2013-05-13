@@ -3348,6 +3348,10 @@ h1 {
 .lt-ie9 .visuallyhidden--palm,
 .lt-ie9 .visuallyhidden--lap {
   display: inherit; }
+  .lt-ie9 .visuallyhidden--portable.grid__item,
+  .lt-ie9 .visuallyhidden--palm.grid__item,
+  .lt-ie9 .visuallyhidden--lap.grid__item {
+    display: inline-block; }
 .lt-ie9 input {
   outline: none;
   border: 0;

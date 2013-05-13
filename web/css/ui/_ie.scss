@@ -36,6 +36,10 @@
     .visuallyhidden--palm,
     .visuallyhidden--lap {
         display: inherit;
+
+        &.grid__item {
+            display: inline-block;
+        }
     }
 
     // IE seems keen on outlining radios in particular with a dotted border
