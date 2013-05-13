@@ -1,0 +1,41 @@
+/**
+ * IE8 and below fixes
+ * Basically tries to ignore the responsive features as best we can.
+ */
+.lt-ie9 {
+    // Fix the body width
+    .wrapper {
+        width: 960px;
+    }
+
+    // Things which are only text-align: left; after a media query
+    .header .logo,
+    .header .subtitle,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        text-align: left;
+    }
+
+    // Subtitle has special styling for big screens
+    .header .subtitle {
+        margin-top: -20px;
+        margin-left: 115px;
+    }
+
+    // Things which are hidden on smaller screens
+    .visuallyhidden--portable,
+    .visuallyhidden--palm,
+    .visuallyhidden--lap {
+        // This is what inuit.css does
+        @include accessibility;
+    }
+
+    // IE seems keen on outlining radios in particular with a dotted border
+    input {
+        outline:none;
+    }
+}
