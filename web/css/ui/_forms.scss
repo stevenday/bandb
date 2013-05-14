@@ -4,11 +4,11 @@
     input,
     textarea {
         width:100%;
-        padding:$half-spacing-unit;
+        padding: $base-spacing-unit / 2;
         margin-bottom:$base-spacing-unit;
     }
 
-    input,
+    input[type=text],
     textarea {
         @include vendor(border-radius, 4px);
         border:1px solid #AAA;

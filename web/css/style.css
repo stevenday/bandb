@@ -3258,7 +3258,7 @@ h1 {
   width: 100%;
   padding: 12px;
   margin-bottom: 24px; }
-.form input,
+.form input[type=text],
 .form textarea {
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
@@ -3266,7 +3266,7 @@ h1 {
   -o-border-radius: 4px;
   border-radius: 4px;
   border: 1px solid #AAA; }
-  .form input.error,
+  .form input[type=text].error,
   .form textarea.error {
     border: 2px solid maroon; }
 .form fieldset {
@@ -3352,8 +3352,3 @@ h1 {
   .lt-ie9 .visuallyhidden--palm.grid__item,
   .lt-ie9 .visuallyhidden--lap.grid__item {
     display: inline-block; }
-.lt-ie9 input {
-  outline: none;
-  border: 0;
-  padding: 0;
-  margin: 0; }
