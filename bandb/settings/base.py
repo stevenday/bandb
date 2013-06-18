@@ -311,6 +311,10 @@ PIPELINE_JS = {
 
 PIPELINE_DISABLE_WRAPPER = True
 
+# This tells Django that when it's running on Heroku, the header HTTP_X_FORWARDED_PROTO
+# can be used to identify secure requests
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
 URLS_TO_SSLIFY = (
     'payment',
 )
