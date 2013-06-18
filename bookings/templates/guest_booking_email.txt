@@ -9,4 +9,8 @@ Please remember to bring the remaining £{{ booking.remaining }} with you in cas
 If you need to contact us in the meantime, please call us on {{ settings.PHONE_NUMBER }} or reply to this email, and we'll do our best to help.
 
 Don't forget to also check out our page of useful tips: {{ settings.SITE_BASE_URL }}{% url 'things_to_know' %}
+
+Look forward to seeing you,
+
+Yvonne & Adam
 {% endautoescape %}
