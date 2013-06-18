@@ -178,7 +178,7 @@ SERVER_EMAIL = SITE_EMAIL
 # People who receive emails about bookings
 HOST_BOOKING_RECIPIENTS = [SITE_EMAIL] + [admin[1] for admin in ADMINS]
 # We need this to make absolute links in emails
-SITE_BASE_URL = 'http://localhost:5000' if DEBUG else 'http://tilleyshut.herokuapp.com'
+SITE_BASE_URL = 'http://localhost:5000' if DEBUG else 'http://www.tillyshut.com'
 # This is used to specify explicitly when linking to the payment page
 # so that we can freeload off Heroku's https cert, rather than paying
 # $20 a month to be allowed to use our own with our custom domain
@@ -310,10 +310,6 @@ PIPELINE_JS = {
 }
 
 PIPELINE_DISABLE_WRAPPER = True
-
-# This tells Django that when it's running on Heroku, the header HTTP_X_FORWARDED_PROTO
-# can be used to identify secure requests
-SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 URLS_TO_SSLIFY = (
     'payment',
