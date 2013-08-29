@@ -13,7 +13,7 @@ def occupied_days(queryset, year, month):
     for model in queryset:
         for day in daterange(model.start, model.end):
             # Some of the models passed might overlap from a previous month
-            if day.year == year and day.month == month and not date in days:
+            if day.year == year and day.month == month and not day.day in days:
                 days.append(day.day)
     return days
 
