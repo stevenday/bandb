@@ -1,4 +1,5 @@
-from datetime import datetime, timedelta
+from datetime import date, datetime, timedelta
+from calendar import monthrange
 
 from django.db import models
 from django.db.models import Q
@@ -15,17 +16,23 @@ class BookingManager(models.Manager):
 
     def bookings_in_month(self, year, month):
         """
-        Bookings which start or end in the given month
+        Bookings which start, end or span the given month
         """
+        # Calculate the days at the start/end of the month
+        month_range = monthrange(year, month)
+        start_of_month = month_range[0]
+        end_of_month = month_range[1]
+        # Filter out bookings which end before this month or start after it
         return self.confirmed_bookings().filter(
-                                            Q(start__year=year, start__month=month) |
-                                            Q(end__year=year, end__month=month)
-                                        )
+            ~Q(end__lt=date(year, month, start_of_month)) |
+            ~Q(start__gt=date(year, month, end_of_month))
+        )
 
     def dates_available(self, start, end):
         """
         Are the dates between start and end available?
-        They are available if there are no confirmed bookings overlapping any of the days
+        They are available if there are no confirmed bookings overlapping any
+        of the days
         """
         # We have to do a bit of fudging to make this a simple/efficient db query
         # because one booking can start on the day another ends, which __range
@@ -33,16 +40,18 @@ class BookingManager(models.Manager):
         day_before_end = end - timedelta(days=1)
         day_after_start = start + timedelta(days=1)
         return not self.confirmed_bookings().filter(
-                                                Q(start__range=(start, day_before_end)) |
-                                                Q(end__range=(day_after_start, end))
-                                            ).exists()
+            Q(start__range=(start, day_before_end)) |
+            Q(end__range=(day_after_start, end))
+        ).exists()
 
     def bookings_to_email(self):
         """
         Return bookings which need emailing
         """
-        return self.confirmed_bookings().filter(Q(guest_emails_sent=False) |
-                                                Q(host_emails_sent=False))
+        return self.confirmed_bookings().filter(
+            Q(guest_emails_sent=False) |
+            Q(host_emails_sent=False)
+        )
 
 class Booking(models.Model):
 
@@ -101,9 +110,17 @@ class HolidayManager(models.Manager):
 
     def holidays_in_month(self, year, month):
         """
-        Holidays which start or end in the given month
+        Holidays which start, end or span the given month
         """
-        return super(HolidayManager, self).all().filter(Q(start__year=year, start__month=month) | Q(end__year=year, end__month=month))
+        # Calculate the days at the start/end of the month
+        month_range = monthrange(year, month)
+        start_of_month = month_range[0]
+        end_of_month = month_range[1]
+        # Filter out holidays which end before this month or start after it
+        return super(HolidayManager, self).all().filter(
+            ~Q(end__lt=date(year, month, start_of_month)) |
+            ~Q(start__gt=date(year, month, end_of_month))
+        )
 
 class Holiday(models.Model):
 
