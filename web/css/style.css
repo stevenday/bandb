@@ -3216,9 +3216,8 @@ h1 {
     font-size: 1.25rem;
     line-height: 1.2;
     padding: 0px 18px; }
-.calendar .non-empty-day {
-  cursor: pointer; }
 .calendar .available {
+  cursor: pointer;
   background-color: #adca6f; }
   .calendar .available:hover, .calendar .selected {
     background-color: #5d752b;

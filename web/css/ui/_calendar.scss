@@ -42,11 +42,8 @@ $booked-red: lighten($brand-color, 50%);
     }
 
     // Different types of cells
-    .non-empty-day {
-        cursor: pointer;
-    }
-
     .available {
+        cursor: pointer;
         background-color: $available-green;
         &:hover {
             background-color: darken($available-green, 30%);
