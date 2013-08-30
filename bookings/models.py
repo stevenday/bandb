@@ -20,7 +20,7 @@ class BookingManager(models.Manager):
         """
         # Calculate the days at the start/end of the month
         month_range = monthrange(year, month)
-        start_of_month = month_range[0]
+        start_of_month = 1
         end_of_month = month_range[1]
         # Filter out bookings which end before this month or start after it
         return self.confirmed_bookings().filter(
@@ -114,7 +114,7 @@ class HolidayManager(models.Manager):
         """
         # Calculate the days at the start/end of the month
         month_range = monthrange(year, month)
-        start_of_month = month_range[0]
+        start_of_month = 1
         end_of_month = month_range[1]
         # Filter out holidays which end before this month or start after it
         return super(HolidayManager, self).all().filter(
