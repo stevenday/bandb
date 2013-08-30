@@ -1,21 +1,63 @@
-from calendar import HTMLCalendar, month_name, monthrange
+from calendar import HTMLCalendar, month_name, monthrange, weekday
 from datetime import datetime, timedelta, date
+
+from django.conf import settings
 
 from .models import Booking, Holiday
 
 
 def occupied_days(queryset, year, month):
     """
-    Helper function to return the days in a particular month
+    Helper function to return a Set of the days in a particular month
     occupied by a queryset of models with start and end date fields
     """
-    days = []
+    days = set()
     for model in queryset:
         for day in daterange(model.start, model.end):
             # Some of the models passed might overlap from a previous month
-            if day.year == year and day.month == month and not day.day in days:
-                days.append(day.day)
+            if day.year == year and day.month == month:
+                days.add(day)
     return days
+
+
+def holiday_days(year, month):
+    """Return a Set of days which should be marked as holidays in a given
+    year/month.
+
+    This is a bit more complicated as we have:
+    - Default days, like Mon - Thurs, which are always unavailable
+    - Exceptions to the above rules (like bank holidays)
+    - Manually added holidays (like the Winter or Off Season)
+    """
+    # Get default holidays
+    default_holiday_days = default_holidays(year, month)
+    # Account for specific excluded days
+    holiday_days = apply_excluded_holidays(default_holiday_days)
+    # Add in explicit holidays from the database
+    database_holidays = Holiday.objects.holidays_in_month(year, month)
+    holiday_days.update(occupied_days(database_holidays, year, month))
+    return holiday_days
+
+
+def default_holidays(year, month):
+    """Return a Set of the settings.DEFAULT_HOLIDAY_NIGHTS that apply to this
+    year/month"""
+    default_holidays = set()
+    month_range = monthrange(year, month)
+    start_of_month = 1
+    end_of_month = month_range[1]
+    for day in range(start_of_month, end_of_month + 1):
+        print "checking if day {0} (a {1}) is in {2}".format(day, weekday(year, month, day), settings.DEFAULT_HOLIDAY_NIGHTS)
+        if weekday(year, month, day) in settings.DEFAULT_HOLIDAY_NIGHTS:
+            default_holidays.add(date(year, month, day))
+    return default_holidays
+
+
+def apply_excluded_holidays(holidays):
+    """Remove dates from a set that are specified in
+    settings.HOLIDAY_EXCEPTIONS"""
+    exceptions = set(settings.HOLIDAY_EXCEPTIONS)
+    return holidays.difference(exceptions)
 
 
 def daterange(start_date, end_date):
@@ -62,7 +104,7 @@ class BookingCalendar(HTMLCalendar):
             if self.selected_date.year != self.year or self.selected_date.month != self.month:
                 self.selected_date = None
         self.booked_days = occupied_days(Booking.objects.bookings_in_month(year, month), year, month)
-        self.holiday_days = occupied_days(Holiday.objects.holidays_in_month(year, month), year, month)
+        self.holiday_days = holiday_days(year, month)
 
     def formatmonthname(self, theyear, themonth, withyear=False):
         """
@@ -99,9 +141,9 @@ class BookingCalendar(HTMLCalendar):
 
             full_date = date(self.year, self.month, day)
 
-            if full_date < self.today or day in self.holiday_days:
+            if full_date < self.today or full_date in self.holiday_days:
                 cssclasses.append("unavailable")
-            elif day in self.booked_days:
+            elif full_date in self.booked_days:
                 cssclasses.append("booked")
             else:
                 cssclasses.append("available")
