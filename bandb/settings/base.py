@@ -1,5 +1,6 @@
 # Django settings for bandb project.
 import os
+import calendar
 
 from django.conf.global_settings import TEMPLATE_CONTEXT_PROCESSORS
 
@@ -313,4 +314,28 @@ PIPELINE_DISABLE_WRAPPER = True
 
 URLS_TO_SSLIFY = (
     'payment',
+)
+
+# Nights of the week we're not available by default
+# Used by the bookings app to know which days to hide on the calendar
+# These are really just integers from 0 -> 6 as per Calendar's day numbering
+DEFAULT_HOLIDAY_NIGHTS = (
+    calendar.MONDAY,
+    calendar.TUESDAY,
+    calendar.WEDNESDAY,
+    calendar.THURSDAY
+)
+
+# Exceptions to the days above which *will* be available even if they would
+# not normally, eg: Bank holiday Mondays
+# TODO - Make this a model and let people edit it?
+HOLIDAY_EXCEPTIONS = (
+    date(2014, 04, 21),  # Easter Monday
+    date(2014, 5, 5),  # Early May bank holiday
+    date(2014, 5, 26),  # Spring bank holiday
+    date(2014, 8, 25),  # Summer bank holiday
+    date(2015, 4, 6),  # Easter Monday
+    date(2015, 5, 4),  # Early May bank holiday
+    date(2015, 5, 5),  # Spring bank holiday
+    date(2015, 8, 31),  # Summer bank holiday
 )
