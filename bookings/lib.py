@@ -47,7 +47,6 @@ def default_holidays(year, month):
     start_of_month = 1
     end_of_month = month_range[1]
     for day in range(start_of_month, end_of_month + 1):
-        print "checking if day {0} (a {1}) is in {2}".format(day, weekday(year, month, day), settings.DEFAULT_HOLIDAY_NIGHTS)
         if weekday(year, month, day) in settings.DEFAULT_HOLIDAY_NIGHTS:
             default_holidays.add(date(year, month, day))
     return default_holidays
