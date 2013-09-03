@@ -8,4 +8,3 @@ virtualenv-bandb
 /static/*
 *.sass-cache
 .env
-static_cache

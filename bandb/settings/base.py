@@ -158,9 +158,9 @@ CACHES = {
     },
     # Long cache timeout for staticfiles, since this is used heavily by the optimizing storage.
     "staticfiles": {
-        "BACKEND": "django.core.cache.backends.locmem.LocMemCache",
+        "BACKEND": "django.core.cache.backends.filebased.FileBasedCache",
         "TIMEOUT": 60 * 60 * 24 * 365,
-        "LOCATION": "staticfiles",
+        "LOCATION": os.path.join(PROJECT_ROOT, 'static_cache'),
     },
 }
 
