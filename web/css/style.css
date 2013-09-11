@@ -3150,14 +3150,14 @@ a {
     color: #333; }
   @media only screen and (max-width: 639px) {
     .nav {
+      /* Smaller fonts for the menu on small devices */
+      font-size: 30px;
+      font-size: 1.875rem;
+      line-height: 1.6;
       /**
        * It would be nice to @extend .nav--stacked here, which is where
        * these styles come from, but you can't do that in media queries
-       */ }
-      .nav > li {
-        display: list-item; }
-        .nav > li > a {
-          display: block; } }
+       */ } }
 
 .content {
   margin-bottom: 24px; }
