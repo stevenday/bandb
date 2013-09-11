@@ -1,6 +1,5 @@
 body {
     color: #333;
-    font-family: Arial, sans-serif;
     background-color:$yellow;
 }
 
@@ -30,4 +29,15 @@ a {
     max-width:960px;
     padding:0 24px;
     margin:0 auto;
+}
+
+
+// Copied from inuit.css/base/_main.scss
+html {
+    font:#{($base-font-size/16px)*1em}/#{$line-height-ratio} $base-font-family;
+
+    // Scale font size on smaller devices
+    @include media-query(palm) {
+        font:#{($base-font-size/16px)*0.8em}/#{$line-height-ratio} $base-font-family;
+    }
 }
