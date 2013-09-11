@@ -10,20 +10,4 @@
     li.active>a {
         color:#333;
     }
-
-    /* Make it a vertical list on mobiles */
-    @include media-query(palm) {
-        /**
-         * It would be nice to @extend .nav--stacked here, which is where
-         * these styles come from, but you can't do that in media queries
-         */
-        > li{
-        display:list-item;
-
-            > a{
-                display:block;
-            }
-        }
-
-    }
 }
